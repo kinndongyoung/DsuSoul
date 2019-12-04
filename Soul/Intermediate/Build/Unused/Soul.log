@@ -1,27 +1,6 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\LSH\Unreal\Soul).
   Parsing headers for SoulEditor
     Running UnrealHeaderTool "D:\LSH\Unreal\Soul\Soul\Soul.uproject" "D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
-  Reflection code generated for SoulEditor in 5.7424406 seconds
-  Using Visual Studio 2017 14.16.27023 toolchain (D:\VisualStudio\VC\Tools\MSVC\14.16.27023) and Windows 10.0.16299.0 SDK (D:\Windows Kits\10).
-  Distributing 3 actions to XGE
-  --------------------Build System Warning---------------------------------------
-  License is invalid:
-      License information is invalid. Please try reloading your license file using the Coordinator Monitor application on the Coordinator machine, or reinstall IncrediBuild.
-      This build will run in standalone mode.
-  
-  -------------------------------------------------------------------------------
-  --------------------Project: Default-------------------------------------------
-  UE4Editor-Soul-0029.dll (0:01.84 at +0:00)
-     D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0029.suppressed.lib 라이브러리 및 D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0029.suppressed.exp 개체를 생성하고 있습니다.
-  UE4Editor-Soul-0029.lib (0:00.21 at +0:01)
-     D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0029.lib 라이브러리 및 D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0029.exp 개체를 생성하고 있습니다.
-  SoulEditor.target (0:00.18 at +0:02)
-  ---------------------- Done ----------------------
-  
-      Rebuild All: 1 succeeded, 0 failed, 0 skipped
-  
-  1 build system warning(s):
-     - License is invalid
-  
-  Total time in XGE executor: 2.41 seconds
-  Total execution time: 8.91 seconds
+  Reflection code generated for SoulEditor in 5.7011709 seconds
+  Target is up to date
+  Total execution time: 6.30 seconds
