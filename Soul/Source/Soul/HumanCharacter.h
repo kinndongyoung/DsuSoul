@@ -67,9 +67,11 @@ public:
 	// 공격 변수
 	FTimerHandle timer;
 	bool isFiring;
+
 	//모션 변수
 	bool Is_Walking;
 	bool Is_LayDowning;
+	
 	// 카메라 위치에서의 총구 오프셋
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	FVector MuzzleOffset;

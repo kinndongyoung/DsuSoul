@@ -13,6 +13,7 @@ public:
 	UHumanAnimInstance();
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 	bool myPlayer;
+
 private:
 	void PlayFire();
 
@@ -30,9 +31,9 @@ public:
 
 	//모션 변수
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-		bool Is_Walk;
+	bool Is_Walk;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-		bool Is_LayDown;
+	bool Is_LayDown;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
-		bool Is_idle;
+	bool Is_idle;
 };

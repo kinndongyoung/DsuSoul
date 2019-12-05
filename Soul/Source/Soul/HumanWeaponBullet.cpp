@@ -6,24 +6,28 @@ AHumanWeaponBullet::AHumanWeaponBullet()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	// 구체를 단순 콜리전 표현으로 사용합니다.
+	// 구체를 단순 콜리전 표현으로 사용
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
-	// 구체의 콜리전 반경을 설정합니다.
+	CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("HumanBullet"));
+	CollisionComponent->OnComponentHit.AddDynamic(this, &AHumanWeaponBullet::OnHit);
+
+	// 구체의 콜리전 반경을 설정
 	CollisionComponent->InitSphereRadius(15.0f);
-	// 루트 컴포넌트를 콜리전 컴포넌트로 설정합니다.
+	// 루트 컴포넌트를 콜리전 컴포넌트로 설정
 	RootComponent = CollisionComponent;
 
-	// ProjectileMovementComponent 를 사용하여 이 발사체의 운동을 관장합니다.
-	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
-	ProjectileMovementComponent->SetUpdatedComponent(CollisionComponent);
-	ProjectileMovementComponent->InitialSpeed = 3000.0f;
-	ProjectileMovementComponent->MaxSpeed = 3000.0f;
-	ProjectileMovementComponent->bRotationFollowsVelocity = true;
-	ProjectileMovementComponent->bShouldBounce = true;
-	ProjectileMovementComponent->Bounciness = 0.3f;
+	// ProjectileMovementComponent 를 사용하여 이 발사체의 운동을 관장
+	BulletMoveComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("BulletMoveComponent"));
+	BulletMoveComponent->SetUpdatedComponent(CollisionComponent);
+	BulletMoveComponent->InitialSpeed = 3000.0;
+	BulletMoveComponent->MaxSpeed = 3000.0f;
+	BulletMoveComponent->bRotationFollowsVelocity = true;
+	BulletMoveComponent->bShouldBounce = true;
+	BulletMoveComponent->Bounciness = 0.3f;
 
-	// 충돌 후 0.5초 뒤 삭제	
-	// InitialLifeSpan = 0.5f;
+	
+	// 충돌 후 0.5초 뒤 삭제(기능 안함)
+	InitialLifeSpan = 0.5f;
 }
 
 void AHumanWeaponBullet::BeginPlay()
@@ -38,8 +42,20 @@ void AHumanWeaponBullet::Tick(float DeltaTime)
 
 }
 
-// 프로젝타일의 속도를 발사 방향으로 초기화시키는 함수입니다.
+// 총알의 속도를 발사 방향으로 초기화시키는 함수
 void AHumanWeaponBullet::FireInDirection(const FVector& ShootDirection)
 {
-	ProjectileMovementComponent->Velocity = ShootDirection * ProjectileMovementComponent->InitialSpeed;
+	BulletMoveComponent->Velocity = ShootDirection * BulletMoveComponent->InitialSpeed;
+}
+
+// 총알에 무언가 맞으면 호출
+void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor != this)
+	{
+		printf("Hit Actor : %s", *Hit.GetActor()->GetName());
+		printf("Hit Bone : %s", *Hit.BoneName.ToString());
+		printf("Point : %s", *Hit.ImpactPoint.ToString());
+		printf("Normal : %s", *Hit.ImpactNormal.ToString());
+	}
 }

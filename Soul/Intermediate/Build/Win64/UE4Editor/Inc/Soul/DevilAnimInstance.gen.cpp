@@ -33,21 +33,6 @@ void EmptyLinkFunctionForGeneratedCodeDevilAnimInstance() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Is_LayDown_MetaData[];
-#endif
-		static void NewProp_Is_LayDown_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_Is_LayDown;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Is_Walk_MetaData[];
-#endif
-		static void NewProp_Is_Walk_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_Is_Walk;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_IsFire_MetaData[];
-#endif
-		static void NewProp_IsFire_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_IsFire;
-#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_IsInAir_MetaData[];
 #endif
 		static void NewProp_IsInAir_SetBit(void* Obj);
@@ -72,43 +57,6 @@ void EmptyLinkFunctionForGeneratedCodeDevilAnimInstance() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_LayDown_MetaData[] = {
-		{ "AllowPrivateAccess", "TRUE" },
-		{ "Category", "Pawn" },
-		{ "ModuleRelativePath", "DevilAnimInstance.h" },
-	};
-#endif
-	void Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_LayDown_SetBit(void* Obj)
-	{
-		((UDevilAnimInstance*)Obj)->Is_LayDown = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_LayDown = { "Is_LayDown", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UDevilAnimInstance), &Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_LayDown_SetBit, METADATA_PARAMS(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_LayDown_MetaData, ARRAY_COUNT(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_LayDown_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_Walk_MetaData[] = {
-		{ "AllowPrivateAccess", "TRUE" },
-		{ "Category", "Pawn" },
-		{ "Comment", "//???? ????\n" },
-		{ "ModuleRelativePath", "DevilAnimInstance.h" },
-	};
-#endif
-	void Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_Walk_SetBit(void* Obj)
-	{
-		((UDevilAnimInstance*)Obj)->Is_Walk = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_Walk = { "Is_Walk", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UDevilAnimInstance), &Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_Walk_SetBit, METADATA_PARAMS(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_Walk_MetaData, ARRAY_COUNT(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_Walk_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsFire_MetaData[] = {
-		{ "AllowPrivateAccess", "TRUE" },
-		{ "Category", "Pawn" },
-		{ "ModuleRelativePath", "DevilAnimInstance.h" },
-	};
-#endif
-	void Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsFire_SetBit(void* Obj)
-	{
-		((UDevilAnimInstance*)Obj)->IsFire = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsFire = { "IsFire", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UDevilAnimInstance), &Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsFire_SetBit, METADATA_PARAMS(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsFire_MetaData, ARRAY_COUNT(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsFire_MetaData)) };
-#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsInAir_MetaData[] = {
 		{ "AllowPrivateAccess", "TRUE" },
 		{ "Category", "Pawn" },
@@ -131,9 +79,6 @@ void EmptyLinkFunctionForGeneratedCodeDevilAnimInstance() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_CurrentPawnSpeed = { "CurrentPawnSpeed", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UDevilAnimInstance, CurrentPawnSpeed), METADATA_PARAMS(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_CurrentPawnSpeed_MetaData, ARRAY_COUNT(Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_CurrentPawnSpeed_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UDevilAnimInstance_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_LayDown,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_Is_Walk,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsFire,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_IsInAir,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UDevilAnimInstance_Statics::NewProp_CurrentPawnSpeed,
 	};
@@ -164,7 +109,7 @@ void EmptyLinkFunctionForGeneratedCodeDevilAnimInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UDevilAnimInstance, 637778907);
+	IMPLEMENT_CLASS(UDevilAnimInstance, 3522328222);
 	template<> SOUL_API UClass* StaticClass<UDevilAnimInstance>()
 	{
 		return UDevilAnimInstance::StaticClass();

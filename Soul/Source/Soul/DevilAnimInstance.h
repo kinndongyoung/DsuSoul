@@ -20,13 +20,4 @@ protected:
 								// CurrentPawnSpeed  > 0 : Walk
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
 		bool IsInAir;
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-		bool IsFire;
-	//모션 변수
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-		bool Is_Walk;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-		bool Is_LayDown;
 };

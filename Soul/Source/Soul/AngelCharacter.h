@@ -31,6 +31,9 @@ private:
 	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
 	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
 
+public:
+	bool isTrigger;				   // 트리거 겹침 유무
+
 private:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
 
@@ -39,11 +42,12 @@ private:// 컨트롤 관련 //
 	void LeftRight(float NewAxisValue);
 	void LookUp(float NewAxisValue);
 	void Turn(float NewAxisValue);
-	//모션 함수
-	void Walk();
-	void Stop_Walk();
-	void LayDown();
-	void Stop_LayDown();
+
+	// 설치 함수
+	void StartInstall();
+	void Installing();
+	void EndInstall();
+
 	// 애니메이션 클래스
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
 	class UAngelAnimInstance* AngelAnim;
@@ -54,11 +58,4 @@ private:// 카메라//
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
-
-public:
-
-	bool isFiring;
-	bool Is_Walking;
-	bool Is_LayDowning;
-
 };
