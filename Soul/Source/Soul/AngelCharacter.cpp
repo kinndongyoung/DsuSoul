@@ -35,6 +35,7 @@ AAngelCharacter::AAngelCharacter()
 
 	ArmLengthSpeed = 3.0f;
 	ArmRotationSpeed = 10.0f;
+	isTrigger = false;
 
 	// Jump Height
 	GetCharacterMovement()->JumpZVelocity = 600.0f;
@@ -69,6 +70,9 @@ void AAngelCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AAngelCharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Angel_Installation"), IE_Pressed, this, &AAngelCharacter::StartInstall);
+	PlayerInputComponent->BindAction(TEXT("Angel_Installation"), IE_Repeat, this, &AAngelCharacter::Installing);
+	PlayerInputComponent->BindAction(TEXT("Angel_Installation"), IE_Released, this, &AAngelCharacter::EndInstall);
 
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AAngelCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AAngelCharacter::LeftRight);
@@ -106,6 +110,21 @@ void AAngelCharacter::LeftRight(float NewAxisValue)
 void AAngelCharacter::Turn(float NewAxisValue)
 {
 	AddControllerYawInput(NewAxisValue);
+}
+
+void AAngelCharacter::StartInstall()
+{
+
+}
+
+void AAngelCharacter::Installing()
+{
+
+}
+
+void AAngelCharacter::EndInstall()
+{
+
 }
 
 void AAngelCharacter::LookUp(float NewAxisValue)

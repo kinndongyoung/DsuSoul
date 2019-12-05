@@ -112,6 +112,18 @@
     <ClInclude Include="..\..\Source\Soul\DevilCharacter.h">
       <Filter>Source\Soul\02.User\02-01.UserCharacter\02.DevilCharacter</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Soul\Angel_InstallTrigger.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Soul\HUD_Angel.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Soul\HUD_Human.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Soul\HUD_Devil.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Soul\Soul_GameMode.cpp">
@@ -146,6 +158,18 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Soul\DevilCharacter.cpp">
       <Filter>Source\Soul\02.User\02-01.UserCharacter\02.DevilCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Soul\Angel_InstallTrigger.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Soul\HUD_Angel.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Soul\HUD_Human.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Soul\HUD_Devil.cpp">
+      <Filter>Source\Soul</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +223,12 @@
     </Filter>
     <Filter Include="Source\Soul\02.User\02-02.CharacterAnimInstance\03.AngellAnimInstance">
       <UniqueIdentifier>{1b107eda-3ff3-497c-861a-5ac3d4f5a336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Soul\03.Trigger">
+      <UniqueIdentifier>{5fe0bd5b-ba57-4ef7-bd43-4497cb465199}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Soul\03.Trigger\03-01.Angel_InstallTrigger">
+      <UniqueIdentifier>{dd3e41be-5beb-4658-b65c-b9630f9525a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

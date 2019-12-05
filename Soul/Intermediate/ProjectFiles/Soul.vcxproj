@@ -268,8 +268,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Soul\AngelAnimInstance.cpp" />
     <ClCompile Include="..\..\Source\Soul\AngelCharacter.cpp" />
+    <ClCompile Include="..\..\Source\Soul\Angel_InstallTrigger.cpp" />
     <ClCompile Include="..\..\Source\Soul\DevilAnimInstance.cpp" />
     <ClCompile Include="..\..\Source\Soul\DevilCharacter.cpp" />
+    <ClCompile Include="..\..\Source\Soul\HUD_Angel.cpp" />
+    <ClCompile Include="..\..\Source\Soul\HUD_Devil.cpp" />
+    <ClCompile Include="..\..\Source\Soul\HUD_Human.cpp" />
     <ClCompile Include="..\..\Source\Soul\HumanAnimInstance.cpp" />
     <ClCompile Include="..\..\Source\Soul\HumanCharacter.cpp" />
     <ClCompile Include="..\..\Source\Soul\HumanWeapon.cpp" />
@@ -277,8 +281,12 @@
     <ClCompile Include="..\..\Source\Soul\Soul_UserController.cpp" />
     <ClInclude Include="..\..\Source\Soul\AngelAnimInstance.h" />
     <ClInclude Include="..\..\Source\Soul\AngelCharacter.h" />
+    <ClInclude Include="..\..\Source\Soul\Angel_InstallTrigger.h" />
     <ClInclude Include="..\..\Source\Soul\DevilAnimInstance.h" />
     <ClInclude Include="..\..\Source\Soul\DevilCharacter.h" />
+    <ClInclude Include="..\..\Source\Soul\HUD_Angel.h" />
+    <ClInclude Include="..\..\Source\Soul\HUD_Devil.h" />
+    <ClInclude Include="..\..\Source\Soul\HUD_Human.h" />
     <ClInclude Include="..\..\Source\Soul\HumanAnimInstance.h" />
     <ClInclude Include="..\..\Source\Soul\HumanCharacter.h" />
     <ClInclude Include="..\..\Source\Soul\HumanWeapon.h" />
