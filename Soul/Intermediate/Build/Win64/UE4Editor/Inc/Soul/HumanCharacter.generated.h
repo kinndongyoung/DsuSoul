@@ -58,7 +58,6 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AHumanCharacter); \
 
 
 #define Soul_Source_Soul_HumanCharacter_h_10_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__HumanAnim() { return STRUCT_OFFSET(AHumanCharacter, HumanAnim); } \
 	FORCEINLINE static uint32 __PPO__UserCameraArm() { return STRUCT_OFFSET(AHumanCharacter, UserCameraArm); } \
 	FORCEINLINE static uint32 __PPO__Camera() { return STRUCT_OFFSET(AHumanCharacter, Camera); }
 

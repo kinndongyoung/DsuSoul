@@ -31,7 +31,7 @@ private:
 	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
 	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
 
-private:// 컨트롤 관련 //
+public:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
 
 	// 행동	함수
@@ -51,17 +51,25 @@ private:// 카메라//
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
 
-private:// 무기관련 //
+public:// 무기관련 //
 	// 공격 함수
 	void StartFire();
 	void Fire();
 	void StopFire();
+	//모션 함수
+	void Walk();
+	void Stop_Walk();
+	void LayDown();
+	void Stop_LayDown();
+
 
 public:
 	// 공격 변수
 	FTimerHandle timer;
 	bool isFiring;
-
+	//모션 변수
+	bool Is_Walking;
+	bool Is_LayDowning;
 	// 카메라 위치에서의 총구 오프셋
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	FVector MuzzleOffset;

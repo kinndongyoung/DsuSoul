@@ -36,8 +36,10 @@ AAngelCharacter::AAngelCharacter()
 	ArmLengthSpeed = 3.0f;
 	ArmRotationSpeed = 10.0f;
 
-	// Jump Height
-	GetCharacterMovement()->JumpZVelocity = 600.0f;
+	//천사 속도
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+	//점프
+	GetCharacterMovement()->JumpZVelocity = 500.0f;
 }
 
 void AAngelCharacter::BeginPlay()
@@ -69,6 +71,13 @@ void AAngelCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AAngelCharacter::Jump);
+
+	//모션
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &AAngelCharacter::Walk);
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &AAngelCharacter::Stop_Walk);
+	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Pressed, this, &AAngelCharacter::LayDown);
+	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Released, this, &AAngelCharacter::Stop_LayDown);
+	//행동
 
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AAngelCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AAngelCharacter::LeftRight);
@@ -111,4 +120,30 @@ void AAngelCharacter::Turn(float NewAxisValue)
 void AAngelCharacter::LookUp(float NewAxisValue)
 {
 	AddControllerPitchInput(NewAxisValue);
+}
+void AAngelCharacter::Walk()
+{
+	print("Input Shift");
+	Is_Walking = true;
+	AngelAnim->Is_Walk = Is_Walking;
+	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+}
+void AAngelCharacter::Stop_Walk()
+{
+	Is_Walking = false;
+	AngelAnim->Is_Walk = Is_Walking;
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+}
+void AAngelCharacter::LayDown()
+{
+	print("Input Ctrl");
+	Is_LayDowning = true;
+	AngelAnim->Is_LayDown = Is_LayDowning;
+	GetCharacterMovement()->MaxWalkSpeed = 150.0f;
+}
+void AAngelCharacter::Stop_LayDown()
+{
+	Is_LayDowning = false;
+	AngelAnim->Is_LayDown = Is_LayDowning;
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 }
