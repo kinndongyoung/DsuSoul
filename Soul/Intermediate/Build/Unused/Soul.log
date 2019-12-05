@@ -1,6 +1,14 @@
-﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\LSH\Unreal\Soul).
+﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\Soul).
   Parsing headers for SoulEditor
-    Running UnrealHeaderTool "D:\LSH\Unreal\Soul\Soul\Soul.uproject" "D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
-  Reflection code generated for SoulEditor in 5.7011709 seconds
-  Target is up to date
-  Total execution time: 6.30 seconds
+    Running UnrealHeaderTool "D:\Soul\Soul\Soul.uproject" "D:\Soul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+  Reflection code generated for SoulEditor in 6.6291583 seconds
+  Using Visual Studio 2017 14.16.27023 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023) and Windows 10.0.16299.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+  Building 4 actions with 8 processes...
+    [1/4] HumanCharacter.cpp
+    [2/4] UE4Editor-Soul-0041.lib
+       D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0041.lib 라이브러리 및 D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0041.exp 개체를 생성하고 있습니다.
+    [3/4] UE4Editor-Soul-0041.dll
+       D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0041.suppressed.lib 라이브러리 및 D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0041.suppressed.exp 개체를 생성하고 있습니다.
+    [4/4] SoulEditor.target
+  Total time in Parallel executor: 5.44 seconds
+  Total execution time: 13.14 seconds

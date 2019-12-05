@@ -56,7 +56,11 @@ private:// 무기관련 //
 	void StartFire();
 	void Fire();
 	void StopFire();
+	void WallLStand();
+	void WallLStandFire();
 
+	void WallRStand();
+	void WallRStandFire();
 public:
 	// 공격 변수
 	FTimerHandle timer;

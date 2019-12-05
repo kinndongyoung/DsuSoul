@@ -93,10 +93,16 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &AHumanCharacter::StartFire);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &AHumanCharacter::StopFire);
 
+	PlayerInputComponent->BindAction(TEXT("WallLStand"), IE_Released, this, &AHumanCharacter::WallLStand);
+	PlayerInputComponent->BindAction(TEXT("WallLStandFire"), IE_Released, this, &AHumanCharacter::WallLStandFire);
+	PlayerInputComponent->BindAction(TEXT("WallRStand"), IE_Released, this, &AHumanCharacter::WallRStand);
+	PlayerInputComponent->BindAction(TEXT("WallRStandFire"), IE_Released, this, &AHumanCharacter::WallRStandFire);
+
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AHumanCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AHumanCharacter::LeftRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AHumanCharacter::Turn);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AHumanCharacter::LookUp);
+
 }
 
 // Set Camera Arm
@@ -117,12 +123,14 @@ void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 // Move Character
 void AHumanCharacter::UpDown(float NewAxisValue)
 {
+	if (!HumanAnim->GetIsWallLStandFunc() && !HumanAnim->GetIsWallRStandFunc())
 	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
 }
 
 void AHumanCharacter::LeftRight(float NewAxisValue)
 {
-	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
+	if (!HumanAnim->GetIsWallLStandFunc() && !HumanAnim->GetIsWallRStandFunc())
+		AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
 }
 
 // Rotate Character
@@ -134,6 +142,59 @@ void AHumanCharacter::Turn(float NewAxisValue)
 void AHumanCharacter::LookUp(float NewAxisValue)
 {
 	AddControllerPitchInput(NewAxisValue);
+}
+
+//Wall
+void AHumanCharacter::WallRStand()
+{
+	if (HumanAnim->GetIsWallRStandFunc())
+	{
+
+		GetCharacterMovement()->JumpZVelocity = 600.0f;
+		HumanAnim->SetIsWallRStandFunc(false);
+	}
+	else
+	{
+
+		GetCharacterMovement()->JumpZVelocity = 0.0f;
+		HumanAnim->SetIsWallRStandFunc(true);
+	}
+}
+
+void AHumanCharacter::WallRStandFire()
+{
+	if (HumanAnim->GetIsWallRStandFunc())
+	{
+		isFiring = true;
+		HumanAnim->IsFire = isFiring;
+		Fire();
+	}
+}
+
+void AHumanCharacter::WallLStand()
+{
+	if (HumanAnim->GetIsWallLStandFunc())
+	{
+
+		GetCharacterMovement()->JumpZVelocity = 600.0f;
+		HumanAnim->SetIsWallLStandFunc(false);
+	}
+	else
+	{
+
+		GetCharacterMovement()->JumpZVelocity = 0.0f;
+		HumanAnim->SetIsWallLStandFunc(true);
+	}
+}
+
+void AHumanCharacter::WallLStandFire()
+{
+	if (HumanAnim->GetIsWallLStandFunc())
+	{
+		isFiring = true;
+		HumanAnim->IsFire = isFiring;
+		Fire();
+	}
 }
 
 // Fire
@@ -167,15 +228,20 @@ void AHumanCharacter::Fire()
 
 				// 총구 위치에 발사체를 스폰시킵니다.
 				AHumanWeaponBullet* Bullet = World->SpawnActor<AHumanWeaponBullet>(WeaponBulletClass, MuzzleLocation, MuzzleRotation, SpawnParams);
+				if (HumanAnim->GetIsWallLStandFunc())
+				{
+					MuzzleLocation = UserWeapon->ActorToWorld().GetLocation() + FVector(30.0f, 10.0f, 0.0f);
+				}
 				if (Bullet)
 				{
 					// 발사 방향을 알아냅니다.
 					FVector LaunchDirection = MuzzleRotation.Vector();
 					Bullet->FireInDirection(LaunchDirection);
+
+
 				}
 			}
 		}
-
 		// 연사를 위한 StartFire 함수 생성
 		GetWorld()->GetTimerManager().SetTimer(timer, this, &AHumanCharacter::Fire, 0.1f, false);
 	}

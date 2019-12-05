@@ -4,6 +4,8 @@ UHumanAnimInstance::UHumanAnimInstance()
 {
 	CurrentPawnSpeed = 0.0f;
 	IsInAir = false;
+	IsWallLStand = false;
+	IsWallRStand = false;
 }
 
 void UHumanAnimInstance::NativeUpdateAnimation(float DeltaSeconds)

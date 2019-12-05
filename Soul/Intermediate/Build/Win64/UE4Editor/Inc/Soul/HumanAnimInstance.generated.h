@@ -59,7 +59,9 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UHumanAnimInstance); \
 
 #define Soul_Source_Soul_HumanAnimInstance_h_10_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__CurrentPawnSpeed() { return STRUCT_OFFSET(UHumanAnimInstance, CurrentPawnSpeed); } \
-	FORCEINLINE static uint32 __PPO__IsInAir() { return STRUCT_OFFSET(UHumanAnimInstance, IsInAir); }
+	FORCEINLINE static uint32 __PPO__IsInAir() { return STRUCT_OFFSET(UHumanAnimInstance, IsInAir); } \
+	FORCEINLINE static uint32 __PPO__IsWallLStand() { return STRUCT_OFFSET(UHumanAnimInstance, IsWallLStand); } \
+	FORCEINLINE static uint32 __PPO__IsWallRStand() { return STRUCT_OFFSET(UHumanAnimInstance, IsWallRStand); }
 
 
 #define Soul_Source_Soul_HumanAnimInstance_h_7_PROLOG

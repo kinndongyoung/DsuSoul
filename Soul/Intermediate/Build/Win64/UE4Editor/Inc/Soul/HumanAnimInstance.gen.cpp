@@ -38,6 +38,16 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		static void NewProp_IsFire_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_IsFire;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_IsWallRStand_MetaData[];
+#endif
+		static void NewProp_IsWallRStand_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_IsWallRStand;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_IsWallLStand_MetaData[];
+#endif
+		static void NewProp_IsWallLStand_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_IsWallLStand;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_IsInAir_MetaData[];
 #endif
 		static void NewProp_IsInAir_SetBit(void* Obj);
@@ -74,6 +84,30 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsFire = { "IsFire", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UHumanAnimInstance), &Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsFire_SetBit, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsFire_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsFire_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallRStand_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Pawn" },
+		{ "ModuleRelativePath", "HumanAnimInstance.h" },
+	};
+#endif
+	void Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallRStand_SetBit(void* Obj)
+	{
+		((UHumanAnimInstance*)Obj)->IsWallRStand = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallRStand = { "IsWallRStand", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UHumanAnimInstance), &Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallRStand_SetBit, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallRStand_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallRStand_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallLStand_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Pawn" },
+		{ "ModuleRelativePath", "HumanAnimInstance.h" },
+	};
+#endif
+	void Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallLStand_SetBit(void* Obj)
+	{
+		((UHumanAnimInstance*)Obj)->IsWallLStand = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallLStand = { "IsWallLStand", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UHumanAnimInstance), &Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallLStand_SetBit, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallLStand_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallLStand_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsInAir_MetaData[] = {
 		{ "AllowPrivateAccess", "TRUE" },
 		{ "Category", "Pawn" },
@@ -97,6 +131,8 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_CurrentPawnSpeed = { "CurrentPawnSpeed", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, CurrentPawnSpeed), METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_CurrentPawnSpeed_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_CurrentPawnSpeed_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UHumanAnimInstance_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsFire,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallRStand,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsWallLStand,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsInAir,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_CurrentPawnSpeed,
 	};
@@ -127,7 +163,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHumanAnimInstance, 1809471171);
+	IMPLEMENT_CLASS(UHumanAnimInstance, 2339228120);
 	template<> SOUL_API UClass* StaticClass<UHumanAnimInstance>()
 	{
 		return UHumanAnimInstance::StaticClass();
