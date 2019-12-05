@@ -12,11 +12,11 @@ class SOUL_API UHumanAnimInstance : public UAnimInstance
 public:
 	UHumanAnimInstance();
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-
+	bool myPlayer;
 private:
 	void PlayFire();
 
-protected:
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	float CurrentPawnSpeed; // Ground 스테이트의 애니메이션 전환 값
 							// CurrentPawnSpeed =< 0 : Idle
@@ -27,4 +27,12 @@ protected:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	bool IsFire;
+
+	//모션 변수
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
+		bool Is_Walk;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
+		bool Is_LayDown;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
+		bool Is_idle;
 };

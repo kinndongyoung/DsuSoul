@@ -38,17 +38,23 @@ AHumanCharacter::AHumanCharacter()
 	ArmLengthSpeed = 3.0f;
 	ArmRotationSpeed = 10.0f;
 
-	// Jump Height
-	GetCharacterMovement()->JumpZVelocity = 600.0f;
-
 	// Bullet Initialize
 	isFiring = false;
 	MuzzleOffset = FVector(100.0f, 0.0f, 0.0f);
+
+	//모션 변수
+	Is_Walking = false;
+	Is_LayDowning = false;
 	
 	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_HumanWeaponBullet.BP_HumanWeaponBullet"));
 
 	if (BP_SOUL_WEAPON_BULLET.Succeeded())
 		WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
+
+	//인간 속도
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+	//점프
+	GetCharacterMovement()->JumpZVelocity = 500.0f;
 }
 
 void AHumanCharacter::BeginPlay()
@@ -92,7 +98,12 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AHumanCharacter::Jump);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &AHumanCharacter::StartFire);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &AHumanCharacter::StopFire);
-
+	//모션
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &AHumanCharacter::Walk);
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_Walk);
+	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::LayDown);
+	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_LayDown);
+	//행동
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AHumanCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AHumanCharacter::LeftRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AHumanCharacter::Turn);
@@ -185,4 +196,30 @@ void AHumanCharacter::StopFire()
 {
 	isFiring = false;
 	HumanAnim->IsFire = isFiring;
+}
+void AHumanCharacter::Walk()
+{
+	print("Input Shift");
+	Is_Walking = true;
+	HumanAnim->Is_Walk = Is_Walking;
+	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+}
+void AHumanCharacter::Stop_Walk()
+{
+	Is_Walking = false;
+	HumanAnim->Is_Walk = Is_Walking;
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+}
+void AHumanCharacter::LayDown()
+{
+	print("Input Ctrl");
+	Is_LayDowning = true;
+	HumanAnim->Is_LayDown = Is_LayDowning;
+	GetCharacterMovement()->MaxWalkSpeed = 150.0f;
+}
+void AHumanCharacter::Stop_LayDown()
+{
+	Is_LayDowning = false;
+	HumanAnim->Is_LayDown = Is_LayDowning;
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 }

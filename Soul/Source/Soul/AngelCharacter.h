@@ -39,7 +39,11 @@ private:// 컨트롤 관련 //
 	void LeftRight(float NewAxisValue);
 	void LookUp(float NewAxisValue);
 	void Turn(float NewAxisValue);
-
+	//모션 함수
+	void Walk();
+	void Stop_Walk();
+	void LayDown();
+	void Stop_LayDown();
 	// 애니메이션 클래스
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
 	class UAngelAnimInstance* AngelAnim;
@@ -50,4 +54,11 @@ private:// 카메라//
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
+
+public:
+
+	bool isFiring;
+	bool Is_Walking;
+	bool Is_LayDowning;
+
 };

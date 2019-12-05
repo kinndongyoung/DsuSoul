@@ -36,7 +36,13 @@ ADevilCharacter::ADevilCharacter()
 	ArmLengthSpeed = 3.0f;
 	ArmRotationSpeed = 10.0f;
 
-	// Jump Height
+	//모션 변수
+	isFiring = false;
+	Is_Walking = false;
+	Is_LayDowning = false;
+	//악마 속도
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+	//점프
 	GetCharacterMovement()->JumpZVelocity = 600.0f;
 }
 
@@ -69,6 +75,13 @@ void ADevilCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADevilCharacter::Jump);
+
+	//모션
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &ADevilCharacter::Walk);
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &ADevilCharacter::Stop_Walk);
+	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Pressed, this, &ADevilCharacter::LayDown);
+	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Released, this, &ADevilCharacter::Stop_LayDown);
+	//행동
 
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &ADevilCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &ADevilCharacter::LeftRight);
@@ -111,4 +124,29 @@ void ADevilCharacter::Turn(float NewAxisValue)
 void ADevilCharacter::LookUp(float NewAxisValue)
 {
 	AddControllerPitchInput(NewAxisValue);
+}
+void ADevilCharacter::Walk()
+{
+	print("Input Shift");
+	DevilAnim->Is_Walk = true;
+	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+}
+void ADevilCharacter::Stop_Walk()
+{
+	Is_Walking = false;
+	DevilAnim->Is_Walk = Is_Walking;
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+}
+void ADevilCharacter::LayDown()
+{
+	print("Input Ctrl");
+	Is_LayDowning = true;
+	DevilAnim->Is_LayDown = Is_LayDowning;
+	GetCharacterMovement()->MaxWalkSpeed = 150.0f;
+}
+void ADevilCharacter::Stop_LayDown()
+{
+	Is_LayDowning = false;
+	DevilAnim->Is_LayDown = Is_LayDowning;
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 }

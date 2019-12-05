@@ -8,6 +8,7 @@ UCLASS()
 class SOUL_API ASoul_GameMode : public AGameModeBase
 {
 	GENERATED_BODY()
+	ASoul_GameMode();
 
 protected:
 	// Á¾Á· enum
@@ -29,6 +30,5 @@ protected:
 	ESelectCharacter e_SelectChar;
 
 public:
-	ASoul_GameMode();
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 };

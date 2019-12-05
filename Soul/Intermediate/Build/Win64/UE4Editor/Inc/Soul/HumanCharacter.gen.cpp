@@ -130,7 +130,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		{ "ToolTip", "?\xd6\xb4\xcf\xb8??\xcc\xbc? \xc5\xac????" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim = { "HumanAnim", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, HumanAnim), Z_Construct_UClass_UHumanAnimInstance_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim = { "HumanAnim", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, HumanAnim), Z_Construct_UClass_UHumanAnimInstance_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AHumanCharacter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon,
@@ -166,7 +166,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHumanCharacter, 4249323409);
+	IMPLEMENT_CLASS(AHumanCharacter, 85778661);
 	template<> SOUL_API UClass* StaticClass<AHumanCharacter>()
 	{
 		return AHumanCharacter::StaticClass();
