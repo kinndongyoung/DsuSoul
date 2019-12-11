@@ -100,6 +100,8 @@
 "D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Development\UMG\UE4Editor-UMG.lib"
 "D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Development\Slate\UE4Editor-Slate.lib"
 "D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Development\SlateCore\UE4Editor-SlateCore.lib"
+"D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Development\Sockets\UE4Editor-Sockets.lib"
+"D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Development\Networking\UE4Editor-Networking.lib"
 /OUT:"D:\LSH\Unreal\backup\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul.dll"
 /IMPLIB:"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.suppressed.lib"
 /PDB:"D:\LSH\Unreal\backup\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul.pdb"

@@ -1,4 +1,4 @@
-// PCH for D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Public\EngineSharedPCH.h
+// PCH for C:\UE_4.23\Engine\Source\Runtime\Engine\Public\EngineSharedPCH.h
 #define IS_PROGRAM 0
 #define UE_GAME 1
 #define ENABLE_PGO_PROFILE 0
@@ -27,8 +27,8 @@
 #define WITH_SERVER_CODE 1
 #define WITH_CEF3 1
 #define WITH_LIVE_CODING 1
-#define UE_LIVE_CODING_ENGINE_DIR "D:\\Unreal Engine\\UE_4.23\\Engine"
-#define UE_LIVE_CODING_PROJECT "D:\\LSH\\Unreal\\Soul\\Soul\\Soul.uproject"
+#define UE_LIVE_CODING_ENGINE_DIR "C:\\UE_4.23\\Engine"
+#define UE_LIVE_CODING_PROJECT "D:\\DsuSoul\\Soul\\Soul.uproject"
 #define WITH_XGE_CONTROLLER 0
 #define UBT_MODULE_MANIFEST "UE4.modules"
 #define UBT_MODULE_MANIFEST_DEBUGGAME "UE4-Win64-DebugGame.modules"
@@ -43,7 +43,7 @@
 #define OVERRIDE_PLATFORM_HEADER_NAME Windows
 #define NDEBUG 1
 #define UE_BUILD_DEVELOPMENT 1
-#define UE_ENGINE_DIRECTORY "../../../../../../Unreal Engine/UE_4.23/Engine/"
+#define UE_ENGINE_DIRECTORY "C:/UE_4.23/Engine/"
 #define UE_IS_ENGINE_MODULE 1
 #define INCLUDE_CHAOS 0
 #define WITH_PHYSX 1
@@ -202,4 +202,4 @@
 #define UELIBSAMPLERATE_API 
 #define ANIMATIONCORE_VTABLE 
 #define ANIMATIONCORE_API 
-#include "D:/Unreal Engine/UE_4.23/Engine/Source/Runtime/Engine/Public/EngineSharedPCH.h"
+#include "C:/UE_4.23/Engine/Source/Runtime/Engine/Public/EngineSharedPCH.h"
