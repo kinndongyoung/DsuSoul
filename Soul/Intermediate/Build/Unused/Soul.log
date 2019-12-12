@@ -1,2 +1,14 @@
-﻿  지정된 경로를 찾을 수 없습니다.
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.MakeFile.Targets(44,5): error MSB3073: ""D:\Unreal Engine\UE_4.23\Engine\Build\BatchFiles\Build.bat" SoulEditor Win64 Development -Project="D:\DsuSoul\Soul\Soul.uproject" -WaitMutex -FromMsBuild" 명령이 종료되었습니다(코드: 3).
+﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\Soul).
+  Parsing headers for SoulEditor
+    Running UnrealHeaderTool "D:\Soul\Soul\Soul.uproject" "D:\Soul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+  Reflection code generated for SoulEditor in 6.7567109 seconds
+  Using Visual Studio 2017 14.16.27023 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023) and Windows 10.0.16299.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+  Building 4 actions with 8 processes...
+    [1/4] HumanCharacter.cpp
+    [2/4] UE4Editor-Soul-0188.lib
+       D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0188.lib 라이브러리 및 D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0188.exp 개체를 생성하고 있습니다.
+    [3/4] UE4Editor-Soul-0188.dll
+       D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0188.suppressed.lib 라이브러리 및 D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0188.suppressed.exp 개체를 생성하고 있습니다.
+    [4/4] SoulEditor.target
+  Total time in Parallel executor: 7.73 seconds
+  Total execution time: 15.67 seconds

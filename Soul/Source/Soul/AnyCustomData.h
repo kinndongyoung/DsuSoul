@@ -35,6 +35,9 @@ struct  FPlayerData : public F_tgPacketHeader
 	bool Is_Walking;
 	bool Is_Air;
 	bool Is_Fire;
+	bool Is_LayDown;
+	bool Is_Reload;
+	bool Is_SitDown;
 	float CurrentPawnSpeed;
 	FPlayerData() {};
 	~FPlayerData() {};

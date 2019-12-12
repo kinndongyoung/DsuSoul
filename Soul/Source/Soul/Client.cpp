@@ -31,8 +31,6 @@ void AClient::InitCharacter()
 	for (int i = 0; i < 9; i++)
 	{
 		if (i + 1 == PlayerNumber)
-			ScreenMsg("playernumber", PlayerNumber);
-		if (i + 1 == PlayerNumber)
 		{
 			pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1640, 601 + (i * 200), 250), FRotator::ZeroRotator, spawnParams);
 			myPawn = pawns[i];
@@ -196,6 +194,22 @@ void AClient::Tick(float DeltaTime)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Walk = true;
 						else if (pPlayerData->Is_Walking == false)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Walk = false;
+						if (pPlayerData->Is_Air)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->IsInAir = true;
+						else if (!pPlayerData->Is_Air)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->IsInAir = false;
+						if (pPlayerData->Is_LayDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_LayDown = true;
+						else if (!pPlayerData->Is_LayDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_LayDown = false;
+						if (pPlayerData->Is_SitDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_SitDown = true;
+						else if (!pPlayerData->Is_SitDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_SitDown = false;
+						if (pPlayerData->Is_Reload)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Reload = true;
+						else if (!pPlayerData->Is_Reload)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Reload = false;
 						if(pPlayerData->Is_Fire)
 							pawns[(pPlayerData->user) - 1]->StartFire();
 						else if(pPlayerData->Is_Fire==false&&pawns[(pPlayerData->user) - 1]->isFiring)

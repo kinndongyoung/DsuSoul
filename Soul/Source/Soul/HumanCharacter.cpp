@@ -2,6 +2,7 @@
 #include "HumanAnimInstance.h"
 #include "HumanWeapon.h"
 #include "HumanWeaponBullet.h"
+#include "MyAIController.h"
 
 // 생성자에서 User 초기화
 AHumanCharacter::AHumanCharacter()
@@ -55,6 +56,11 @@ AHumanCharacter::AHumanCharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 	//점프
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
+
+	AIControllerClass = AAIController::StaticClass();
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+
+
 }
 
 void AHumanCharacter::BeginPlay()
@@ -76,6 +82,8 @@ void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
+	if(!bUseControllerRotationYaw)
+		bUseControllerRotationYaw = true;
 }
 
 void AHumanCharacter::PostInitializeComponents()
@@ -88,6 +96,17 @@ void AHumanCharacter::PostInitializeComponents()
 void AHumanCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+
+	if (IsPlayerControlled())
+	{
+		SetControlMode(EControlMode::TPS);
+		GetCharacterMovement()->MaxWalkSpeed = 700.0f;
+	}
+	else
+	{
+		SetControlMode(EControlMode::NPC);
+		GetCharacterMovement()->MaxWalkSpeed = 600.0f;
+	}
 }
 
 // Input Key
@@ -113,33 +132,49 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 // Set Camera Arm
 void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 {
-	ArmLengthTo = 200.0f;
-	UserCameraArm->bUsePawnControlRotation = true;
-	UserCameraArm->bInheritPitch = true;
-	UserCameraArm->bInheritRoll = true;
-	UserCameraArm->bInheritYaw = true;
-	UserCameraArm->bDoCollisionTest = true;
-	bUseControllerRotationYaw = false;
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->bUseControllerDesiredRotation = false;
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f);
-}
+	CurrentControlMode = NewControlMode;
 
+	switch (CurrentControlMode)
+	{
+	case EControlMode::TPS:
+		ArmLengthTo = 200.0f;
+		UserCameraArm->bUsePawnControlRotation = true;
+		UserCameraArm->bInheritPitch = true;
+		UserCameraArm->bInheritRoll = true;
+		UserCameraArm->bInheritYaw = true;
+		UserCameraArm->bDoCollisionTest = true;
+		bUseControllerRotationYaw = false;
+		//GetCharacterMovement()->bOrientRotationToMovement = true;
+		//GetCharacterMovement()->bUseControllerDesiredRotation = false;
+		//GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f);
+		break;
+	case EControlMode::NPC:
+		bUseControllerRotationYaw = false;
+		GetCharacterMovement()->bUseControllerDesiredRotation = false;
+		GetCharacterMovement()->bOrientRotationToMovement = true;
+		GetCharacterMovement()->RotationRate = FRotator(0.0f, 480.0f, 0.0f);
+		break;
+	}
+}
 // Move Character
 void AHumanCharacter::UpDown(float NewAxisValue)
 {
-	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
+	AddMovementInput(GetActorForwardVector(), NewAxisValue);
+	//AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
 }
 
 void AHumanCharacter::LeftRight(float NewAxisValue)
 {
-	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
+	AddMovementInput(GetActorRightVector(), NewAxisValue);
+	//AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
 }
 
 // Rotate Character
 void AHumanCharacter::Turn(float NewAxisValue)
 {
 	AddControllerYawInput(NewAxisValue);
+	
+
 }
 
 void AHumanCharacter::LookUp(float NewAxisValue)
@@ -153,6 +188,7 @@ void AHumanCharacter::StartFire()
 	isFiring = true;
 	HumanAnim->IsFire = isFiring;
 	Fire();
+	
 }
 
 void AHumanCharacter::Fire()

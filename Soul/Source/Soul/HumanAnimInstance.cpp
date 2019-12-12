@@ -4,7 +4,6 @@ UHumanAnimInstance::UHumanAnimInstance()
 {
 	CurrentPawnSpeed = 0.0f;
 	IsInAir = false;
-	Is_idle = false;
 	myPlayer = false;
 }
 

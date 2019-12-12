@@ -24,9 +24,10 @@ private:
 	enum class EControlMode
 	{
 		TPS, //ThirdPersonShooter
-		FPS  //FirstPersonShooter
+		FPS,  //FirstPersonShooter
+		NPC
 	};
-
+	EControlMode CurrentControlMode = EControlMode::TPS;
 	float ArmLengthTo = 0.0f;      // 캐릭터와 카메라 거리
 	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
 	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
