@@ -31,19 +31,58 @@ void AClient::InitCharacter()
 	for (int i = 0; i < 9; i++)
 	{
 		if (i + 1 == PlayerNumber)
-			ScreenMsg("playernumber", PlayerNumber);
-		if (i + 1 == PlayerNumber)
 		{
-			pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1640, 601 + (i * 200), 250), FRotator::ZeroRotator, spawnParams);
-			myPawn = pawns[i];
-			ScreenMsg("playernumber");
-			ScreenMsg("playernumber -> ", (int32)PlayerNumber);
-			GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
-			myPawn->HumanAnim->myPlayer = true;
+			ScreenMsg("playernumber", PlayerNumber);
+			if (i < 3)
+			{
+				ScreenMsg("HUMAN");
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-4680, -135 - (i * 70), 132), FRotator::ZeroRotator, spawnParams);
+				myPawn = pawns[i];
+				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
+				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
+				myPawn->HumanAnim->myPlayer = true;
+			}
+			else if (i < 6)
+			{
+				ScreenMsg("ENGEL");
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1685, 510-((i-3)*70),230 ), FRotator::ZeroRotator, spawnParams);
+				myPawn = pawns[i];
+				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
+				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
+				myPawn->HumanAnim->myPlayer = true;
+			}
+			else
+			{
+				ScreenMsg("DEVIL");
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(1311, -1365 - ((i - 6) * 70), 230), FRotator::ZeroRotator, spawnParams);
+				myPawn = pawns[i];
+				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
+				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
+				myPawn->HumanAnim->myPlayer = true;
+			}
 		}
 
 		else
-			pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1640, 601 + (i * 200), 250), FRotator::ZeroRotator, spawnParams);
+		{
+			if (i < 3)
+			{
+				ScreenMsg("HUMAN");
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-4680, -135 - (i * 70), 132), FRotator::ZeroRotator, spawnParams);
+			}
+				
+			else if (i < 6)
+			{
+				ScreenMsg("ENGEL");
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1685, 510 - ((i - 3) * 70), 230), FRotator::ZeroRotator, spawnParams);
+			}
+				
+			else
+			{
+				ScreenMsg("DEVIL");
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(1311, -1365 - ((i - 6) * 70), 230), FRotator::ZeroRotator, spawnParams);
+			}
+				
+		}
 	}
 	b_GameStart = true;
 }
@@ -130,6 +169,9 @@ void AClient::SendPlayerData()
 	temp.Is_Walking = myPawn->HumanAnim->Is_Walk;
 	temp.Is_Air = myPawn->HumanAnim->IsInAir;
 	temp.CurrentPawnSpeed = myPawn->HumanAnim->CurrentPawnSpeed;
+	temp.Is_LayDown = myPawn->HumanAnim->Is_LayDown;
+	temp.Is_Reload = myPawn->HumanAnim->Is_Reload;
+	temp.Is_SitDown = myPawn->HumanAnim->Is_SitDown;
 	temp.PktSize = sizeof(temp);
 
 	SenderSocket->SendTo((uint8*)&temp, sizeof(temp), BytesSent, *RemoteAddr);
@@ -196,6 +238,22 @@ void AClient::Tick(float DeltaTime)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Walk = true;
 						else if (pPlayerData->Is_Walking == false)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Walk = false;
+						if (pPlayerData->Is_Air)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->IsInAir = true;
+						else if(!pPlayerData->Is_Air)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->IsInAir = false;
+						if(pPlayerData->Is_LayDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_LayDown = true;
+						else if (!pPlayerData->Is_LayDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_LayDown = false;
+						if(pPlayerData->Is_SitDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_SitDown = true;
+						else if (!pPlayerData->Is_SitDown)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_SitDown = false;
+						if(pPlayerData->Is_Reload)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Reload = true;
+						else if(!pPlayerData->Is_Reload)
+							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Reload = false;
 						if(pPlayerData->Is_Fire)
 							pawns[(pPlayerData->user) - 1]->StartFire();
 						else if(pPlayerData->Is_Fire==false&&pawns[(pPlayerData->user) - 1]->isFiring)

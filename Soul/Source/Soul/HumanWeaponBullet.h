@@ -25,7 +25,7 @@ public:
 
 	// 총알이 무언가에 맞으면 호출되는 함수
 	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse ,const FHitResult& Hit);
 	
 public:
 	// 구체 콜리전 컴포넌트

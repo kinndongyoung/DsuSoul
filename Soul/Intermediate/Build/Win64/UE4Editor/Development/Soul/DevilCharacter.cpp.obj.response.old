@@ -501,6 +501,12 @@
 /I D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul
 /I D:\LSH\Unreal\backup\DsuSoul\Soul\Source
 /I D:\LSH\Unreal\backup\DsuSoul\Soul\Source\Soul
+/I Runtime\Networking\Public
+/I Runtime\Networking
+/I Runtime\Networking\Public\Common
+/I Runtime\Networking\Public\Interfaces
+/I Runtime\Networking\Public\Interfaces\IPv4
+/I Runtime\Networking\Public\Interfaces\Steam
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf

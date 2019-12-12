@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\Soul.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{973F5715-6DAB-4AA0-9CB9-A31ACBE5849E}</UniqueIdentifier>
+      <UniqueIdentifier>{0442DF14-795B-4224-9C5E-941891229959}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\Soul.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{928A571F-B6E1-4A34-8C6C-C29819DF70A7}</UniqueIdentifier>
+      <UniqueIdentifier>{F376BDF7-AD4E-4D38-83EF-17C06A5DAD5B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -23,233 +23,170 @@
     <None Include="..\..\Config\DefaultGame.ini">
       <Filter>Config</Filter>
     </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
     <Filter Include="Config\Android">
-      <UniqueIdentifier>{9371C08A-9AA6-41AA-AD44-BA318534148F}</UniqueIdentifier>
+      <UniqueIdentifier>{9001F856-78B1-4CDF-82DD-E17738AC7C71}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Android\AndroidEngine.ini">
       <Filter>Config\Android</Filter>
     </None>
     <Filter Include="Config\IOS">
-      <UniqueIdentifier>{E0525ECC-8E3B-49CB-8CB8-F462B2301E29}</UniqueIdentifier>
+      <UniqueIdentifier>{7D16CF5D-47B5-423B-852A-B01EA553224C}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\IOS\IOSEngine.ini">
       <Filter>Config\IOS</Filter>
     </None>
     <Filter Include="Config\Linux">
-      <UniqueIdentifier>{B4ACE872-CADA-4CF0-948F-D1F55E845ED9}</UniqueIdentifier>
+      <UniqueIdentifier>{3406DBCC-16A3-4999-A6CC-C16F47351FFD}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Linux\LinuxEngine.ini">
       <Filter>Config\Linux</Filter>
     </None>
     <Filter Include="Config\Mac">
-      <UniqueIdentifier>{E09719FD-33EA-4E06-8713-B36E20AD7EB2}</UniqueIdentifier>
+      <UniqueIdentifier>{CB72BE6B-2C65-4916-90C7-20D6675368E2}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Mac\MacEngine.ini">
       <Filter>Config\Mac</Filter>
     </None>
     <Filter Include="Config\PS4">
-      <UniqueIdentifier>{AD99753F-940E-4B04-B690-08C1240EE7FA}</UniqueIdentifier>
+      <UniqueIdentifier>{30AE645F-2E25-45B8-A21F-1E541FCD7553}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\PS4\PS4Engine.ini">
       <Filter>Config\PS4</Filter>
     </None>
     <Filter Include="Config\Switch">
-      <UniqueIdentifier>{F95EB466-335E-4985-8734-2D6E544AD712}</UniqueIdentifier>
+      <UniqueIdentifier>{D952B857-2D3D-408C-940F-8C48D1B84A5E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Switch\SwitchEngine.ini">
       <Filter>Config\Switch</Filter>
     </None>
     <Filter Include="Config\Windows">
-      <UniqueIdentifier>{C5F883B9-9EB9-47D8-83AF-633B0DBB98D4}</UniqueIdentifier>
+      <UniqueIdentifier>{2ED3D288-1C63-49D8-B9F1-F117FE1FDD43}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Windows\WindowsEngine.ini">
       <Filter>Config\Windows</Filter>
     </None>
     <Filter Include="Config\XboxOne">
-      <UniqueIdentifier>{DB08B25E-F344-4E74-A8AE-9AD4BB4ED4CA}</UniqueIdentifier>
+      <UniqueIdentifier>{03800ED6-9A5E-4352-A71B-B60726FCD800}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\XboxOne\XboxOneEngine.ini">
       <Filter>Config\XboxOne</Filter>
     </None>
     <Filter Include="Source\Soul">
-      <UniqueIdentifier>{F3A3B8FC-868F-4AA2-9460-F1222D57AB82}</UniqueIdentifier>
+      <UniqueIdentifier>{993CEE19-2B76-47B2-9266-B601C0DED4EB}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Soul\AngelAnimInstance.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\AngelAnimInstance.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\AngelCharacter.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\AngelCharacter.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\Angel_InstallTrigger.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\Angel_InstallTrigger.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\AnyCustomData.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\AnyCustomData.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\CCirQueue.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\CCirQueue.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\Client.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\Client.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\DevilAnimInstance.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\DevilAnimInstance.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\DevilCharacter.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\DevilCharacter.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\HUD_Angel.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\HUD_Angel.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\HUD_Devil.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\HUD_Devil.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\HUD_Human.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\HUD_Human.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\HumanAnimInstance.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\HumanAnimInstance.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\HumanCharacter.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\HumanCharacter.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\HumanWeapon.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\HumanWeapon.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\HumanWeaponBullet.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\HumanWeaponBullet.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
     <None Include="..\..\Source\Soul\Soul.Build.cs">
       <Filter>Source\Soul</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\Soul\Soul_GameMode.h">
-      <Filter>Source\Soul\00.GameMode</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\Soul.h">
-      <Filter>Source\Soul\99.DebugOrHeaderClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\Soul_UserController.h">
-      <Filter>Source\Soul\01.UserController</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\HumanWeapon.h">
-      <Filter>Source\Soul\02.User\02-03.CharacterWeapon\01.HumanWeapon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\HumanWeaponBullet.h">
-      <Filter>Source\Soul\02.User\02-03.CharacterWeapon\01.HumanWeapon\HumanWeaponBullet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\HumanCharacter.h">
-      <Filter>Source\Soul\02.User\02-01.UserCharacter\01.HumanCharacter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\HumanAnimInstance.h">
-      <Filter>Source\Soul\02.User\02-02.CharacterAnimInstance\01.HumanAnimInstance</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\AngelAnimInstance.h">
-      <Filter>Source\Soul\02.User\02-02.CharacterAnimInstance\03.AngellAnimInstance</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\AngelCharacter.h">
-      <Filter>Source\Soul\02.User\02-01.UserCharacter\03.AngelCharacter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\DevilAnimInstance.h">
-      <Filter>Source\Soul\02.User\02-02.CharacterAnimInstance\02.DevilAnimInstance</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\DevilCharacter.h">
-      <Filter>Source\Soul\02.User\02-01.UserCharacter\02.DevilCharacter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\HUD_Angel.h">
-      <Filter>Source\Soul\02.User\02-00.UserHUD\03.HUD_Angel</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\HUD_Devil.h">
-      <Filter>Source\Soul\02.User\02-00.UserHUD\02.HUD_Devil</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\HUD_Human.h">
-      <Filter>Source\Soul\02.User\02-00.UserHUD\01.HUD_Human</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\Angel_InstallTrigger.h">
-      <Filter>Source\Soul\03.Trigger\03-01.Angel_InstallTrigger</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Soul\Client.h">
-      <Filter>Source\Server</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Source\Soul\Soul_GameMode.cpp">
-      <Filter>Source\Soul\00.GameMode</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Soul\Soul.cpp">
-      <Filter>Source\Soul\99.DebugOrHeaderClass</Filter>
+      <Filter>Source\Soul</Filter>
     </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\Soul.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\Soul_GameMode.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\Soul_GameMode.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Soul\Soul_UserController.cpp">
-      <Filter>Source\Soul\01.UserController</Filter>
+      <Filter>Source\Soul</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\HumanWeapon.cpp">
-      <Filter>Source\Soul\02.User\02-03.CharacterWeapon\01.HumanWeapon</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\HumanWeaponBullet.cpp">
-      <Filter>Source\Soul\02.User\02-03.CharacterWeapon\01.HumanWeapon\HumanWeaponBullet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\HumanCharacter.cpp">
-      <Filter>Source\Soul\02.User\02-01.UserCharacter\01.HumanCharacter</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\HumanAnimInstance.cpp">
-      <Filter>Source\Soul\02.User\02-02.CharacterAnimInstance\01.HumanAnimInstance</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\AngelAnimInstance.cpp">
-      <Filter>Source\Soul\02.User\02-02.CharacterAnimInstance\03.AngellAnimInstance</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\AngelCharacter.cpp">
-      <Filter>Source\Soul\02.User\02-01.UserCharacter\03.AngelCharacter</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\DevilAnimInstance.cpp">
-      <Filter>Source\Soul\02.User\02-02.CharacterAnimInstance\02.DevilAnimInstance</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\DevilCharacter.cpp">
-      <Filter>Source\Soul\02.User\02-01.UserCharacter\02.DevilCharacter</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\HUD_Angel.cpp">
-      <Filter>Source\Soul\02.User\02-00.UserHUD\03.HUD_Angel</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\HUD_Devil.cpp">
-      <Filter>Source\Soul\02.User\02-00.UserHUD\02.HUD_Devil</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\HUD_Human.cpp">
-      <Filter>Source\Soul\02.User\02-00.UserHUD\01.HUD_Human</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\Angel_InstallTrigger.cpp">
-      <Filter>Source\Soul\03.Trigger\03-01.Angel_InstallTrigger</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Soul\Client.cpp">
-      <Filter>Source\Server</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Source\Soul\00.GameMode">
-      <UniqueIdentifier>{73bf5cdf-8dfe-4672-875e-4c60bb671de4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\99.DebugOrHeaderClass">
-      <UniqueIdentifier>{c8cced3e-30cd-40a9-8b9b-6570acaaf6d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\01.UserController">
-      <UniqueIdentifier>{f9c669dc-c226-44a2-9e43-035bef507dad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User">
-      <UniqueIdentifier>{34ca8919-7434-4e6b-a919-d967313eb7e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-01.UserCharacter">
-      <UniqueIdentifier>{72998c87-289c-443d-aaf9-52895cc73e85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-01.UserCharacter\01.HumanCharacter">
-      <UniqueIdentifier>{984fc972-4efb-4622-a7ec-08015883543b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-01.UserCharacter\02.DevilCharacter">
-      <UniqueIdentifier>{9f157385-da4a-4c8b-b923-9f3af7ab3c4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-01.UserCharacter\03.AngelCharacter">
-      <UniqueIdentifier>{849bc6da-f600-4da5-aaa4-515c64bbd92f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-03.CharacterWeapon">
-      <UniqueIdentifier>{bc8a6a54-58f0-4d48-b74f-99be9c7e726c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-03.CharacterWeapon\01.HumanWeapon">
-      <UniqueIdentifier>{83f35994-b52e-4658-82ed-3ac6d0cc9ace}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-03.CharacterWeapon\01.HumanWeapon\HumanWeaponBullet">
-      <UniqueIdentifier>{d3ff0137-e9d4-4d87-8374-4860d654b9a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-03.CharacterWeapon\02.DevilWeapon">
-      <UniqueIdentifier>{30be5c1c-063f-4aaf-bd08-d2d44b3565fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-03.CharacterWeapon\03.AngelWeapon">
-      <UniqueIdentifier>{70f5ad4a-c768-4e5d-92e0-f7d45b2f3cd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-02.CharacterAnimInstance">
-      <UniqueIdentifier>{8064a516-631d-4a99-a395-9a33c978ee0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-02.CharacterAnimInstance\01.HumanAnimInstance">
-      <UniqueIdentifier>{4a97a779-e925-4cda-8097-945acf23a4f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-02.CharacterAnimInstance\02.DevilAnimInstance">
-      <UniqueIdentifier>{d72143dd-d365-4ffa-bb46-e11fdd3969ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-02.CharacterAnimInstance\03.AngellAnimInstance">
-      <UniqueIdentifier>{1b107eda-3ff3-497c-861a-5ac3d4f5a336}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\03.Trigger">
-      <UniqueIdentifier>{5fe0bd5b-ba57-4ef7-bd43-4497cb465199}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\03.Trigger\03-01.Angel_InstallTrigger">
-      <UniqueIdentifier>{dd3e41be-5beb-4658-b65c-b9630f9525a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-00.UserHUD">
-      <UniqueIdentifier>{96a345a9-96ef-4b7e-ae95-e2fc298a5744}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-00.UserHUD\01.HUD_Human">
-      <UniqueIdentifier>{16291362-f281-4d48-85b9-6b485bb733cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-00.UserHUD\03.HUD_Angel">
-      <UniqueIdentifier>{87d60c9e-9279-4355-bee9-5870e5a1e942}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Soul\02.User\02-00.UserHUD\02.HUD_Devil">
-      <UniqueIdentifier>{cbc97467-bf35-46f2-a7c0-023544b9ca1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Server">
-      <UniqueIdentifier>{c751aeb5-fe0e-40aa-8138-f3c4a9373e93}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="..\..\Source\Soul\Soul_UserController.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

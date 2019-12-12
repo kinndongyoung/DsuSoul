@@ -4,8 +4,10 @@ UHumanAnimInstance::UHumanAnimInstance()
 {
 	CurrentPawnSpeed = 0.0f;
 	IsInAir = false;
-	Is_idle = false;
 	myPlayer = false;
+	LayAniTime = 0.1f;
+	SitAniTime = 0.5f;
+	GetInstanceAssetPlayerTimeFromEndFraction(0);
 }
 
 void UHumanAnimInstance::NativeUpdateAnimation(float DeltaSeconds)

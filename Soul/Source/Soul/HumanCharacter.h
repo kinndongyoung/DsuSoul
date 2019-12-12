@@ -44,6 +44,40 @@ public:// 컨트롤 관련 //
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
 	class UHumanAnimInstance* HumanAnim;
 
+	//인간 hp,sp
+	UFUNCTION(BlueprintPure, Category = "Human HP")
+	float GetInitialHP();
+
+	UFUNCTION(BlueprintPure, Category = "Human HP")
+	float GetCurrentInitialHP();
+
+	UFUNCTION(BlueprintCallable, Category = "Human HP")
+	void UpdateCurrentHP();
+
+	UFUNCTION(BlueprintPure, Category = "Human SP")
+		float GetInitialSP();
+
+	UFUNCTION(BlueprintPure, Category = "Human SP")
+		float GetCurrentInitialSP();
+
+	UFUNCTION(BlueprintCallable, Category = "Human SP")
+		void UpdateCurrentSP();
+
+	UPROPERTY(EditAnywhere, Category = "Human HP")
+		float Initial_HP;
+
+	UPROPERTY(EditAnywhere, Category = "Human HP")
+		float CurrentHp;
+
+	UPROPERTY(EditAnywhere, Category = "Human SP")
+		float Initial_SP;
+
+	UPROPERTY(EditAnywhere, Category = "Human SP")
+		float CurrentSP;
+	//죽음
+	UPROPERTY(VisibleAnywhere, Category = Death_bar)
+		class AHUD_Human* bar;
+
 private:// 카메라//	
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* UserCameraArm;
@@ -59,9 +93,11 @@ public:// 무기관련 //
 	//모션 함수
 	void Walk();
 	void Stop_Walk();
-	void LayDown();
-	void Stop_LayDown();
-
+	void SitDownFunc();
+	void LayDownFunc();
+	void ReloadFunc();
+	void Stop_ReloadFunc();
+	void Death();
 
 public:
 	// 공격 변수
@@ -70,7 +106,6 @@ public:
 
 	//모션 변수
 	bool Is_Walking;
-	bool Is_LayDowning;
 	
 	// 카메라 위치에서의 총구 오프셋
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
@@ -83,4 +118,6 @@ public:
 	// 스폰 시킬 총알 클래스
 	UPROPERTY(EditAnywhere, Category = BulletClass)
 	TSubclassOf<class AHumanWeaponBullet> WeaponBulletClass;
+
+	
 };

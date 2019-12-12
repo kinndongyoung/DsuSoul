@@ -1,4 +1,5 @@
 #include "HumanWeaponBullet.h"
+#include "HumanCharacter.h"
 #include "Engine/Classes/Components/SphereComponent.h"
 #include "Engine/Classes/GameFramework/ProjectileMovementComponent.h"
 
@@ -53,9 +54,19 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 {
 	if (OtherActor != this)
 	{
+		if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
+		{
+			AHumanCharacter* pt_HumanBullet = Cast<AHumanCharacter>(OtherActor);
+			pt_HumanBullet->CurrentHp -= 20.0f;
+			pt_HumanBullet->CurrentSP += 0.01f;
+			printf("HP : %.2f", pt_HumanBullet->CurrentHp);
+			printf("SP : %.2f", pt_HumanBullet->CurrentSP);
+			if (pt_HumanBullet == nullptr)print("null");
+		}
 		printf("Hit Actor : %s", *Hit.GetActor()->GetName());
 		printf("Hit Bone : %s", *Hit.BoneName.ToString());
 		printf("Point : %s", *Hit.ImpactPoint.ToString());
 		printf("Normal : %s", *Hit.ImpactNormal.ToString());
 	}
+	else print("No Hit");
 }

@@ -4,6 +4,7 @@
 #include "DevilCharacter.h"
 #include "AngelCharacter.h"
 #include "HUD_Angel.h"
+#include "HUD_Human.h"
 
 ASoul_GameMode::ASoul_GameMode()
 {
@@ -16,12 +17,15 @@ ASoul_GameMode::ASoul_GameMode()
 	{
 		case ESelectCharacter::HUMAN_TANKER:
 			DefaultPawnClass = AHumanCharacter::StaticClass();
+			HUDClass = AHUD_Human::StaticClass();
 			break;
 		case ESelectCharacter::HUMAN_ATTACKER:
 			DefaultPawnClass = AHumanCharacter::StaticClass();
+			HUDClass = AHUD_Human::StaticClass();
 			break;
 		case ESelectCharacter::HUMAN_HEALER:
 			DefaultPawnClass = AHumanCharacter::StaticClass();
+			HUDClass = AHUD_Human::StaticClass();
 			break;
 		case ESelectCharacter::DEVIL_TANKER:
 			DefaultPawnClass = ADevilCharacter::StaticClass();
@@ -53,3 +57,4 @@ void ASoul_GameMode::PostLogin(APlayerController * NewPlayer)
 {
 	Super::PostLogin(NewPlayer);
 }
+

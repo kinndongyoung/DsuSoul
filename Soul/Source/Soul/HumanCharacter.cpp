@@ -2,11 +2,13 @@
 #include "HumanAnimInstance.h"
 #include "HumanWeapon.h"
 #include "HumanWeaponBullet.h"
+#include "HUD_Human.h"
 
 // 생성자에서 User 초기화
 AHumanCharacter::AHumanCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	Tags.AddUnique(TEXT("Human_Character"));
 
 	// Camera Create
 	UserCameraArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CAMERA_ARM"));
@@ -44,7 +46,6 @@ AHumanCharacter::AHumanCharacter()
 
 	//모션 변수
 	Is_Walking = false;
-	Is_LayDowning = false;
 	
 	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_HumanWeaponBullet.BP_HumanWeaponBullet"));
 
@@ -55,6 +56,14 @@ AHumanCharacter::AHumanCharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 	//점프
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
+
+	//인간 체력
+	Initial_HP = 100.0f;
+	CurrentHp = Initial_HP;
+	//인간 SP
+	Initial_SP = 0.0f;
+	CurrentSP = Initial_SP;
+
 }
 
 void AHumanCharacter::BeginPlay()
@@ -70,12 +79,19 @@ void AHumanCharacter::BeginPlay()
 		CurWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, WeaponSocket);
 		UserWeapon = CurWeapon;
 	}
+	
 }
 
 void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
+	UpdateCurrentHP();
+	UpdateCurrentSP();
+	if (CurrentHp <= 0)
+	{
+		Death();
+	}
 }
 
 void AHumanCharacter::PostInitializeComponents()
@@ -101,8 +117,10 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	//모션
 	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &AHumanCharacter::Walk);
 	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_Walk);
-	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::LayDown);
-	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_LayDown);
+	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::LayDownFunc);
+	PlayerInputComponent->BindAction(TEXT("SitDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::SitDownFunc);
+	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Pressed, this, &AHumanCharacter::ReloadFunc);
+	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_ReloadFunc);
 	//행동
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AHumanCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AHumanCharacter::LeftRight);
@@ -128,11 +146,13 @@ void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 // Move Character
 void AHumanCharacter::UpDown(float NewAxisValue)
 {
+	if(HumanAnim->Is_Reload==false && HumanAnim->Is_Death==false)
 	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
 }
 
 void AHumanCharacter::LeftRight(float NewAxisValue)
 {
+	if(HumanAnim->Is_Reload ==false && HumanAnim->Is_Death == false)
 	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
 }
 
@@ -140,6 +160,36 @@ void AHumanCharacter::LeftRight(float NewAxisValue)
 void AHumanCharacter::Turn(float NewAxisValue)
 {
 	AddControllerYawInput(NewAxisValue);
+}
+
+float AHumanCharacter::GetInitialHP()
+{
+	return Initial_HP;
+}
+
+float AHumanCharacter::GetCurrentInitialHP()
+{
+	return CurrentHp;
+}
+
+void AHumanCharacter::UpdateCurrentHP()
+{
+	CurrentHp = CurrentHp;
+}
+
+float AHumanCharacter::GetInitialSP()
+{
+	return Initial_SP;
+}
+
+float AHumanCharacter::GetCurrentInitialSP()
+{
+	return CurrentSP;
+}
+
+void AHumanCharacter::UpdateCurrentSP()
+{
+	CurrentSP = CurrentSP;
 }
 
 void AHumanCharacter::LookUp(float NewAxisValue)
@@ -163,7 +213,7 @@ void AHumanCharacter::Fire()
 		if (WeaponBulletClass)
 		{
 			// MuzzleOffset 을 카메라 스페이스에서 월드 스페이스로 변환합니다.
-			FVector MuzzleLocation = UserWeapon->ActorToWorld().GetLocation() + FVector(30.0f, 10.0f, 0.0f);
+			FVector MuzzleLocation = UserWeapon->ActorToWorld().GetLocation() + FVector(30.0f, 100.0f, 0.0f);
 			FRotator MuzzleRotation = GetMesh()->GetComponentRotation() + FRotator(0.0f, 90.0f, 0.0f);
 
 			// 조준을 약간 윗쪽으로 올려줍니다.
@@ -210,16 +260,50 @@ void AHumanCharacter::Stop_Walk()
 	HumanAnim->Is_Walk = Is_Walking;
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 }
-void AHumanCharacter::LayDown()
+void AHumanCharacter::LayDownFunc()
 {
-	print("Input Ctrl");
-	Is_LayDowning = true;
-	HumanAnim->Is_LayDown = Is_LayDowning;
-	GetCharacterMovement()->MaxWalkSpeed = 150.0f;
+	print("X");
+
+	if (HumanAnim->Is_LayDown)
+	{
+		HumanAnim->Is_LayDown = false;
+		GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+		GetCharacterMovement()->JumpZVelocity = 500.0f;
+	}
+	else
+	{
+		HumanAnim->Is_LayDown = true;
+		GetCharacterMovement()->MaxWalkSpeed = 150.0f;
+		GetCharacterMovement()->JumpZVelocity = 0.0f;
+	}
 }
-void AHumanCharacter::Stop_LayDown()
+void AHumanCharacter::SitDownFunc()
 {
-	Is_LayDowning = false;
-	HumanAnim->Is_LayDown = Is_LayDowning;
-	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+	print("Ctrl");
+	if (HumanAnim->Is_SitDown)
+	{
+		HumanAnim->Is_SitDown = false;
+		GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+		GetCharacterMovement()->JumpZVelocity = 500.0f;
+	}
+	else
+	{
+		HumanAnim->Is_SitDown = true;
+		GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+	}
+}
+void AHumanCharacter::ReloadFunc()
+{
+	HumanAnim->Is_Reload = true;
+	GetCharacterMovement()->JumpZVelocity = 0.0f;
+}
+void AHumanCharacter::Stop_ReloadFunc()
+{
+	HumanAnim->Is_Reload = false;
+	GetCharacterMovement()->JumpZVelocity = 500.0f;
+}
+void AHumanCharacter::Death()
+{
+	HumanAnim->Is_Death = true;
+	GetCharacterMovement()->JumpZVelocity = 0.0f;
 }
