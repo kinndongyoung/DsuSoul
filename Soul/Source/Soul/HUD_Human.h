@@ -21,17 +21,10 @@ protected:
 	virtual void BeginPlay() override;
 public:
 
-	void HUD_Death_Update();
-
-public:
-
 	bool Death_bar;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character HP SP", Meta = (BluePrintProtected = "true"))
 		TSubclassOf<class UUserWidget> WidgetClass_Bar;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Death", Meta = (BluePrintProtected = "true"))
-		TSubclassOf<class UUserWidget> WidgetClass_Death_Bar;
 
 	UPROPERTY(EditAnywhere, Category = Human_UI)
 		class UUserWidget* CurrentWidget;

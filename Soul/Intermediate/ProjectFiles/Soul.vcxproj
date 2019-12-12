@@ -387,6 +387,10 @@
     <ClInclude Include="..\..\Source\Soul\Angel_InstallTrigger.h"/>
     <ClCompile Include="..\..\Source\Soul\AnyCustomData.cpp"/>
     <ClInclude Include="..\..\Source\Soul\AnyCustomData.h"/>
+    <ClCompile Include="..\..\Source\Soul\BTService_Detect.cpp"/>
+    <ClInclude Include="..\..\Source\Soul\BTService_Detect.h"/>
+    <ClCompile Include="..\..\Source\Soul\BTTask_FindPatrolPos.cpp"/>
+    <ClInclude Include="..\..\Source\Soul\BTTask_FindPatrolPos.h"/>
     <ClCompile Include="..\..\Source\Soul\CCirQueue.cpp"/>
     <ClInclude Include="..\..\Source\Soul\CCirQueue.h"/>
     <ClCompile Include="..\..\Source\Soul\Client.cpp"/>
@@ -409,6 +413,8 @@
     <ClInclude Include="..\..\Source\Soul\HumanWeapon.h"/>
     <ClCompile Include="..\..\Source\Soul\HumanWeaponBullet.cpp"/>
     <ClInclude Include="..\..\Source\Soul\HumanWeaponBullet.h"/>
+    <ClCompile Include="..\..\Source\Soul\MyAIController.cpp"/>
+    <ClInclude Include="..\..\Source\Soul\MyAIController.h"/>
     <None Include="..\..\Source\Soul\Soul.Build.cs"/>
     <ClCompile Include="..\..\Source\Soul\Soul.cpp"/>
     <ClInclude Include="..\..\Source\Soul\Soul.h"/>

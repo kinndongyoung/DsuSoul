@@ -57,7 +57,7 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 		if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
 		{
 			AHumanCharacter* pt_HumanBullet = Cast<AHumanCharacter>(OtherActor);
-			pt_HumanBullet->CurrentHp -= 20.0f;
+			pt_HumanBullet->CurrentHp -= 1.0f;
 			pt_HumanBullet->CurrentSP += 0.01f;
 			printf("HP : %.2f", pt_HumanBullet->CurrentHp);
 			printf("SP : %.2f", pt_HumanBullet->CurrentSP);

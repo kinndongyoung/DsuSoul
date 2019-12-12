@@ -1,83 +1,17 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\DsuSoul).
   Parsing headers for SoulEditor
     Running UnrealHeaderTool "D:\DsuSoul\Soul\Soul.uproject" "D:\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
-  Reflection code generated for SoulEditor in 7.2080893 seconds
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0004.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0006.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0007.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0008.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0009.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0010.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0011.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0012.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0016.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0017.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0018.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0019.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0020.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0021.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0028.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0029.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0040.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0042.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0045.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0047.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0050.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0052.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0055.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0057.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0065.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0066.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0068.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0070.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0071.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0072.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0073.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0075.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0092.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0094.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Binaries\Win64\UE4Editor-Soul-0095.dll
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0004.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0007.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0008.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0009.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0010.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0011.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0012.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0016.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0017.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0018.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0019.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0020.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0021.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0028.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0029.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0040.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0042.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0045.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0047.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0050.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0052.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0055.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0057.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0065.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0066.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0068.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0070.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0071.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0072.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0073.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0075.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0092.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0094.lib
-  Deleted hot-reload file: D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0095.lib
+  Reflection code generated for SoulEditor in 7.8914096 seconds
   Using Visual Studio 2017 14.16.27023 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023) and Windows 10.0.17763.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-  Building 4 actions with 8 processes...
-    [1/4] HumanCharacter.cpp
-    [2/4] UE4Editor-Soul.lib
-       D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.lib 라이브러리 및 D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.exp 개체를 생성하고 있습니다.
-    [3/4] UE4Editor-Soul.dll
-       D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.suppressed.lib 라이브러리 및 D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.suppressed.exp 개체를 생성하고 있습니다.
-    [4/4] SoulEditor.target
-  Total time in Parallel executor: 7.97 seconds
-  Total execution time: 17.36 seconds
+  Building 7 actions with 8 processes...
+    [1/7] HUD_Human.gen.cpp
+    [2/7] Soul_GameMode.cpp
+    [3/7] HumanCharacter.cpp
+    [4/7] HUD_Human.cpp
+    [5/7] UE4Editor-Soul-0005.lib
+       D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.lib 라이브러리 및 D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.exp 개체를 생성하고 있습니다.
+    [6/7] UE4Editor-Soul-0005.dll
+       D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.suppressed.lib 라이브러리 및 D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.suppressed.exp 개체를 생성하고 있습니다.
+    [7/7] SoulEditor.target
+  Total time in Parallel executor: 10.85 seconds
+  Total execution time: 20.24 seconds

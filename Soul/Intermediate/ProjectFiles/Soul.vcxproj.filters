@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\Soul.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{C671A80D-AEBF-47CB-B139-952913A81D30}</UniqueIdentifier>
+      <UniqueIdentifier>{7364AD46-7E29-4463-9E91-C9B41769CD44}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\Soul.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{762F17B2-6F95-41DA-8FA8-E7E3CE163524}</UniqueIdentifier>
+      <UniqueIdentifier>{04DC1399-B28F-4C6A-81C1-36EB8A6C4384}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,55 +27,55 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Config\Android">
-      <UniqueIdentifier>{2FBCB880-7326-40BB-910C-2291C5051957}</UniqueIdentifier>
+      <UniqueIdentifier>{17DA3595-EBE6-4200-B0D8-75126F40ED46}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Android\AndroidEngine.ini">
       <Filter>Config\Android</Filter>
     </None>
     <Filter Include="Config\IOS">
-      <UniqueIdentifier>{D13E0602-3EC2-4EBA-AD1E-B976D67DDA04}</UniqueIdentifier>
+      <UniqueIdentifier>{2C9A5681-5AD6-4616-9A2F-A4CC9B1D51F7}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\IOS\IOSEngine.ini">
       <Filter>Config\IOS</Filter>
     </None>
     <Filter Include="Config\Linux">
-      <UniqueIdentifier>{708BB626-7AB8-4A23-9669-AE9F94A38A6C}</UniqueIdentifier>
+      <UniqueIdentifier>{47166461-49F6-44DD-90AE-1712972CECB7}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Linux\LinuxEngine.ini">
       <Filter>Config\Linux</Filter>
     </None>
     <Filter Include="Config\Mac">
-      <UniqueIdentifier>{2FE12DA4-58E5-4865-8AEC-E1A780CC6375}</UniqueIdentifier>
+      <UniqueIdentifier>{3381A616-46D9-44BF-9D9D-F50A6E67549A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Mac\MacEngine.ini">
       <Filter>Config\Mac</Filter>
     </None>
     <Filter Include="Config\PS4">
-      <UniqueIdentifier>{95EE6E32-FCA3-4943-9B1F-1885D5D6ECA7}</UniqueIdentifier>
+      <UniqueIdentifier>{D04C8EF8-5390-4D4F-8315-71085A7DF9AE}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\PS4\PS4Engine.ini">
       <Filter>Config\PS4</Filter>
     </None>
     <Filter Include="Config\Switch">
-      <UniqueIdentifier>{38646F90-610A-4797-8C66-821FB22969FA}</UniqueIdentifier>
+      <UniqueIdentifier>{74801C77-E013-42F4-BDD4-222978839BCB}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Switch\SwitchEngine.ini">
       <Filter>Config\Switch</Filter>
     </None>
     <Filter Include="Config\Windows">
-      <UniqueIdentifier>{97D0C2D2-0B4A-4426-B6AA-AA860EE77940}</UniqueIdentifier>
+      <UniqueIdentifier>{EED6B021-114D-4032-92A1-E2670621496A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Windows\WindowsEngine.ini">
       <Filter>Config\Windows</Filter>
     </None>
     <Filter Include="Config\XboxOne">
-      <UniqueIdentifier>{8D1F9AA9-DA75-4307-B7AB-BB1A565B4F7D}</UniqueIdentifier>
+      <UniqueIdentifier>{5560FB3D-8870-4571-8CB4-BD40CF39FC41}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\XboxOne\XboxOneEngine.ini">
       <Filter>Config\XboxOne</Filter>
     </None>
     <Filter Include="Source\Soul">
-      <UniqueIdentifier>{AD0E1087-42D6-458E-BDC2-57B83790AAC8}</UniqueIdentifier>
+      <UniqueIdentifier>{0245461E-D0AB-44A6-BDC8-F42B3BE61417}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\Soul\AngelAnimInstance.cpp">
       <Filter>Source\Soul</Filter>
@@ -99,6 +99,18 @@
       <Filter>Source\Soul</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Soul\AnyCustomData.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\BTService_Detect.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\BTService_Detect.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\BTTask_FindPatrolPos.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\BTTask_FindPatrolPos.h">
       <Filter>Source\Soul</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Soul\CCirQueue.cpp">
@@ -165,6 +177,12 @@
       <Filter>Source\Soul</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Soul\HumanWeaponBullet.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\MyAIController.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\MyAIController.h">
       <Filter>Source\Soul</Filter>
     </ClInclude>
     <None Include="..\..\Source\Soul\Soul.Build.cs">
