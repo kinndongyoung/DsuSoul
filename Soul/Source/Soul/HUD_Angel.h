@@ -16,6 +16,9 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	void HUD_Update(float InstallPercent);
+
+public:
 	bool Angel_Install_State;
 
 	UPROPERTY(EditAnywhere, Category = Angel_UI)

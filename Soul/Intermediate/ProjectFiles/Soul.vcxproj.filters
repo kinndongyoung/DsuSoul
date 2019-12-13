@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\Soul.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{7364AD46-7E29-4463-9E91-C9B41769CD44}</UniqueIdentifier>
+      <UniqueIdentifier>{64ED09CC-D0C1-4F0B-85FE-CC79889FDF09}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\Soul.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{04DC1399-B28F-4C6A-81C1-36EB8A6C4384}</UniqueIdentifier>
+      <UniqueIdentifier>{E8C7EF31-1B8C-4044-B826-58E690174FA0}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,55 +27,55 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Config\Android">
-      <UniqueIdentifier>{17DA3595-EBE6-4200-B0D8-75126F40ED46}</UniqueIdentifier>
+      <UniqueIdentifier>{39308567-F9C7-48BB-ADC4-CF1F03414910}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Android\AndroidEngine.ini">
       <Filter>Config\Android</Filter>
     </None>
     <Filter Include="Config\IOS">
-      <UniqueIdentifier>{2C9A5681-5AD6-4616-9A2F-A4CC9B1D51F7}</UniqueIdentifier>
+      <UniqueIdentifier>{F3EFB92D-2222-486A-A2D5-66E16F1C6396}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\IOS\IOSEngine.ini">
       <Filter>Config\IOS</Filter>
     </None>
     <Filter Include="Config\Linux">
-      <UniqueIdentifier>{47166461-49F6-44DD-90AE-1712972CECB7}</UniqueIdentifier>
+      <UniqueIdentifier>{8DDE3E66-BC87-4B97-BE68-C21EF8B78861}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Linux\LinuxEngine.ini">
       <Filter>Config\Linux</Filter>
     </None>
     <Filter Include="Config\Mac">
-      <UniqueIdentifier>{3381A616-46D9-44BF-9D9D-F50A6E67549A}</UniqueIdentifier>
+      <UniqueIdentifier>{1ACF626D-14ED-4C3B-9238-BA8CFF39623F}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Mac\MacEngine.ini">
       <Filter>Config\Mac</Filter>
     </None>
     <Filter Include="Config\PS4">
-      <UniqueIdentifier>{D04C8EF8-5390-4D4F-8315-71085A7DF9AE}</UniqueIdentifier>
+      <UniqueIdentifier>{1C323ACD-FC63-4B7C-A3A9-4F6FD13782BF}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\PS4\PS4Engine.ini">
       <Filter>Config\PS4</Filter>
     </None>
     <Filter Include="Config\Switch">
-      <UniqueIdentifier>{74801C77-E013-42F4-BDD4-222978839BCB}</UniqueIdentifier>
+      <UniqueIdentifier>{0777A223-C26B-45B3-B8CF-E185CF4B97BD}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Switch\SwitchEngine.ini">
       <Filter>Config\Switch</Filter>
     </None>
     <Filter Include="Config\Windows">
-      <UniqueIdentifier>{EED6B021-114D-4032-92A1-E2670621496A}</UniqueIdentifier>
+      <UniqueIdentifier>{AB7D7ECB-E7E4-4C21-85A9-C2084DD68427}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Windows\WindowsEngine.ini">
       <Filter>Config\Windows</Filter>
     </None>
     <Filter Include="Config\XboxOne">
-      <UniqueIdentifier>{5560FB3D-8870-4571-8CB4-BD40CF39FC41}</UniqueIdentifier>
+      <UniqueIdentifier>{C9F97B13-931C-47D1-ABF1-389EA529E135}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\XboxOne\XboxOneEngine.ini">
       <Filter>Config\XboxOne</Filter>
     </None>
     <Filter Include="Source\Soul">
-      <UniqueIdentifier>{0245461E-D0AB-44A6-BDC8-F42B3BE61417}</UniqueIdentifier>
+      <UniqueIdentifier>{647BA020-A2FF-4559-8054-7907EEB28C8C}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\Soul\AngelAnimInstance.cpp">
       <Filter>Source\Soul</Filter>
@@ -137,6 +137,18 @@
     <ClInclude Include="..\..\Source\Soul\DevilCharacter.h">
       <Filter>Source\Soul</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\DevilWeaponBullet.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\DevilWeaponBullet.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\Devil_ContractDoc.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\Devil_ContractDoc.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Soul\HUD_Angel.cpp">
       <Filter>Source\Soul</Filter>
     </ClCompile>
@@ -177,6 +189,12 @@
       <Filter>Source\Soul</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Soul\HumanWeaponBullet.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Soul\Human_PaustSoulPiece.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Soul\Human_PaustSoulPiece.h">
       <Filter>Source\Soul</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\Soul\MyAIController.cpp">

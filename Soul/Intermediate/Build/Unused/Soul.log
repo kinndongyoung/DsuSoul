@@ -1,17 +1,31 @@
-﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\DsuSoul).
+﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\LSH\Unreal\backup\DsuSoul).
+UnrealBuildTool : warning : Couldn't parse '<<<<<<< Updated upstream' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
+UnrealBuildTool : warning : Couldn't parse '=======' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
+UnrealBuildTool : warning : Couldn't parse '>>>>>>> Stashed changes' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
+UnrealBuildTool : warning : Couldn't parse '<<<<<<< Updated upstream' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
   Parsing headers for SoulEditor
-    Running UnrealHeaderTool "D:\DsuSoul\Soul\Soul.uproject" "D:\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
-  Reflection code generated for SoulEditor in 7.8914096 seconds
-  Using Visual Studio 2017 14.16.27023 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023) and Windows 10.0.17763.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-  Building 7 actions with 8 processes...
-    [1/7] HUD_Human.gen.cpp
-    [2/7] Soul_GameMode.cpp
-    [3/7] HumanCharacter.cpp
-    [4/7] HUD_Human.cpp
-    [5/7] UE4Editor-Soul-0005.lib
-       D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.lib 라이브러리 및 D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.exp 개체를 생성하고 있습니다.
-    [6/7] UE4Editor-Soul-0005.dll
-       D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.suppressed.lib 라이브러리 및 D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0005.suppressed.exp 개체를 생성하고 있습니다.
-    [7/7] SoulEditor.target
-  Total time in Parallel executor: 10.85 seconds
-  Total execution time: 20.24 seconds
+    Running UnrealHeaderTool "D:\LSH\Unreal\backup\DsuSoul\Soul\Soul.uproject" "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+  Reflection code generated for SoulEditor in 6.1988469 seconds
+  Using Visual Studio 2017 14.16.27023 toolchain (D:\VisualStudio\VC\Tools\MSVC\14.16.27023) and Windows 10.0.16299.0 SDK (D:\Windows Kits\10).
+  Distributing 3 actions to XGE
+  --------------------Build System Warning---------------------------------------
+  License is invalid:
+      License information is invalid. Please try reloading your license file using the Coordinator Monitor application on the Coordinator machine, or reinstall IncrediBuild.
+      This build will run in standalone mode.
+  
+  -------------------------------------------------------------------------------
+  --------------------Project: Default-------------------------------------------
+  UE4Editor-Soul.dll (0:02.67 at +0:00)
+     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.suppressed.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.suppressed.exp 개체를 생성하고 있습니다.
+  UE4Editor-Soul.lib (0:00.57 at +0:02)
+     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.exp 개체를 생성하고 있습니다.
+  SoulEditor.target (0:00.18 at +0:03)
+  ---------------------- Done ----------------------
+  
+      Rebuild All: 1 succeeded, 0 failed, 0 skipped
+  
+  1 build system warning(s):
+     - License is invalid
+  
+  Total time in XGE executor: 3.68 seconds
+  Total execution time: 10.71 seconds

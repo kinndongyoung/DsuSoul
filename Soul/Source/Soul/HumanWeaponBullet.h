@@ -12,14 +12,6 @@ class SOUL_API AHumanWeaponBullet : public AActor
 public:
 	AHumanWeaponBullet();
 
-protected:
-	// 게임 시작 또는 스폰시 호출
-	virtual void BeginPlay() override;
-
-public:
-	// 매 프레임 호출
-	virtual void Tick(float DeltaTime) override;
-
 	// 발사체의 속도를 발사 방향으로 초기화시킴
 	void FireInDirection(const FVector& ShootDirection);
 

@@ -26,5 +26,4 @@ void UHumanAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 				IsInAir = Character->GetMovementComponent()->IsFalling();
 		}
 	}
-	
 }

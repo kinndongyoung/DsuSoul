@@ -31,8 +31,10 @@ private:
 	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
 	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
 
-public:
-	bool isTrigger;				   // 트리거 겹침 유무
+public:// 트리거 //
+	bool isTrigger;				   
+	UPROPERTY(VisibleAnywhere, Category = Trigger)
+	class AAngel_InstallTrigger* pt_Trigger;
 
 private:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
@@ -43,10 +45,23 @@ private:// 컨트롤 관련 //
 	void LookUp(float NewAxisValue);
 	void Turn(float NewAxisValue);
 
-	// 설치 함수
+public:
+	// 스테이터스
+	bool DieState;
+	float Status_HP;
+
+	// 설치 함수 및 변수
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Install)
+	float PerInstall;
+	int InstallCount;
+
 	void StartInstall();
 	void Installing();
 	void EndInstall();
+
+	// HUD 클래스
+	UPROPERTY(VisibleAnywhere, Category = HUD)
+	class AHUD_Angel* HUD_Angel;
 
 	// 애니메이션 클래스
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)

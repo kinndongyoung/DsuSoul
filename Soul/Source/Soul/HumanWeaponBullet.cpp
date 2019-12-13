@@ -1,5 +1,7 @@
 #include "HumanWeaponBullet.h"
 #include "HumanCharacter.h"
+#include "DevilCharacter.h"
+#include "AngelCharacter.h"
 #include "Engine/Classes/Components/SphereComponent.h"
 #include "Engine/Classes/GameFramework/ProjectileMovementComponent.h"
 
@@ -31,18 +33,6 @@ AHumanWeaponBullet::AHumanWeaponBullet()
 	InitialLifeSpan = 0.5f;
 }
 
-void AHumanWeaponBullet::BeginPlay()
-{
-	Super::BeginPlay();
-
-}
-
-void AHumanWeaponBullet::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 // 총알의 속도를 발사 방향으로 초기화시키는 함수
 void AHumanWeaponBullet::FireInDirection(const FVector& ShootDirection)
 {
@@ -56,17 +46,37 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 	{
 		if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
 		{
-			AHumanCharacter* pt_HumanBullet = Cast<AHumanCharacter>(OtherActor);
-			pt_HumanBullet->CurrentHp -= 1.0f;
-			pt_HumanBullet->CurrentSP += 0.01f;
-			printf("HP : %.2f", pt_HumanBullet->CurrentHp);
-			printf("SP : %.2f", pt_HumanBullet->CurrentSP);
-			if (pt_HumanBullet == nullptr)print("null");
+			AHumanCharacter* pt_HumanChar = Cast<AHumanCharacter>(OtherActor);
+			pt_HumanChar->CurrentHp -= 1.0f;
+			pt_HumanChar->CurrentSP += 0.01f;
+
+			printf("HP : %.2f", pt_HumanChar->CurrentHp);
+			printf("SP : %.2f", pt_HumanChar->CurrentSP);
+
+			//if (pt_HumanChar->Status_HP <= 0 && HUD_Devil->ActivateCount < 2 && HUD_Devil->CollectCount > 0)
+			//	HUD_Devil->HumanSoul++;
+
+			if (pt_HumanChar == nullptr)print("null");
 		}
-		printf("Hit Actor : %s", *Hit.GetActor()->GetName());
-		printf("Hit Bone : %s", *Hit.BoneName.ToString());
-		printf("Point : %s", *Hit.ImpactPoint.ToString());
-		printf("Normal : %s", *Hit.ImpactNormal.ToString());
+		else if (OtherActor->ActorHasTag(FName(TEXT("Devil_Character"))))
+		{
+			ADevilCharacter* pt_DevilChar = Cast<ADevilCharacter>(OtherActor);
+			pt_DevilChar->Status_HP -= 5;
+
+			if (pt_DevilChar == nullptr)print("null");
+		}
+		else if (OtherActor->ActorHasTag(FName(TEXT("Angel_Character"))))
+		{
+			AAngelCharacter* pt_AngelChar = Cast<AAngelCharacter>(OtherActor);
+			pt_AngelChar->Status_HP -= 5;
+
+			if (pt_AngelChar == nullptr)print("null");
+		}
+
+		//printf("Hit Actor : %s", *Hit.GetActor()->GetName());
+		//printf("Hit Bone : %s", *Hit.BoneName.ToString());
+		//printf("Point : %s", *Hit.ImpactPoint.ToString());
+		//printf("Normal : %s", *Hit.ImpactNormal.ToString());
 	}
 	else print("No Hit");
 }

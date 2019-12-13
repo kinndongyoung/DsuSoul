@@ -40,7 +40,6 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Devil() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHUD_Devil_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "HideCategories", "Rendering Actor Input Replication" },
 		{ "IncludePath", "HUD_Devil.h" },
 		{ "ModuleRelativePath", "HUD_Devil.h" },
@@ -74,7 +73,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Devil() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHUD_Devil, 619879585);
+	IMPLEMENT_CLASS(AHUD_Devil, 1221963709);
 	template<> SOUL_API UClass* StaticClass<AHUD_Devil>()
 	{
 		return AHUD_Devil::StaticClass();

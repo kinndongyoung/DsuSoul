@@ -232,7 +232,7 @@ void AClient::Tick(float DeltaTime)
 						pawns[(pPlayerData->user) - 1]->SetActorLocation(f_temp);
 						pawns[(pPlayerData->user) - 1]->SetActorRotation(FRotator::FRotator(pPlayerData->y2, pPlayerData->z2, pPlayerData->x2));
 						pawns[(pPlayerData->user) - 1]->HumanAnim->CurrentPawnSpeed = pPlayerData->CurrentPawnSpeed;
-						ScreenMsg("currentspeed : ", pawns[(pPlayerData->user) - 1]->HumanAnim->CurrentPawnSpeed);
+						//ScreenMsg("currentspeed : ", pawns[(pPlayerData->user) - 1]->HumanAnim->CurrentPawnSpeed);
 
 						if (pPlayerData->Is_Walking&&pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Walk==false)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Walk = true;

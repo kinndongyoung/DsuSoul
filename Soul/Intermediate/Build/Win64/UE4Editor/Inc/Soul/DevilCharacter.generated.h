@@ -58,9 +58,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ADevilCharacter); \
 
 
 #define Soul_Source_Soul_DevilCharacter_h_10_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__DevilAnim() { return STRUCT_OFFSET(ADevilCharacter, DevilAnim); } \
-	FORCEINLINE static uint32 __PPO__UserCameraArm() { return STRUCT_OFFSET(ADevilCharacter, UserCameraArm); } \
-	FORCEINLINE static uint32 __PPO__Camera() { return STRUCT_OFFSET(ADevilCharacter, Camera); }
+	FORCEINLINE static uint32 __PPO__HUD_Devil() { return STRUCT_OFFSET(ADevilCharacter, HUD_Devil); } \
+	FORCEINLINE static uint32 __PPO__DevilAnim() { return STRUCT_OFFSET(ADevilCharacter, DevilAnim); }
 
 
 #define Soul_Source_Soul_DevilCharacter_h_7_PROLOG

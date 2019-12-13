@@ -2,12 +2,14 @@
 #include "HumanAnimInstance.h"
 #include "HumanWeapon.h"
 #include "HumanWeaponBullet.h"
+#include "Human_PaustSoulPiece.h"
 #include "HUD_Human.h"
 
 // 생성자에서 User 초기화
 AHumanCharacter::AHumanCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	// Add Tag
 	Tags.AddUnique(TEXT("Human_Character"));
 
 	// Camera Create
@@ -34,6 +36,11 @@ AHumanCharacter::AHumanCharacter()
 	if (BP_ANIM_HUMANCHAR.Succeeded())
 		GetMesh()->SetAnimInstanceClass(BP_ANIM_HUMANCHAR.Class);
 
+	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_HumanWeaponBullet.BP_HumanWeaponBullet"));
+
+	if (BP_SOUL_WEAPON_BULLET.Succeeded())
+		WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
+
 	// Value Initialize
 	SetControlMode(EControlMode::TPS);
 
@@ -44,13 +51,19 @@ AHumanCharacter::AHumanCharacter()
 	isFiring = false;
 	MuzzleOffset = FVector(100.0f, 0.0f, 0.0f);
 
-	//모션 변수
-	Is_Walking = false;
-	
-	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_HumanWeaponBullet.BP_HumanWeaponBullet"));
+	// 스테이터스
+	DieState = false;
+	Status_HP = 100.0f;
+	ammo = 30;
 
-	if (BP_SOUL_WEAPON_BULLET.Succeeded())
-		WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
+	//모션 변수
+	Is_Walking = false; 
+	Is_LayDowning = false;
+	
+	// Install Value Init
+	PerCollectCount = 2;
+	PerCollect = 0.0f;
+	isTrigger = false;
 
 	//인간 속도
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
@@ -70,21 +83,24 @@ void AHumanCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// HUD Setting
+	HUD_Human = Cast<AHUD_Human>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
 	// Weapon Setting
 	FName WeaponSocket(TEXT("WeaponPoint"));
 	auto CurWeapon = GetWorld()->SpawnActor<AHumanWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
-
+	 
 	if (nullptr != CurWeapon)
 	{
 		CurWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, WeaponSocket);
 		UserWeapon = CurWeapon;
 	}
-	
 }
 
 void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (Status_HP <= 0.0f) DieState = true;
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
 	UpdateCurrentHP();
 	UpdateCurrentSP();
@@ -111,17 +127,26 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	// 공격 및 점프
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AHumanCharacter::Jump);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &AHumanCharacter::StartFire);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &AHumanCharacter::StopFire);
+
+	// 상호작용
+	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Pressed, this, &AHumanCharacter::StartCollect);
+	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Repeat, this, &AHumanCharacter::Collecting);
+	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Released, this, &AHumanCharacter::EndCollect);
+
 	//모션
 	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &AHumanCharacter::Walk);
 	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_Walk);
+
 	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::LayDownFunc);
 	PlayerInputComponent->BindAction(TEXT("SitDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::SitDownFunc);
 	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Pressed, this, &AHumanCharacter::ReloadFunc);
 	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_ReloadFunc);
-	//행동
+	
+	// 이동 및 회전
 	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AHumanCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AHumanCharacter::LeftRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AHumanCharacter::Turn);
@@ -137,10 +162,10 @@ void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 	UserCameraArm->bInheritRoll = true;
 	UserCameraArm->bInheritYaw = true;
 	UserCameraArm->bDoCollisionTest = true;
-	bUseControllerRotationYaw = false;
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->bUseControllerDesiredRotation = false;
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f);
+	bUseControllerRotationYaw = true;
+	//GetCharacterMovement()->bOrientRotationToMovement = true;
+	//GetCharacterMovement()->bUseControllerDesiredRotation = false;
+	//GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f);
 }
 
 // Move Character
@@ -159,7 +184,7 @@ void AHumanCharacter::LeftRight(float NewAxisValue)
 // Rotate Character
 void AHumanCharacter::Turn(float NewAxisValue)
 {
-	AddControllerYawInput(NewAxisValue);
+	AddControllerYawInput(NewAxisValue);	
 }
 
 float AHumanCharacter::GetInitialHP()
@@ -200,9 +225,12 @@ void AHumanCharacter::LookUp(float NewAxisValue)
 // Fire
 void AHumanCharacter::StartFire()
 {
-	isFiring = true;
-	HumanAnim->IsFire = isFiring;
-	Fire();
+	if (ammo >= 0)
+	{
+		isFiring = true;
+		HumanAnim->IsFire = isFiring;
+		Fire();
+	}
 }
 
 void AHumanCharacter::Fire()
@@ -213,8 +241,15 @@ void AHumanCharacter::Fire()
 		if (WeaponBulletClass)
 		{
 			// MuzzleOffset 을 카메라 스페이스에서 월드 스페이스로 변환합니다.
-			FVector MuzzleLocation = UserWeapon->ActorToWorld().GetLocation() + FVector(30.0f, 100.0f, 0.0f);
-			FRotator MuzzleRotation = GetMesh()->GetComponentRotation() + FRotator(0.0f, 90.0f, 0.0f);
+			//FVector MuzzleLocation = UserWeapon->ActorToWorld().GetLocation() + FVector(30.0f, 100.0f, 0.0f);
+			//FRotator MuzzleRotation = GetMesh()->GetComponentRotation() + FRotator(0.0f, 90.0f, 0.0f);
+
+			FVector CameraLocation;
+			FRotator CameraRotation;
+			GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+			FVector MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
+			FRotator MuzzleRotation = CameraRotation;
 
 			// 조준을 약간 윗쪽으로 올려줍니다.
 			MuzzleRotation.Pitch += 5.0f;
@@ -237,8 +272,13 @@ void AHumanCharacter::Fire()
 			}
 		}
 
-		// 연사를 위한 StartFire 함수 생성
-		GetWorld()->GetTimerManager().SetTimer(timer, this, &AHumanCharacter::Fire, 0.1f, false);
+		ammo--;
+		if (ammo >= 0)
+		{
+			// 연사를 위한 StartFire 함수 생성
+			GetWorld()->GetTimerManager().SetTimer(timer, this, &AHumanCharacter::Fire, 0.1f, false);
+		}
+		else StopFire();
 	}
 }
 
@@ -294,6 +334,7 @@ void AHumanCharacter::SitDownFunc()
 }
 void AHumanCharacter::ReloadFunc()
 {
+	ammo = 30;
 	HumanAnim->Is_Reload = true;
 	GetCharacterMovement()->JumpZVelocity = 0.0f;
 }
@@ -306,4 +347,68 @@ void AHumanCharacter::Death()
 {
 	HumanAnim->Is_Death = true;
 	GetCharacterMovement()->JumpZVelocity = 0.0f;
+}
+
+// Install
+void AHumanCharacter::StartCollect()
+{
+	if (isTrigger == true && pt_Trigger->PieceState == true)
+	{
+		if (PerCollect <= 1.0f && PerCollectCount > 0)
+		{
+			print("StartCollect");
+			printf("Collect : %f", pt_Trigger->PieceProcess);
+
+			pt_Trigger->PieceProcess += 0.01f;
+			PerCollect = pt_Trigger->PieceProcess;
+			HUD_Human->Human_Collect_State = true;
+			HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
+		}
+	}
+	else print("StartCollect false");
+}
+
+void AHumanCharacter::Collecting()
+{
+	if (isTrigger == true && pt_Trigger->PieceState == true)
+	{
+		if (PerCollect <= 1.0f && PerCollectCount > 0)
+		{
+			print("Collecting");
+			printf("Collect : %f", pt_Trigger->PieceProcess);
+
+			pt_Trigger->PieceProcess += 0.01f;
+			PerCollect = pt_Trigger->PieceProcess;
+		}
+		else if (PerCollect > 1.0f && PerCollectCount > 0)
+		{
+			PerCollect = 0.0f;
+			PerCollectCount--;
+			printf("CollectCount : %d", PerCollectCount);
+
+			isTrigger = false;
+			pt_Trigger->PieceState = false;
+			HUD_Human->Human_Collect_State = false;
+		}
+		HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
+	}
+	else print("Collecting false");
+}
+
+void AHumanCharacter::EndCollect()
+{
+	if (isTrigger == true && pt_Trigger->PieceState == true)
+	{
+		if (PerCollect <= 1.0f && PerCollectCount > 0)
+		{
+			print("EndCollect");
+			printf("Collect : %f", pt_Trigger->PieceProcess);
+
+			pt_Trigger->PieceProcess += 0.01f;
+			PerCollect = pt_Trigger->PieceProcess;
+			HUD_Human->Human_Collect_State = false;
+			HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
+		}
+	}
+	else print("EndCollect false");
 }

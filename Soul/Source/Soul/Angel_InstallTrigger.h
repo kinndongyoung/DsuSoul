@@ -16,12 +16,16 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY(VisibleAnywhere, Category = Install_Space)
-	UStaticMeshComponent *p_InstallMesh;
-
 	UFUNCTION()
 	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
 
 	UFUNCTION()
 	void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
+
+public:
+	bool InstallState;
+	float InstallProcess;	
+
+	UPROPERTY(VisibleAnywhere, Category = Install_Space)
+	UStaticMeshComponent *p_InstallMesh;	
 };

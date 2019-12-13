@@ -31,6 +31,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_AHUD_Human_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_UHumanAnimInstance_NoRegister();
+	SOUL_API UClass* Z_Construct_UClass_AHuman_PaustSoulPiece_NoRegister();
 // End Cross Module References
 	void AHumanCharacter::StaticRegisterNativesAHumanCharacter()
 	{
@@ -249,6 +250,10 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FStructPropertyParams NewProp_MuzzleOffset;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerCollect_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerCollect;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Camera_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Camera;
@@ -280,6 +285,14 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HumanAnim_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HumanAnim;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HUD_Human_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HUD_Human;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_pt_Trigger_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_pt_Trigger;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -311,16 +324,16 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		{ "ToolTip", "???? ??\xc5\xb3 ?\xd1\xbe? \xc5\xac????" },
 	};
 #endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass = { "WeaponBulletClass", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, WeaponBulletClass), Z_Construct_UClass_AHumanWeaponBullet_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass = { "WeaponBulletClass", nullptr, (EPropertyFlags)0x0044000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, WeaponBulletClass), Z_Construct_UClass_AHumanWeaponBullet_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon_MetaData[] = {
 		{ "Category", "BulletClass" },
-		{ "Comment", "// ?\xd1\xbe??? ??????\xc5\xb3 ???? \xc5\xac????\n" },
+		{ "Comment", "// ?\xd1\xbe??? ??????\xc5\xb3 ???? \xc5\xac????z\n" },
 		{ "ModuleRelativePath", "HumanCharacter.h" },
-		{ "ToolTip", "?\xd1\xbe??? ??????\xc5\xb3 ???? \xc5\xac????" },
+		{ "ToolTip", "?\xd1\xbe??? ??????\xc5\xb3 ???? \xc5\xac????z" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon = { "UserWeapon", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, UserWeapon), Z_Construct_UClass_AHumanWeapon_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon = { "UserWeapon", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, UserWeapon), Z_Construct_UClass_AHumanWeapon_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_MuzzleOffset_MetaData[] = {
 		{ "Category", "Gameplay" },
@@ -330,6 +343,15 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 	};
 #endif
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_MuzzleOffset = { "MuzzleOffset", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, MuzzleOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_MuzzleOffset_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_MuzzleOffset_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect_MetaData[] = {
+		{ "Category", "Install" },
+		{ "Comment", "// ??\xc8\xa5 ???? ?\xd4\xbc? ?? ????\n" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+		{ "ToolTip", "??\xc8\xa5 ???? ?\xd4\xbc? ?? ????" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect = { "PerCollect", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, PerCollect), METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_Camera_MetaData[] = {
 		{ "Category", "Camera" },
@@ -393,10 +415,27 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim = { "HumanAnim", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, HumanAnim), Z_Construct_UClass_UHumanAnimInstance_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HUD_Human_MetaData[] = {
+		{ "Category", "HUD" },
+		{ "Comment", "// HUD \xc5\xac????\n" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+		{ "ToolTip", "HUD \xc5\xac????" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HUD_Human = { "HUD_Human", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, HUD_Human), Z_Construct_UClass_AHUD_Human_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HUD_Human_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HUD_Human_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger_MetaData[] = {
+		{ "Category", "Trigger" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger = { "pt_Trigger", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, pt_Trigger), Z_Construct_UClass_AHuman_PaustSoulPiece_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AHumanCharacter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_MuzzleOffset,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_Camera,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserCameraArm,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_bar,
@@ -405,6 +444,8 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_CurrentHp,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_Initial_HP,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HumanAnim,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_HUD_Human,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AHumanCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AHumanCharacter>::IsAbstract,
@@ -433,7 +474,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHumanCharacter, 712257316);
+	IMPLEMENT_CLASS(AHumanCharacter, 4254397979);
 	template<> SOUL_API UClass* StaticClass<AHumanCharacter>()
 	{
 		return AHumanCharacter::StaticClass();

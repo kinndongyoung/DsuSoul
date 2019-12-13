@@ -498,9 +498,9 @@
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I Runtime\ClothingSystemRuntimeInterface
-/I D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul
-/I D:\DsuSoul\Soul\Source
-/I D:\DsuSoul\Soul\Source\Soul
+/I D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul
+/I D:\LSH\Unreal\backup\DsuSoul\Soul\Source
+/I D:\LSH\Unreal\backup\DsuSoul\Soul\Source\Soul
 /I Runtime\Networking\Public
 /I Runtime\Networking
 /I Runtime\Networking\Public\Common
@@ -530,18 +530,18 @@
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\RenderDebug\public
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\PairFilter\include
 /I ThirdParty\PhysX3\APEX_1.4\shared\internal\include
-/I "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\INCLUDE"
+/I D:\VisualStudio\VC\Tools\MSVC\14.16.27023\INCLUDE
 /I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um"
-/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt"
-/FI"D:\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
-/Yu"D:\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
-/Fp"D:\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h.pch"
-"D:\DsuSoul\Soul\Source\Soul\HumanAnimInstance.cpp"
-/FI"D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Definitions.Soul.h"
-/Fo"D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\HumanAnimInstance.cpp.obj"
+/I "D:\Windows Kits\10\include\10.0.16299.0\ucrt"
+/I "D:\Windows Kits\10\include\10.0.16299.0\shared"
+/I "D:\Windows Kits\10\include\10.0.16299.0\um"
+/I "D:\Windows Kits\10\include\10.0.16299.0\winrt"
+/FI"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
+/Yu"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
+/Fp"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h.pch"
+"D:\LSH\Unreal\backup\DsuSoul\Soul\Source\Soul\HumanAnimInstance.cpp"
+/FI"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Definitions.Soul.h"
+/Fo"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\HumanAnimInstance.cpp.obj"
 /TP
 /GR-
 /W4

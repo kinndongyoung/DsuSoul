@@ -32,6 +32,11 @@ private:
 	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
 	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
 
+public:// 트리거 //
+	bool isTrigger;
+	UPROPERTY(VisibleAnywhere, Category = Trigger)
+	class AHuman_PaustSoulPiece* pt_Trigger;
+
 public:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
 
@@ -40,6 +45,10 @@ public:// 컨트롤 관련 //
 	void LeftRight(float NewAxisValue);
 	void LookUp(float NewAxisValue);
 	void Turn(float NewAxisValue);
+
+	// HUD 클래스
+	UPROPERTY(VisibleAnywhere, Category = HUD)
+	class AHUD_Human* HUD_Human;
 
 	// 애니메이션 클래스
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
@@ -86,11 +95,35 @@ private:// 카메라//
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
 
-public:// 무기관련 //
+public:
+	// 스테이터스
+	bool DieState;
+	float Status_HP;
+
+	// 공격 변수
+	FTimerHandle timer;
+	bool isFiring;
+	int ammo;
+
+	//모션 변수
+	bool Is_Walking;
+	bool Is_LayDowning;
+	
+	// 영혼 수집 함수 및 변수
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Install)
+	float PerCollect;
+	int PerCollectCount;
+
+	void StartCollect();
+	void Collecting();
+	void EndCollect();
+	
+	// 무기관련 //
 	// 공격 함수
 	void StartFire();
 	void Fire();
 	void StopFire();
+
 	//모션 함수
 	void Walk();
 	void Stop_Walk();
@@ -101,18 +134,12 @@ public:// 무기관련 //
 	void Death();
 
 public:
-	// 공격 변수
-	FTimerHandle timer;
-	bool isFiring;
-
-	//모션 변수
-	bool Is_Walking;
-	
 	// 카메라 위치에서의 총구 오프셋
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	FVector MuzzleOffset;
 
-	// 총알을 스폰시킬 무기 클래스
+private:
+	// 총알을 스폰시킬 무기 클래스z
 	UPROPERTY(EditAnywhere, Category = BulletClass)
 	class AHumanWeapon* UserWeapon;
 
