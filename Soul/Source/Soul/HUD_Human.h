@@ -21,6 +21,7 @@ public:
 public:
 	bool Human_Collect_State;
 	bool Death_bar;
+	int CollectCount;
 
 	// 체력 및 sp 바
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character HP SP", Meta = (BluePrintProtected = "true"))

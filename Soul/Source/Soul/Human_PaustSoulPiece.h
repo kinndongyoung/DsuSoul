@@ -12,20 +12,18 @@ class SOUL_API AHuman_PaustSoulPiece : public ATriggerSphere
 public:	
 	AHuman_PaustSoulPiece();
 
-protected:
+private:
 	virtual void BeginPlay() override;
 
 public:
-	UFUNCTION()
-	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
-
-	UFUNCTION()
-	void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
-
-public:
 	bool PieceState;
-	float PieceProcess;
 
 	UPROPERTY(VisibleAnywhere, Category = Install_Space)
 	UStaticMeshComponent *p_SoulPieceMesh;
+
+	UPROPERTY(VisibleAnywhere, Category = HUD)
+	class AHUD_Human* HUD_Human;
+
+	UFUNCTION()
+	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
 };

@@ -19,7 +19,6 @@ ADevil_ContractDoc::ADevil_ContractDoc()
 	p_ContractDocMesh->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f));
 
 	ContractDocState = true;
-
 }
 
 void ADevil_ContractDoc::BeginPlay()

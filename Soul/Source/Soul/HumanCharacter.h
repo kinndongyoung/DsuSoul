@@ -35,7 +35,7 @@ private:
 public:// 트리거 //
 	bool isTrigger;
 	UPROPERTY(VisibleAnywhere, Category = Trigger)
-	class AHuman_PaustSoulPiece* pt_Trigger;
+	class AHuman_PaustSoulCase* pt_Trigger;
 
 public:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
@@ -87,6 +87,10 @@ public:// 컨트롤 관련 //
 	//죽음
 	UPROPERTY(VisibleAnywhere, Category = Death_bar)
 		class AHUD_Human* bar;
+	//임시
+	float DeathTime;
+
+	float RespawnTime;
 
 private:// 카메라//	
 	UPROPERTY(VisibleAnywhere, Category = Camera)
@@ -112,8 +116,7 @@ public:
 	// 영혼 수집 함수 및 변수
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Install)
 	float PerCollect;
-	int PerCollectCount;
-
+	bool ColletEnd;
 	void StartCollect();
 	void Collecting();
 	void EndCollect();
@@ -132,6 +135,7 @@ public:
 	void ReloadFunc();
 	void Stop_ReloadFunc();
 	void Death();
+	void Respawn();
 
 public:
 	// 카메라 위치에서의 총구 오프셋

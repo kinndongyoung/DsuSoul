@@ -2,7 +2,7 @@
 #include "HumanAnimInstance.h"
 #include "HumanWeapon.h"
 #include "HumanWeaponBullet.h"
-#include "Human_PaustSoulPiece.h"
+#include "Human_PaustSoulCase.h"
 #include "HUD_Human.h"
 
 // 생성자에서 User 초기화
@@ -61,9 +61,9 @@ AHumanCharacter::AHumanCharacter()
 	Is_LayDowning = false;
 	
 	// Install Value Init
-	PerCollectCount = 2;
 	PerCollect = 0.0f;
 	isTrigger = false;
+	ColletEnd = false;
 
 	//인간 속도
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
@@ -77,6 +77,8 @@ AHumanCharacter::AHumanCharacter()
 	Initial_SP = 0.0f;
 	CurrentSP = Initial_SP;
 
+	DeathTime = 600.0f;
+	RespawnTime = 0.0f;
 }
 
 void AHumanCharacter::BeginPlay()
@@ -107,6 +109,9 @@ void AHumanCharacter::Tick(float DeltaTime)
 	if (CurrentHp <= 0)
 	{
 		Death();
+		RespawnTime += 2.0f;
+		if (DeathTime <= RespawnTime)
+			Respawn();
 	}
 }
 
@@ -348,13 +353,20 @@ void AHumanCharacter::Death()
 	HumanAnim->Is_Death = true;
 	GetCharacterMovement()->JumpZVelocity = 0.0f;
 }
+void AHumanCharacter::Respawn()
+{
+	CurrentHp = 100.0f;
+	CurrentSP = 0.0f;
+	HumanAnim->Is_Death = false;
+	RespawnTime = 0.0f;
+}
 
 // Install
 void AHumanCharacter::StartCollect()
 {
-	if (isTrigger == true && pt_Trigger->PieceState == true)
+	if (isTrigger == true && HUD_Human->CollectCount == 2)
 	{
-		if (PerCollect <= 1.0f && PerCollectCount > 0)
+		if (PerCollect <= 1.0f)
 		{
 			print("StartCollect");
 			printf("Collect : %f", pt_Trigger->PieceProcess);
@@ -370,9 +382,9 @@ void AHumanCharacter::StartCollect()
 
 void AHumanCharacter::Collecting()
 {
-	if (isTrigger == true && pt_Trigger->PieceState == true)
+	if (isTrigger == true && HUD_Human->CollectCount == 2)
 	{
-		if (PerCollect <= 1.0f && PerCollectCount > 0)
+		if (PerCollect <= 1.0f)
 		{
 			print("Collecting");
 			printf("Collect : %f", pt_Trigger->PieceProcess);
@@ -380,15 +392,14 @@ void AHumanCharacter::Collecting()
 			pt_Trigger->PieceProcess += 0.01f;
 			PerCollect = pt_Trigger->PieceProcess;
 		}
-		else if (PerCollect > 1.0f && PerCollectCount > 0)
+		else if (PerCollect > 1.0f)
 		{
 			PerCollect = 0.0f;
-			PerCollectCount--;
-			printf("CollectCount : %d", PerCollectCount);
+			print("Paust Activate");
 
 			isTrigger = false;
-			pt_Trigger->PieceState = false;
 			HUD_Human->Human_Collect_State = false;
+			ColletEnd = true;
 		}
 		HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
 	}
@@ -397,9 +408,9 @@ void AHumanCharacter::Collecting()
 
 void AHumanCharacter::EndCollect()
 {
-	if (isTrigger == true && pt_Trigger->PieceState == true)
+	if (isTrigger == true && HUD_Human->CollectCount == 2)
 	{
-		if (PerCollect <= 1.0f && PerCollectCount > 0)
+		if (PerCollect <= 1.0f)
 		{
 			print("EndCollect");
 			printf("Collect : %f", pt_Trigger->PieceProcess);
@@ -410,5 +421,8 @@ void AHumanCharacter::EndCollect()
 			HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
 		}
 	}
-	else print("EndCollect false");
+	else
+	{
+		print("EndCollect false");
+	}
 }

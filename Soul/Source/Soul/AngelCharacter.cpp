@@ -177,6 +177,8 @@ void AAngelCharacter::Installing()
 			isTrigger = false;
 			pt_Trigger->InstallState = false;
 			HUD_Angel->Angel_Install_State = false;
+			if (InstallCount == 0)
+				UGameplayStatics::OpenLevel(this, "Winer");
 		}
 		HUD_Angel->HUD_Update(pt_Trigger->InstallProcess);
 	}

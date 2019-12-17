@@ -13,7 +13,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SOUL_Client_generated_h
 
-#define Soul_Source_Soul_Client_h_18_RPC_WRAPPERS \
+#define Soul_Source_Soul_Client_h_20_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execAccessServer) \
 	{ \
@@ -44,7 +44,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define Soul_Source_Soul_Client_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+#define Soul_Source_Soul_Client_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execAccessServer) \
 	{ \
@@ -75,7 +75,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define Soul_Source_Soul_Client_h_18_INCLASS_NO_PURE_DECLS \
+#define Soul_Source_Soul_Client_h_20_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAClient(); \
 	friend struct Z_Construct_UClass_AClient_Statics; \
@@ -84,7 +84,7 @@ public: \
 	DECLARE_SERIALIZER(AClient)
 
 
-#define Soul_Source_Soul_Client_h_18_INCLASS \
+#define Soul_Source_Soul_Client_h_20_INCLASS \
 private: \
 	static void StaticRegisterNativesAClient(); \
 	friend struct Z_Construct_UClass_AClient_Statics; \
@@ -93,7 +93,7 @@ public: \
 	DECLARE_SERIALIZER(AClient)
 
 
-#define Soul_Source_Soul_Client_h_18_STANDARD_CONSTRUCTORS \
+#define Soul_Source_Soul_Client_h_20_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AClient(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AClient) \
@@ -106,7 +106,7 @@ private: \
 public:
 
 
-#define Soul_Source_Soul_Client_h_18_ENHANCED_CONSTRUCTORS \
+#define Soul_Source_Soul_Client_h_20_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AClient(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
@@ -119,26 +119,26 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AClient); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AClient)
 
 
-#define Soul_Source_Soul_Client_h_18_PRIVATE_PROPERTY_OFFSET
-#define Soul_Source_Soul_Client_h_15_PROLOG
-#define Soul_Source_Soul_Client_h_18_GENERATED_BODY_LEGACY \
+#define Soul_Source_Soul_Client_h_20_PRIVATE_PROPERTY_OFFSET
+#define Soul_Source_Soul_Client_h_17_PROLOG
+#define Soul_Source_Soul_Client_h_20_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	Soul_Source_Soul_Client_h_18_PRIVATE_PROPERTY_OFFSET \
-	Soul_Source_Soul_Client_h_18_RPC_WRAPPERS \
-	Soul_Source_Soul_Client_h_18_INCLASS \
-	Soul_Source_Soul_Client_h_18_STANDARD_CONSTRUCTORS \
+	Soul_Source_Soul_Client_h_20_PRIVATE_PROPERTY_OFFSET \
+	Soul_Source_Soul_Client_h_20_RPC_WRAPPERS \
+	Soul_Source_Soul_Client_h_20_INCLASS \
+	Soul_Source_Soul_Client_h_20_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define Soul_Source_Soul_Client_h_18_GENERATED_BODY \
+#define Soul_Source_Soul_Client_h_20_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	Soul_Source_Soul_Client_h_18_PRIVATE_PROPERTY_OFFSET \
-	Soul_Source_Soul_Client_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	Soul_Source_Soul_Client_h_18_INCLASS_NO_PURE_DECLS \
-	Soul_Source_Soul_Client_h_18_ENHANCED_CONSTRUCTORS \
+	Soul_Source_Soul_Client_h_20_PRIVATE_PROPERTY_OFFSET \
+	Soul_Source_Soul_Client_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+	Soul_Source_Soul_Client_h_20_INCLASS_NO_PURE_DECLS \
+	Soul_Source_Soul_Client_h_20_ENHANCED_CONSTRUCTORS \
 static_assert(false, "Unknown access specifier for GENERATED_BODY() macro in class Client."); \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

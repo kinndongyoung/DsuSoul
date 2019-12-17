@@ -207,6 +207,10 @@ D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\An
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HumanCharacter.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\Soul.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HumanCharacter.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\AngelCharacter.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\AngelCharacter.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\DevilCharacter.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\DevilCharacter.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Client.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HumanAnimInstance.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HumanAnimInstance.generated.h

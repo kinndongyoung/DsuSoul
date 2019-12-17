@@ -31,7 +31,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_AHUD_Human_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_UHumanAnimInstance_NoRegister();
-	SOUL_API UClass* Z_Construct_UClass_AHuman_PaustSoulPiece_NoRegister();
+	SOUL_API UClass* Z_Construct_UClass_AHuman_PaustSoulCase_NoRegister();
 // End Cross Module References
 	void AHumanCharacter::StaticRegisterNativesAHumanCharacter()
 	{
@@ -430,7 +430,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		{ "ModuleRelativePath", "HumanCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger = { "pt_Trigger", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, pt_Trigger), Z_Construct_UClass_AHuman_PaustSoulPiece_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger = { "pt_Trigger", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, pt_Trigger), Z_Construct_UClass_AHuman_PaustSoulCase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_pt_Trigger_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AHumanCharacter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_WeaponBulletClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserWeapon,
@@ -474,7 +474,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHumanCharacter, 4254397979);
+	IMPLEMENT_CLASS(AHumanCharacter, 470005179);
 	template<> SOUL_API UClass* StaticClass<AHumanCharacter>()
 	{
 		return AHumanCharacter::StaticClass();

@@ -208,4 +208,8 @@ d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\An
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HumanCharacter.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\Soul.h
 d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\HumanCharacter.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\AngelCharacter.h
+d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\AngelCharacter.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\DevilCharacter.h
+d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\DevilCharacter.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\Client.generated.h

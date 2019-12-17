@@ -9,6 +9,8 @@
 #include "CCirQueue.h"
 #include "AnyCustomData.h"
 #include "HumanCharacter.h"
+#include "AngelCharacter.h"
+#include "DevilCharacter.h"
 #include "GameFramework/Actor.h"
 #include "Client.generated.h"
 
@@ -22,6 +24,10 @@ public:
 	// Sets default values for this actor's properties
 	AHumanCharacter* pawns[9];
 	AHumanCharacter* myPawn;
+	AAngelCharacter* engelpawn[3];
+	AAngelCharacter* myEngel;
+	ADevilCharacter* devilpawn[3];
+	ADevilCharacter* myDevil;
 	bool b_GameStart;
 	CCirQueue g_Queue;
 public:
@@ -56,7 +62,7 @@ public:
 	}
 
 public:
-
+	void SendHumanWin();
 	void SendPlayerData();
 	UFUNCTION(BlueprintCallable)
 		void AccessServer();

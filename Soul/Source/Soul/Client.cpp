@@ -18,6 +18,7 @@ AClient::AClient(const FObjectInitializer& ObjectInitializer)
 		pawns[i] = NULL;
 	}
 	GetActorLocation();
+	myPawn = NULL;
 }
 // Called when the game starts or when spawned
 void AClient::BeginPlay()
@@ -176,6 +177,15 @@ void AClient::SendPlayerData()
 
 	SenderSocket->SendTo((uint8*)&temp, sizeof(temp), BytesSent, *RemoteAddr);
 }
+void AClient::SendHumanWin()
+{
+	int32 BytesSent = 0;
+	F_tgPacketHeader temp;
+	temp.PktID = PKT_REQ_HUMAN_WIN;
+	temp.user = PlayerNumber;
+	temp.PktSize = sizeof(temp);
+	SenderSocket->SendTo((uint8*)&temp, sizeof(temp), BytesSent, *RemoteAddr);
+}
 void AClient::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -188,6 +198,14 @@ void AClient::Tick(float DeltaTime)
 	{
 		SendPlayerData();
 	}
+	if (myPawn != NULL)
+	{
+		if (myPawn->ColletEnd)
+		{
+			SendHumanWin();
+		}
+	}
+	
 	while (SenderSocket->HasPendingData(Size))
 	{
 		int32 Read = 0;
@@ -218,6 +236,18 @@ void AClient::Tick(float DeltaTime)
 				}
 				else
 					ScreenMsg("already_access");
+			}
+			else if (pHeader->PktID == PKT_REQ_HUMAN_WIN)
+			{
+				F_tgPacketHeader* pPlayerData = (F_tgPacketHeader*)pHeader;
+				if(pPlayerData->user<4&&PlayerNumber<4)
+					UGameplayStatics::OpenLevel(this, "Winer");
+				else if(pPlayerData->user<7&&pPlayerData->user>3&&PlayerNumber<7&&PlayerNumber>3)
+					UGameplayStatics::OpenLevel(this, "Winer");
+				else if (pPlayerData->user < 10 && pPlayerData->user>6 && PlayerNumber < 10 && PlayerNumber>6)
+					UGameplayStatics::OpenLevel(this, "Winer");
+				else
+					UGameplayStatics::OpenLevel(this, "Lose");
 			}
 			else if (pHeader->PktID == PKT_REQ_PLAYER_DATA && b_GameStart)
 			{

@@ -8,6 +8,7 @@
 #define PKT_REQ_LOGINFULL	0xa0000002 //서버에 로그인 실패 패킷
 #define PKT_REQ_ACCESS_LOGIN	0xa0000003 // 서버 로그인 성공 패킷
 #define PKT_REQ_PLAYER_DATA	0xa0000004
+#define PKT_REQ_HUMAN_WIN	0xa0000005
 
 USTRUCT(BlueprintType)
 struct F_tgPacketHeader

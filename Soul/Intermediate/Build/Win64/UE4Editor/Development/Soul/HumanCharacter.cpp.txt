@@ -193,12 +193,12 @@ d:\lsh\unreal\backup\dsusoul\soul\source\soul\HumanWeapon.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HumanWeapon.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HumanWeaponBullet.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HumanWeaponBullet.generated.h
-d:\lsh\unreal\backup\dsusoul\soul\source\soul\Human_PaustSoulPiece.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Human_PaustSoulCase.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\Engine/TriggerSphere.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\Engine/TriggerBase.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TriggerBase.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TriggerSphere.generated.h
-D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Human_PaustSoulPiece.generated.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Human_PaustSoulCase.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HUD_Human.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h

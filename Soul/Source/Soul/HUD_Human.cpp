@@ -7,6 +7,7 @@ AHUD_Human::AHUD_Human()
 	PrimaryActorTick.bCanEverTick = true;
 	Human_Collect_State = false;
 	Death_bar = false;
+	CollectCount = 0;
 
 	// UI Create & Initialize	
 	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_COLLECT(TEXT("/Game/Project_Soul/UI/BP_HumanCollectBar.BP_HumanCollectBar_C"));

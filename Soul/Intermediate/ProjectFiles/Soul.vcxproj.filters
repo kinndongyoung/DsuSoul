@@ -225,4 +225,14 @@
       <Filter>Source\Soul</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Soul\Human_PaustSoulCase.h">
+      <Filter>Source\Soul</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Soul\Human_PaustSoulCase.cpp">
+      <Filter>Source\Soul</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
