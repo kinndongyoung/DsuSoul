@@ -47,7 +47,7 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 		if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
 		{
 			AHumanCharacter* pt_HumanChar = Cast<AHumanCharacter>(OtherActor);
-			pt_HumanChar->CurrentHp -= 1.0f;
+			pt_HumanChar->CurrentHp -= 10.0f;
 			pt_HumanChar->CurrentSP += 0.01f;
 
 			printf("HP : %.2f", pt_HumanChar->CurrentHp);
@@ -78,5 +78,5 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 		//printf("Point : %s", *Hit.ImpactPoint.ToString());
 		//printf("Normal : %s", *Hit.ImpactNormal.ToString());
 	}
-	else print("No Hit");
+	else print("No Hit Human Bullet");
 }

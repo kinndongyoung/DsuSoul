@@ -6,6 +6,7 @@ AHUD_Devil::AHUD_Devil()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// UI Create & Initialize	
+	HumanSoul = 0;
 	CollectCount = 0;
 	ActivateCount = 0;
 }

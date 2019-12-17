@@ -53,7 +53,6 @@ AHumanCharacter::AHumanCharacter()
 
 	// 스테이터스
 	DieState = false;
-	Status_HP = 100.0f;
 	ammo = 30;
 
 	//모션 변수
@@ -102,12 +101,12 @@ void AHumanCharacter::BeginPlay()
 void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (Status_HP <= 0.0f) DieState = true;
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
 	UpdateCurrentHP();
 	UpdateCurrentSP();
 	if (CurrentHp <= 0)
 	{
+		DieState = true;
 		Death();
 		RespawnTime += 2.0f;
 		if (DeathTime <= RespawnTime)

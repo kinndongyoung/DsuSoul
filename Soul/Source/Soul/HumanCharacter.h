@@ -102,7 +102,6 @@ private:// 카메라//
 public:
 	// 스테이터스
 	bool DieState;
-	float Status_HP;
 
 	// 공격 변수
 	FTimerHandle timer;
