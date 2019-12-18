@@ -52,7 +52,7 @@ AHumanCharacter::AHumanCharacter()
 	MuzzleOffset = FVector(100.0f, 0.0f, 0.0f);
 
 	// 스테이터스
-	DieState = false;
+	GiveSoulState = false;
 	ammo = 30;
 
 	//모션 변수
@@ -106,7 +106,6 @@ void AHumanCharacter::Tick(float DeltaTime)
 	UpdateCurrentSP();
 	if (CurrentHp <= 0)
 	{
-		DieState = true;
 		Death();
 		RespawnTime += 2.0f;
 		if (DeathTime <= RespawnTime)

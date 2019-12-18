@@ -60,8 +60,12 @@ void ADevilWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 			printf("HP : %.2f", pt_HumanChar->CurrentHp);
 			printf("SP : %.2f", pt_HumanChar->CurrentSP);
 
-			if (pt_HumanChar->CurrentHp <= 0 && HUD_Devil->ActivateCount < 2 && HUD_Devil->CollectCount > 0)
+			if (pt_HumanChar->CurrentHp <= 0 && pt_HumanChar->GiveSoulState == false && 
+				HUD_Devil->ActivateCount < 2 && HUD_Devil->CollectCount > 0)
+			{
+				pt_HumanChar->GiveSoulState = true;
 				HUD_Devil->HumanSoul++;
+			}				
 
 			if (pt_HumanChar == nullptr)print("null");
 		}

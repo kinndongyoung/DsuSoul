@@ -101,7 +101,7 @@ private:// 카메라//
 
 public:
 	// 스테이터스
-	bool DieState;
+	bool GiveSoulState;
 
 	// 공격 변수
 	FTimerHandle timer;
