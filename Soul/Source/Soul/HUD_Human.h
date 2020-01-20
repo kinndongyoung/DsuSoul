@@ -19,9 +19,17 @@ public:
 	void HUD_CollectBar();
 
 public:
+	bool CrossHair_State;
 	bool Human_Collect_State;
 	bool Death_bar;
 	int CollectCount;
+
+	// 조준점
+	UPROPERTY(EditAnywhere, Category = CrossHair)
+	TSubclassOf<class UUserWidget> WidgetClass_CrossHair;
+
+	UPROPERTY(EditAnywhere, Category = CrossHair)
+	class UUserWidget* CrossHairWidget;
 
 	// 체력 및 sp 바
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character HP SP", Meta = (BluePrintProtected = "true"))

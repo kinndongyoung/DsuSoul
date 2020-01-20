@@ -42,7 +42,7 @@ AHumanCharacter::AHumanCharacter()
 	GetCapsuleComponent()->CanCharacterStepUp(false);
 	SetControlMode(EControlMode::TPS);
 
-	ArmLengthSpeed = 3.0f;
+	ArmLengthSpeed = 0.0f;
 	ArmRotationSpeed = 10.0f;
 
 	// Bullet Initialize
@@ -54,6 +54,7 @@ AHumanCharacter::AHumanCharacter()
 	ammo = 30;
 
 	//모션 변수
+	Is_Zoom = false;
 	Is_Walking = false; 
 	Is_LayDowning = false;
 	
@@ -99,7 +100,10 @@ void AHumanCharacter::BeginPlay()
 void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	// 카메라 관련
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
+
+	// HP 및 SP 관련
 	UpdateCurrentHP();
 	UpdateCurrentSP();
 	if (CurrentHp <= 0)
@@ -130,6 +134,7 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	// 공격 및 점프
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AHumanCharacter::Jump);
+	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &AHumanCharacter::Zoom);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &AHumanCharacter::StartFire);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &AHumanCharacter::StopFire);
 
@@ -148,7 +153,7 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_ReloadFunc);
 	
 	// 이동 및 회전
-	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &AHumanCharacter::UpDown);
+	PlayerInputComponent->BindAxis(TEXT("ForwardBack"), this, &AHumanCharacter::ForwardBack);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AHumanCharacter::LeftRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AHumanCharacter::Turn);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AHumanCharacter::LookUp);
@@ -157,29 +162,49 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 // Set Camera Arm
 void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 {
-	ArmLengthTo = 200.0f;
-	UserCameraArm->bUsePawnControlRotation = true;
-	UserCameraArm->bInheritPitch = true;
-	UserCameraArm->bInheritRoll = true;
-	UserCameraArm->bInheritYaw = true;
-	UserCameraArm->bDoCollisionTest = true;
-	bUseControllerRotationYaw = true;
-	//GetCharacterMovement()->bOrientRotationToMovement = true;
-	//GetCharacterMovement()->bUseControllerDesiredRotation = false;
-	//GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f);
+	CurrentControlMode = NewControlMode;
+
+	switch (CurrentControlMode)
+	{
+		case EControlMode::TPS:
+		{
+			ArmLengthTo = 200.0f;
+			UserCameraArm->bUsePawnControlRotation = true;//
+			UserCameraArm->bInheritPitch = true;
+			UserCameraArm->bInheritRoll = true;
+			UserCameraArm->bInheritYaw = true;
+			UserCameraArm->bDoCollisionTest = true;
+			bUseControllerRotationYaw = true;//
+		}break;
+		case EControlMode::FPS:
+		{
+			ArmLengthTo = -20.0f;
+			UserCameraArm->SetRelativeLocation(FVector(0.0f, 0.0f, 60.0f));
+			UserCameraArm->bUsePawnControlRotation = true;
+			UserCameraArm->bInheritPitch = true;
+			UserCameraArm->bInheritRoll = true;
+			UserCameraArm->bInheritYaw = true;
+			UserCameraArm->bDoCollisionTest = true;
+			bUseControllerRotationYaw = true;
+		}break;
+	}
 }
 
 // Move Character
-void AHumanCharacter::UpDown(float NewAxisValue)
+void AHumanCharacter::ForwardBack(float NewAxisValue)
 {
-	if(HumanAnim->Is_Reload==false && HumanAnim->Is_Death==false)
-	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
+	if(HumanAnim->Is_Reload==false && HumanAnim->Is_Death==false)	
+		AddMovementInput(GetActorForwardVector(), NewAxisValue);
+
+	//AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
 }
 
 void AHumanCharacter::LeftRight(float NewAxisValue)
 {
 	if(HumanAnim->Is_Reload ==false && HumanAnim->Is_Death == false)
-	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
+		AddMovementInput(GetActorRightVector(), NewAxisValue);
+	
+	//AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
 }
 
 // Rotate Character
@@ -194,6 +219,23 @@ void AHumanCharacter::LookUp(float NewAxisValue)
 }
 
 // Fire
+void AHumanCharacter::Zoom()
+{
+	if (Is_Zoom == false)
+	{
+		Is_Zoom = true;
+		HUD_Human->CrossHair_State = true;
+		SetControlMode(EControlMode::FPS);
+	}
+	else if (Is_Zoom == true)
+	{
+		Is_Zoom = false;
+		HUD_Human->CrossHair_State = false;
+		SetControlMode(EControlMode::TPS);
+	}
+	HUD_Human->HUD_CollectBar();
+}
+
 void AHumanCharacter::StartFire()
 {
 	if (ammo >= 0)
@@ -212,9 +254,6 @@ void AHumanCharacter::Fire()
 		if (WeaponBulletClass)
 		{
 			// MuzzleOffset 을 카메라 스페이스에서 월드 스페이스로 변환합니다.
-			//FVector MuzzleLocation = UserWeapon->ActorToWorld().GetLocation() + FVector(30.0f, 100.0f, 0.0f);
-			//FRotator MuzzleRotation = GetMesh()->GetComponentRotation() + FRotator(0.0f, 90.0f, 0.0f);
-
 			FVector CameraLocation;
 			FRotator CameraRotation;
 			GetActorEyesViewPoint(CameraLocation, CameraRotation);

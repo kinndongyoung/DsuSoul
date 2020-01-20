@@ -49,6 +49,14 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Human() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WidgetClass_Bar_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WidgetClass_Bar;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrossHairWidget_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CrossHairWidget;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WidgetClass_CrossHair_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WidgetClass_CrossHair;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -100,11 +108,29 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Human() {}
 	};
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_Bar = { "WidgetClass_Bar", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHUD_Human, WidgetClass_Bar), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_Bar_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_Bar_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHUD_Human_Statics::NewProp_CrossHairWidget_MetaData[] = {
+		{ "Category", "CrossHair" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "HUD_Human.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHUD_Human_Statics::NewProp_CrossHairWidget = { "CrossHairWidget", nullptr, (EPropertyFlags)0x0010000000080009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHUD_Human, CrossHairWidget), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHUD_Human_Statics::NewProp_CrossHairWidget_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHUD_Human_Statics::NewProp_CrossHairWidget_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_CrossHair_MetaData[] = {
+		{ "Category", "CrossHair" },
+		{ "Comment", "// ??????\n" },
+		{ "ModuleRelativePath", "HUD_Human.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_CrossHair = { "WidgetClass_CrossHair", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHUD_Human, WidgetClass_CrossHair), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_CrossHair_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_CrossHair_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AHUD_Human_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUD_Human_Statics::NewProp_CurrentWidget_CollectBar,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_CollectBar,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUD_Human_Statics::NewProp_CurrentWidget,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_Bar,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUD_Human_Statics::NewProp_CrossHairWidget,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHUD_Human_Statics::NewProp_WidgetClass_CrossHair,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AHUD_Human_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AHUD_Human>::IsAbstract,
@@ -133,7 +159,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Human() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHUD_Human, 2125794082);
+	IMPLEMENT_CLASS(AHUD_Human, 1230526013);
 	template<> SOUL_API UClass* StaticClass<AHUD_Human>()
 	{
 		return AHUD_Human::StaticClass();

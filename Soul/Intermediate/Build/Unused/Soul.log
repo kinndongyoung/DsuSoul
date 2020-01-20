@@ -1,13 +1,12 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build (D:\LSH\Unreal\backup\DsuSoul).
-  Creating makefile for SoulEditor (game project files are newer)
 UnrealBuildTool : warning : Couldn't parse '<<<<<<< Updated upstream' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
 UnrealBuildTool : warning : Couldn't parse '=======' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
 UnrealBuildTool : warning : Couldn't parse '>>>>>>> Stashed changes' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
   Parsing headers for SoulEditor
     Running UnrealHeaderTool "D:\LSH\Unreal\backup\DsuSoul\Soul\Soul.uproject" "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
-  Reflection code generated for SoulEditor in 5.9420369 seconds
+  Reflection code generated for SoulEditor in 6.0096764 seconds
   Using Visual Studio 2017 14.16.27023 toolchain (D:\VisualStudio\VC\Tools\MSVC\14.16.27023) and Windows 10.0.16299.0 SDK (D:\Windows Kits\10).
-  Distributing 3 actions to XGE
+  Distributing 4 actions to XGE
   --------------------Build System Warning---------------------------------------
   License is invalid:
       License information is invalid. Please try reloading your license file using the Coordinator Monitor application on the Coordinator machine, or reinstall IncrediBuild.
@@ -15,11 +14,12 @@ UnrealBuildTool : warning : Couldn't parse '>>>>>>> Stashed changes' in UnrealBu
   
   -------------------------------------------------------------------------------
   --------------------Project: Default-------------------------------------------
-  UE4Editor-Soul-0003.dll (0:02.73 at +0:00)
-     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0003.suppressed.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0003.suppressed.exp 개체를 생성하고 있습니다.
-  UE4Editor-Soul-0003.lib (0:00.21 at +0:02)
-     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0003.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0003.exp 개체를 생성하고 있습니다.
-  SoulEditor.target (0:00.17 at +0:02)
+  HumanCharacter.cpp (0:03.82 at +0:00)
+  UE4Editor-Soul-0016.dll (0:04.18 at +0:03)
+     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0016.suppressed.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0016.suppressed.exp 개체를 생성하고 있습니다.
+  UE4Editor-Soul-0016.lib (0:00.20 at +0:08)
+     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0016.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0016.exp 개체를 생성하고 있습니다.
+  SoulEditor.target (0:00.18 at +0:08)
   ---------------------- Done ----------------------
   
       Rebuild All: 1 succeeded, 0 failed, 0 skipped
@@ -27,5 +27,5 @@ UnrealBuildTool : warning : Couldn't parse '>>>>>>> Stashed changes' in UnrealBu
   1 build system warning(s):
      - License is invalid
   
-  Total time in XGE executor: 3.51 seconds
-  Total execution time: 11.42 seconds
+  Total time in XGE executor: 8.66 seconds
+  Total execution time: 15.60 seconds

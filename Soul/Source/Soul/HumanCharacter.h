@@ -31,6 +31,8 @@ private:
 	float ArmLengthTo = 0.0f;      // 캐릭터와 카메라 거리
 	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
 	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
+	FRotator ArmRotationTo = FRotator::ZeroRotator;
+	FVector DirectionToMove = FVector::ZeroVector;
 
 public:// 트리거 //
 	bool isTrigger;
@@ -41,7 +43,7 @@ public:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
 
 	// 행동	함수
-	void UpDown(float NewAxisValue);
+	void ForwardBack(float NewAxisValue);
 	void LeftRight(float NewAxisValue);
 	void LookUp(float NewAxisValue);
 	void Turn(float NewAxisValue);
@@ -112,6 +114,7 @@ public:
 	int ammo;
 
 	//모션 변수
+	bool Is_Zoom;
 	bool Is_Walking;
 	bool Is_LayDowning;
 	
@@ -128,6 +131,7 @@ public:
 	void StartFire();
 	void Fire();
 	void StopFire();
+	void Zoom();
 
 	//모션 함수
 	void Walk();
@@ -156,6 +160,4 @@ private:
 	// 스폰 시킬 총알 클래스
 	UPROPERTY(EditAnywhere, Category = BulletClass)
 	TSubclassOf<class AHumanWeaponBullet> WeaponBulletClass;
-
-	
 };
