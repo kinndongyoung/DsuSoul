@@ -17,14 +17,12 @@ protected:
 
 public:
 	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
+	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
 
 	UFUNCTION()
-		void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
+	void OnOverlapEnd(class AActor* OverlappedActor, class AActor* OtherActor);
 
 public:
-	float PieceProcess;
-
 	UPROPERTY(VisibleAnywhere, Category = Install_Space)
-		UStaticMeshComponent *p_PaustCaseMesh;
+	UStaticMeshComponent *p_PaustCaseMesh;
 };

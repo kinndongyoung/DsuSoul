@@ -26,22 +26,20 @@ AHumanCharacter::AHumanCharacter()
 
 	// Skeletal Mesh Initialize
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/AnimStarterPack/UE4_Mannequin/Mesh/SK_Mannequin.SK_Mannequin"));
-
-	if (SK_SOUL_USER.Succeeded())
-		GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
+	if (SK_SOUL_USER.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
 	
 	// Anim Instance Initialize
 	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_HUMANCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_Human.BP_Human_C"));
-
-	if (BP_ANIM_HUMANCHAR.Succeeded())
-		GetMesh()->SetAnimInstanceClass(BP_ANIM_HUMANCHAR.Class);
+	if (BP_ANIM_HUMANCHAR.Succeeded()) GetMesh()->SetAnimInstanceClass(BP_ANIM_HUMANCHAR.Class);
 
 	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_HumanWeaponBullet.BP_HumanWeaponBullet"));
-
-	if (BP_SOUL_WEAPON_BULLET.Succeeded())
-		WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
+	if (BP_SOUL_WEAPON_BULLET.Succeeded()) WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
 
 	// Value Initialize
+	GetMesh()->BodyInstance.SetCollisionProfileName(TEXT("HumanChar"));
+	GetMesh()->CanCharacterStepUp(false);
+	GetCapsuleComponent()->BodyInstance.SetCollisionProfileName(TEXT("HumanChar"));
+	GetCapsuleComponent()->CanCharacterStepUp(false);
 	SetControlMode(EControlMode::TPS);
 
 	ArmLengthSpeed = 3.0f;
@@ -190,36 +188,6 @@ void AHumanCharacter::Turn(float NewAxisValue)
 	AddControllerYawInput(NewAxisValue);	
 }
 
-float AHumanCharacter::GetInitialHP()
-{
-	return Initial_HP;
-}
-
-float AHumanCharacter::GetCurrentInitialHP()
-{
-	return CurrentHp;
-}
-
-void AHumanCharacter::UpdateCurrentHP()
-{
-	CurrentHp = CurrentHp;
-}
-
-float AHumanCharacter::GetInitialSP()
-{
-	return Initial_SP;
-}
-
-float AHumanCharacter::GetCurrentInitialSP()
-{
-	return CurrentSP;
-}
-
-void AHumanCharacter::UpdateCurrentSP()
-{
-	CurrentSP = CurrentSP;
-}
-
 void AHumanCharacter::LookUp(float NewAxisValue)
 {
 	AddControllerPitchInput(NewAxisValue);
@@ -251,7 +219,7 @@ void AHumanCharacter::Fire()
 			FRotator CameraRotation;
 			GetActorEyesViewPoint(CameraLocation, CameraRotation);
 
-			FVector MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
+			MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
 			FRotator MuzzleRotation = CameraRotation;
 
 			// 조준을 약간 윗쪽으로 올려줍니다.
@@ -271,6 +239,7 @@ void AHumanCharacter::Fire()
 					// 발사 방향을 알아냅니다.
 					FVector LaunchDirection = MuzzleRotation.Vector();
 					Bullet->FireInDirection(LaunchDirection);
+					Bullet->FireActor(this);
 				}
 			}
 		}
@@ -353,6 +322,7 @@ void AHumanCharacter::Death()
 }
 void AHumanCharacter::Respawn()
 {
+	ammo = 30;
 	CurrentHp = 100.0f;
 	CurrentSP = 0.0f;
 	HumanAnim->Is_Death = false;
@@ -364,15 +334,14 @@ void AHumanCharacter::StartCollect()
 {
 	if (isTrigger == true && HUD_Human->CollectCount == 2)
 	{
-		if (PerCollect <= 1.0f)
+		if (PerCollect <= 100.0f)
 		{
 			print("StartCollect");
-			printf("Collect : %f", pt_Trigger->PieceProcess);
+			printf("Collect : %f", PerCollect);
 
-			pt_Trigger->PieceProcess += 0.01f;
-			PerCollect = pt_Trigger->PieceProcess;
+			PerCollect += 1.0f;
 			HUD_Human->Human_Collect_State = true;
-			HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
+			HUD_Human->HUD_CollectBar();
 		}
 	}
 	else print("StartCollect false");
@@ -382,24 +351,22 @@ void AHumanCharacter::Collecting()
 {
 	if (isTrigger == true && HUD_Human->CollectCount == 2)
 	{
-		if (PerCollect <= 1.0f)
+		if (PerCollect <= 100.0f)
 		{
 			print("Collecting");
-			printf("Collect : %f", pt_Trigger->PieceProcess);
+			printf("Collect : %f", PerCollect);
 
-			pt_Trigger->PieceProcess += 0.01f;
-			PerCollect = pt_Trigger->PieceProcess;
+			PerCollect += 1.0f;
 		}
-		else if (PerCollect > 1.0f)
+		else if (PerCollect > 100.0f)
 		{
-			PerCollect = 0.0f;
 			print("Paust Activate");
 
 			isTrigger = false;
-			HUD_Human->Human_Collect_State = false;
 			ColletEnd = true;
+			HUD_Human->Human_Collect_State = false;			
+			HUD_Human->HUD_CollectBar();
 		}
-		HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
 	}
 	else print("Collecting false");
 }
@@ -408,19 +375,15 @@ void AHumanCharacter::EndCollect()
 {
 	if (isTrigger == true && HUD_Human->CollectCount == 2)
 	{
-		if (PerCollect <= 1.0f)
+		if (PerCollect <= 100.0f)
 		{
 			print("EndCollect");
-			printf("Collect : %f", pt_Trigger->PieceProcess);
+			printf("Collect : %f", PerCollect);
 
-			pt_Trigger->PieceProcess += 0.01f;
-			PerCollect = pt_Trigger->PieceProcess;
+			PerCollect += 1.0f;
 			HUD_Human->Human_Collect_State = false;
-			HUD_Human->HUD_CollectBar(pt_Trigger->PieceProcess);
+			HUD_Human->HUD_CollectBar();
 		}
 	}
-	else
-	{
-		print("EndCollect false");
-	}
+	else print("EndCollect false");
 }

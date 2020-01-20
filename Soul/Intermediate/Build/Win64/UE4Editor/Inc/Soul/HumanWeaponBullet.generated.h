@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AHumanCharacter;
 class UPrimitiveComponent;
 class AActor;
 struct FVector;
@@ -18,6 +19,15 @@ struct FHitResult;
 #define SOUL_HumanWeaponBullet_generated_h
 
 #define Soul_Source_Soul_HumanWeaponBullet_h_10_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execFireActor) \
+	{ \
+		P_GET_OBJECT(AHumanCharacter,Z_Param_pt_FireChar); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->FireActor(Z_Param_pt_FireChar); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execOnHit) \
 	{ \
@@ -34,6 +44,15 @@ struct FHitResult;
 
 
 #define Soul_Source_Soul_HumanWeaponBullet_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execFireActor) \
+	{ \
+		P_GET_OBJECT(AHumanCharacter,Z_Param_pt_FireChar); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->FireActor(Z_Param_pt_FireChar); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execOnHit) \
 	{ \

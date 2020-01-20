@@ -54,43 +54,46 @@ public:// 컨트롤 관련 //
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
 	class UHumanAnimInstance* HumanAnim;
 
-	//인간 hp,sp
-	UFUNCTION(BlueprintPure, Category = "Human HP")
-	float GetInitialHP();
-
-	UFUNCTION(BlueprintPure, Category = "Human HP")
-	float GetCurrentInitialHP();
-
-	UFUNCTION(BlueprintCallable, Category = "Human HP")
-	void UpdateCurrentHP();
-
-	UFUNCTION(BlueprintPure, Category = "Human SP")
-		float GetInitialSP();
-
-	UFUNCTION(BlueprintPure, Category = "Human SP")
-		float GetCurrentInitialSP();
-
-	UFUNCTION(BlueprintCallable, Category = "Human SP")
-		void UpdateCurrentSP();
+	//인간 hp,sp - 변수
+	UPROPERTY(EditAnywhere, Category = "Human HP")
+	float Initial_HP;
 
 	UPROPERTY(EditAnywhere, Category = "Human HP")
-		float Initial_HP;
-
-	UPROPERTY(EditAnywhere, Category = "Human HP")
-		float CurrentHp;
+	float CurrentHp;
 
 	UPROPERTY(EditAnywhere, Category = "Human SP")
-		float Initial_SP;
+	float Initial_SP;
 
 	UPROPERTY(EditAnywhere, Category = "Human SP")
-		float CurrentSP;
+	float CurrentSP;
+
 	//죽음
 	UPROPERTY(VisibleAnywhere, Category = Death_bar)
-		class AHUD_Human* bar;
+	class AHUD_Human* bar;
+
 	//임시
 	float DeathTime;
 
 	float RespawnTime;
+
+	//인간 hp,sp - 함수
+	UFUNCTION(BlueprintPure, Category = "Human HP")
+	float GetInitialHP() { return Initial_HP; }
+
+	UFUNCTION(BlueprintPure, Category = "Human HP")
+	float GetCurrentInitialHP() { return CurrentHp; }
+
+	UFUNCTION(BlueprintCallable, Category = "Human HP")
+	void UpdateCurrentHP() { CurrentHp = CurrentHp; }
+
+	UFUNCTION(BlueprintPure, Category = "Human SP")
+	float GetInitialSP() { return Initial_SP; }
+
+	UFUNCTION(BlueprintPure, Category = "Human SP")
+	float GetCurrentInitialSP() { return CurrentSP; }
+
+	UFUNCTION(BlueprintCallable, Category = "Human SP")
+	void UpdateCurrentSP() { CurrentSP = CurrentSP; }
 
 private:// 카메라//	
 	UPROPERTY(VisibleAnywhere, Category = Camera)
@@ -138,8 +141,12 @@ public:
 
 public:
 	// 카메라 위치에서의 총구 오프셋
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MuzzleOffseet)
 	FVector MuzzleOffset;
+
+	// 총구 오프셋
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MuzzleOffseet)
+	FVector MuzzleLocation;
 
 private:
 	// 총알을 스폰시킬 무기 클래스z

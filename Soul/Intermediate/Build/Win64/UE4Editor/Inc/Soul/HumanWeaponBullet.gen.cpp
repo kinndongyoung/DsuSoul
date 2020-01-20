@@ -17,6 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeHumanWeaponBullet() {}
 	SOUL_API UClass* Z_Construct_UClass_AHumanWeaponBullet();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_Soul();
+	SOUL_API UFunction* Z_Construct_UFunction_AHumanWeaponBullet_FireActor();
+	SOUL_API UClass* Z_Construct_UClass_AHumanCharacter_NoRegister();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanWeaponBullet_OnHit();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
@@ -29,9 +31,42 @@ void EmptyLinkFunctionForGeneratedCodeHumanWeaponBullet() {}
 	{
 		UClass* Class = AHumanWeaponBullet::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "FireActor", &AHumanWeaponBullet::execFireActor },
 			{ "OnHit", &AHumanWeaponBullet::execOnHit },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics
+	{
+		struct HumanWeaponBullet_eventFireActor_Parms
+		{
+			AHumanCharacter* pt_FireChar;
+		};
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_pt_FireChar;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::NewProp_pt_FireChar = { "pt_FireChar", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HumanWeaponBullet_eventFireActor_Parms, pt_FireChar), Z_Construct_UClass_AHumanCharacter_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::NewProp_pt_FireChar,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "HumanWeaponBullet.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AHumanWeaponBullet, nullptr, "FireActor", nullptr, nullptr, sizeof(HumanWeaponBullet_eventFireActor_Parms), Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AHumanWeaponBullet_FireActor()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AHumanWeaponBullet_FireActor_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AHumanWeaponBullet_OnHit_Statics
 	{
@@ -119,6 +154,10 @@ void EmptyLinkFunctionForGeneratedCodeHumanWeaponBullet() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HumanChar_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HumanChar;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BulletMoveComponent_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BulletMoveComponent;
@@ -135,6 +174,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanWeaponBullet() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Soul,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AHumanWeaponBullet_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AHumanWeaponBullet_FireActor, "FireActor" }, // 3281587434
 		{ &Z_Construct_UFunction_AHumanWeaponBullet_OnHit, "OnHit" }, // 2584691025
 	};
 #if WITH_METADATA
@@ -143,6 +183,13 @@ void EmptyLinkFunctionForGeneratedCodeHumanWeaponBullet() {}
 		{ "ModuleRelativePath", "HumanWeaponBullet.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_HumanChar_MetaData[] = {
+		{ "Category", "FireActor" },
+		{ "ModuleRelativePath", "HumanWeaponBullet.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_HumanChar = { "HumanChar", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanWeaponBullet, HumanChar), Z_Construct_UClass_AHumanCharacter_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_HumanChar_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_HumanChar_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_BulletMoveComponent_MetaData[] = {
 		{ "Category", "Movement" },
@@ -164,6 +211,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanWeaponBullet() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_CollisionComponent = { "CollisionComponent", nullptr, (EPropertyFlags)0x00100000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanWeaponBullet, CollisionComponent), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_CollisionComponent_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_CollisionComponent_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AHumanWeaponBullet_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_HumanChar,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_BulletMoveComponent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanWeaponBullet_Statics::NewProp_CollisionComponent,
 	};
@@ -194,7 +242,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanWeaponBullet() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHumanWeaponBullet, 2674514599);
+	IMPLEMENT_CLASS(AHumanWeaponBullet, 682463432);
 	template<> SOUL_API UClass* StaticClass<AHumanWeaponBullet>()
 	{
 		return AHumanWeaponBullet::StaticClass();

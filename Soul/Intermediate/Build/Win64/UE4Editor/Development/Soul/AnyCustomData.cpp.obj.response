@@ -498,6 +498,10 @@
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I Runtime\ClothingSystemRuntimeInterface
+/I ..\Plugins\Runtime\ApexDestruction\Intermediate\Build\Win64\UE4Editor\Inc\ApexDestruction
+/I ..\Plugins\Runtime\ApexDestruction\Source
+/I ..\Plugins\Runtime\ApexDestruction\Source\ApexDestruction\Public
+/I ..\Plugins\Runtime\ApexDestruction\Source\ApexDestruction
 /I D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul
 /I D:\LSH\Unreal\backup\DsuSoul\Soul\Source
 /I D:\LSH\Unreal\backup\DsuSoul\Soul\Source\Soul

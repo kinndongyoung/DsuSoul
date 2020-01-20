@@ -10,6 +10,18 @@ class SOUL_API AHumanWeaponBullet : public AActor
 	GENERATED_BODY()
 	
 public:
+	// 구체 콜리전 컴포넌트
+	UPROPERTY(VisibleDefaultsOnly, Category = Bullet)
+	USphereComponent* CollisionComponent;
+
+	// 프로젝타일 무브먼트 컴포넌트
+	UPROPERTY(VisibleAnywhere, Category = Movement)
+	class UProjectileMovementComponent* BulletMoveComponent;
+
+	UPROPERTY(VisibleAnywhere, Category = FireActor)
+	class AHumanCharacter *HumanChar;
+
+public:
 	AHumanWeaponBullet();
 
 	// 발사체의 속도를 발사 방향으로 초기화시킴
@@ -19,12 +31,6 @@ public:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse ,const FHitResult& Hit);
 	
-public:
-	// 구체 콜리전 컴포넌트
-	UPROPERTY(VisibleDefaultsOnly, Category = Bullet)
-	USphereComponent* CollisionComponent;
-
-	// 프로젝타일 무브먼트 컴포넌트
-	UPROPERTY(VisibleAnywhere, Category = Movement)
-	class UProjectileMovementComponent* BulletMoveComponent;
+	UFUNCTION()
+	void FireActor(class AHumanCharacter* pt_FireChar) { HumanChar = pt_FireChar; }
 };

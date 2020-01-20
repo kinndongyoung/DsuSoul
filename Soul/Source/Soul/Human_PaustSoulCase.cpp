@@ -1,5 +1,6 @@
 #include "Human_PaustSoulCase.h"
 #include "HumanCharacter.h"
+#include "HUD_Human.h"
 #include "DrawDebugHelpers.h"
 #include "Runtime/Engine/Public/EngineUtils.h"
 
@@ -18,8 +19,6 @@ AHuman_PaustSoulCase::AHuman_PaustSoulCase()
 
 	p_PaustCaseMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
 	p_PaustCaseMesh->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 0.0f), FRotator(0.0f, 0.0f, 0.0f));
-
-	PieceProcess = 0.0f;
 }
 
 void AHuman_PaustSoulCase::BeginPlay()
@@ -35,10 +34,10 @@ void AHuman_PaustSoulCase::OnOverlapBegin(class AActor *OverlappedActor, class A
 		if (OtherActor && (OtherActor != this))
 		{
 			AHumanCharacter* pt_Human = Cast<AHumanCharacter>(OtherActor);
-			pt_Human->pt_Trigger = Cast<AHuman_PaustSoulCase>(OverlappedActor);
-			pt_Human->isTrigger = true;
-
 			if (pt_Human == nullptr) print("pt_Human = null");
+
+			pt_Human->pt_Trigger = Cast<AHuman_PaustSoulCase>(OverlappedActor);
+			pt_Human->isTrigger = true;			
 		}
 	}
 	else print("I can't contact the Paust");
@@ -51,9 +50,11 @@ void AHuman_PaustSoulCase::OnOverlapEnd(class AActor *OverActor, class AActor *O
 		if (OtherActor && (OtherActor != this))
 		{
 			AHumanCharacter* pt_Human = Cast<AHumanCharacter>(OtherActor);
-			pt_Human->isTrigger = false;
-
 			if (pt_Human == nullptr) print("pt_Human = null");
+
+			pt_Human->isTrigger = false;
+			pt_Human->HUD_Human->Human_Collect_State = false;
+			pt_Human->HUD_Human->HUD_CollectBar();			
 		}
 	}
 	else print("I can't contact the Paust");

@@ -16,7 +16,7 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	void HUD_CollectBar(float CollectPercent);
+	void HUD_CollectBar();
 
 public:
 	bool Human_Collect_State;

@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\Soul.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{24E30C7C-20CB-49A6-8E46-E92A768D647B}</UniqueIdentifier>
+      <UniqueIdentifier>{EAD4F9FA-6880-46A7-B16B-54E2162C5601}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\Soul.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{58002234-A0CE-4671-9736-54D86169C08E}</UniqueIdentifier>
+      <UniqueIdentifier>{70DADD25-9065-42EF-A815-DAF9076907B7}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,55 +27,55 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Config\Android">
-      <UniqueIdentifier>{E9D88A76-EAB9-4AE9-BF4E-F0EE806F8A10}</UniqueIdentifier>
+      <UniqueIdentifier>{612954C4-2D21-4C84-AD00-15BA8481ED0F}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Android\AndroidEngine.ini">
       <Filter>Config\Android</Filter>
     </None>
     <Filter Include="Config\IOS">
-      <UniqueIdentifier>{60B93F1C-E184-4555-9B50-015C7CCDE326}</UniqueIdentifier>
+      <UniqueIdentifier>{73A64F19-3DA1-481A-9322-2B763F83B901}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\IOS\IOSEngine.ini">
       <Filter>Config\IOS</Filter>
     </None>
     <Filter Include="Config\Linux">
-      <UniqueIdentifier>{0D57D0DD-5667-42C1-ACED-3975235397FF}</UniqueIdentifier>
+      <UniqueIdentifier>{464D2FE6-F6AA-4932-8C76-399D17F31A79}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Linux\LinuxEngine.ini">
       <Filter>Config\Linux</Filter>
     </None>
     <Filter Include="Config\Mac">
-      <UniqueIdentifier>{ADAF4828-B2A2-40F9-BEF8-0A91E62B0029}</UniqueIdentifier>
+      <UniqueIdentifier>{3795D38F-E45B-40E5-9546-63E710E64A90}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Mac\MacEngine.ini">
       <Filter>Config\Mac</Filter>
     </None>
     <Filter Include="Config\PS4">
-      <UniqueIdentifier>{276C2939-2CAB-476B-AD73-B3D9D8E20E6F}</UniqueIdentifier>
+      <UniqueIdentifier>{07C7690E-0194-401B-B9A5-95BC02CB1539}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\PS4\PS4Engine.ini">
       <Filter>Config\PS4</Filter>
     </None>
     <Filter Include="Config\Switch">
-      <UniqueIdentifier>{D0AB218B-8D7C-4EB5-AD0A-BA72B79AA32C}</UniqueIdentifier>
+      <UniqueIdentifier>{AE367A0B-482F-459C-A788-BDAED6370B46}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Switch\SwitchEngine.ini">
       <Filter>Config\Switch</Filter>
     </None>
     <Filter Include="Config\Windows">
-      <UniqueIdentifier>{DC81319D-E5E3-4339-86DA-69CCF0E4F861}</UniqueIdentifier>
+      <UniqueIdentifier>{99A642F2-2185-4DF3-9D9C-396C5823FD6A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Windows\WindowsEngine.ini">
       <Filter>Config\Windows</Filter>
     </None>
     <Filter Include="Config\XboxOne">
-      <UniqueIdentifier>{75228A82-9F71-4AF4-A4F5-6DE6A807DAAC}</UniqueIdentifier>
+      <UniqueIdentifier>{1867B282-F1C7-4A1D-9BB0-F8373DE472E8}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\XboxOne\XboxOneEngine.ini">
       <Filter>Config\XboxOne</Filter>
     </None>
     <Filter Include="Source\Soul">
-      <UniqueIdentifier>{2C286CB5-F2B2-40AD-9D1B-01035017983A}</UniqueIdentifier>
+      <UniqueIdentifier>{3A8E7F96-4A62-4060-89D9-50B7E0B2A4C3}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\Soul\AngelAnimInstance.cpp">
       <Filter>Source\Soul</Filter>

@@ -54,25 +54,27 @@ void ADevilWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 		if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
 		{
 			AHumanCharacter* pt_HumanChar = Cast<AHumanCharacter>(OtherActor);
+			if (pt_HumanChar == nullptr)print("null");
+
 			pt_HumanChar->CurrentHp -= 10.0f;
-			pt_HumanChar->CurrentSP += 0.01f;
+			pt_HumanChar->CurrentSP += 10.0f;
 
 			printf("HP : %.2f", pt_HumanChar->CurrentHp);
 			printf("SP : %.2f", pt_HumanChar->CurrentSP);
 
-			if (pt_HumanChar->CurrentHp <= 0 && pt_HumanChar->GiveSoulState == false && 
+			if (pt_HumanChar->CurrentHp <= 0 && pt_HumanChar->GiveSoulState == false &&
 				HUD_Devil->ActivateCount < 2 && HUD_Devil->CollectCount > 0)
 			{
 				pt_HumanChar->GiveSoulState = true;
 				HUD_Devil->HumanSoul++;
-			}				
-
-			if (pt_HumanChar == nullptr)print("null");
+			}
 		}
 		else if (OtherActor->ActorHasTag(FName(TEXT("Angel_Character"))))
 		{
-			AAngelCharacter* AngelChar = Cast<AAngelCharacter>(OtherActor);
-			AngelChar->Status_HP -= 5;
+			AAngelCharacter* pt_AngelChar = Cast<AAngelCharacter>(OtherActor);
+			if (pt_AngelChar == nullptr)print("null");
+
+			pt_AngelChar->Status_HP -= 5;
 		}
 
 		//printf("Hit Actor : %s", *Hit.GetActor()->GetName());

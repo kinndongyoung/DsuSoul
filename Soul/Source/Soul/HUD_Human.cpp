@@ -29,7 +29,7 @@ void AHUD_Human::BeginPlay()
 	CurrentWidget->AddToViewport();
 }
 
-void AHUD_Human::HUD_CollectBar(float CollectPercent)
+void AHUD_Human::HUD_CollectBar()
 {
 	if (WidgetClass_CollectBar != nullptr && Human_Collect_State == true)
 		CurrentWidget_CollectBar->AddToViewport();
