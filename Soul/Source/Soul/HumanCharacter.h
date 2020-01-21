@@ -77,7 +77,7 @@ public:// 컨트롤 관련 //
 	float DeathTime;
 
 	float RespawnTime;
-
+	
 	//인간 hp,sp - 함수
 	UFUNCTION(BlueprintPure, Category = "Human HP")
 	float GetInitialHP() { return Initial_HP; }
@@ -102,7 +102,7 @@ private:// 카메라//
 	USpringArmComponent* UserCameraArm;
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
-	UCameraComponent* Camera;
+	UCameraComponent* Camera;	
 
 public:
 	// 스테이터스

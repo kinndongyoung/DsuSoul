@@ -49,7 +49,7 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 			if (pt_HumanChar->CurrentHp > 0.0f) pt_HumanChar->CurrentHp -= 10.0f;
 			else print("Other Actor HP = 0");
 
-			if (HumanChar->CurrentSP < 100.0f) HumanChar->CurrentSP += 10.0f;
+			if (HumanChar->CurrentSP < 100.0f) HumanChar->CurrentSP += 2.0f;
 			else print("Other Actor SP = 100");
 
 			printf("HP : %.2f", pt_HumanChar->CurrentHp);
