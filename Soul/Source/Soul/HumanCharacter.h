@@ -97,6 +97,10 @@ public:// 컨트롤 관련 //
 	UFUNCTION(BlueprintCallable, Category = "Human SP")
 	void UpdateCurrentSP() { CurrentSP = CurrentSP; }
 
+	// 인간 Collect Progress Bar - 함수
+	UFUNCTION(BlueprintPure, Category = "Human PerCollect")
+	float GetPerCollect() { return PerCollect; }
+
 private:// 카메라//	
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* UserCameraArm;

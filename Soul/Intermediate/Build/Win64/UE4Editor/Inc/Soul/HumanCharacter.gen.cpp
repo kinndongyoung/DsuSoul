@@ -21,6 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_GetCurrentInitialSP();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_GetInitialHP();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_GetInitialSP();
+	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_GetPerCollect();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_UpdateCurrentHP();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_UpdateCurrentSP();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -41,6 +42,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 			{ "GetCurrentInitialSP", &AHumanCharacter::execGetCurrentInitialSP },
 			{ "GetInitialHP", &AHumanCharacter::execGetInitialHP },
 			{ "GetInitialSP", &AHumanCharacter::execGetInitialSP },
+			{ "GetPerCollect", &AHumanCharacter::execGetPerCollect },
 			{ "UpdateCurrentHP", &AHumanCharacter::execUpdateCurrentHP },
 			{ "UpdateCurrentSP", &AHumanCharacter::execUpdateCurrentSP },
 		};
@@ -180,6 +182,41 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics
+	{
+		struct HumanCharacter_eventGetPerCollect_Parms
+		{
+			float ReturnValue;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HumanCharacter_eventGetPerCollect_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Human PerCollect" },
+		{ "Comment", "// ?\xce\xb0? Collect Progress Bar - ?\xd4\xbc?\n" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+		{ "ToolTip", "?\xce\xb0? Collect Progress Bar - ?\xd4\xbc?" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AHumanCharacter, nullptr, "GetPerCollect", nullptr, nullptr, sizeof(HumanCharacter_eventGetPerCollect_Parms), Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AHumanCharacter_GetPerCollect()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AHumanCharacter_GetPerCollect_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_AHumanCharacter_UpdateCurrentHP_Statics
 	{
 #if WITH_METADATA
@@ -310,6 +347,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		{ &Z_Construct_UFunction_AHumanCharacter_GetCurrentInitialSP, "GetCurrentInitialSP" }, // 2475780137
 		{ &Z_Construct_UFunction_AHumanCharacter_GetInitialHP, "GetInitialHP" }, // 1691863771
 		{ &Z_Construct_UFunction_AHumanCharacter_GetInitialSP, "GetInitialSP" }, // 2283423036
+		{ &Z_Construct_UFunction_AHumanCharacter_GetPerCollect, "GetPerCollect" }, // 1483609713
 		{ &Z_Construct_UFunction_AHumanCharacter_UpdateCurrentHP, "UpdateCurrentHP" }, // 2074388899
 		{ &Z_Construct_UFunction_AHumanCharacter_UpdateCurrentSP, "UpdateCurrentSP" }, // 1936527162
 	};
@@ -490,7 +528,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHumanCharacter, 1847875450);
+	IMPLEMENT_CLASS(AHumanCharacter, 2491501438);
 	template<> SOUL_API UClass* StaticClass<AHumanCharacter>()
 	{
 		return AHumanCharacter::StaticClass();

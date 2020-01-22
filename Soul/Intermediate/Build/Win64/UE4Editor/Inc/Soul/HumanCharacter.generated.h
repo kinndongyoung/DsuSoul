@@ -15,6 +15,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define Soul_Source_Soul_HumanCharacter_h_10_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execGetPerCollect) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetPerCollect(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execUpdateCurrentSP) \
 	{ \
 		P_FINISH; \
@@ -65,6 +73,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 
 #define Soul_Source_Soul_HumanCharacter_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetPerCollect) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetPerCollect(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execUpdateCurrentSP) \
 	{ \
