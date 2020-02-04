@@ -33,21 +33,28 @@ private:
 
 public:
 	// 스테이터스
-	bool DieState;
-	float Status_HP;
 
+
+	int ammo;
+	float Pos;
 	// 공격 변수
 	FTimerHandle timer;
 	bool isFiring;
 	bool isTrigger;
-
+	//
+	bool Is_Spirnt;
 public:// 무기관련 //
 	// 공격 함수
 	void StartFire();
 	void Fire();
 	void StopFire();
+	//
+	void Sprint();
+	void Stop_Sprint();
+	void Death();
+	void Respawn();
 
-private:// 컨트롤 관련 //
+public:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
 
 	// 행동	함수
@@ -64,6 +71,38 @@ private:// 컨트롤 관련 //
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
 	class UDevilAnimInstance* DevilAnim;
 
+	//악마 hp,sp - 변수
+	UPROPERTY(EditAnywhere, Category = "Devil HP")
+		float Initial_HP;
+
+	UPROPERTY(EditAnywhere, Category = "Devil HP")
+		float CurrentHp;
+
+	UPROPERTY(EditAnywhere, Category = "Devil SP")
+		float Initial_SP;
+
+	UPROPERTY(EditAnywhere, Category = "Devil SP")
+		float CurrentSP;
+	float DeathTime;
+	float RespawnTime;
+//악마 hp,sp
+	UFUNCTION(BlueprintPure, Category = "Devil HP")
+		float GetInitialHP() { return Initial_HP; }
+
+	UFUNCTION(BlueprintPure, Category = "Devil HP")
+		float GetCurrentInitialHP() { return CurrentHp; }
+
+	UFUNCTION(BlueprintCallable, Category = "Human HP")
+		void UpdateCurrentHP() { CurrentHp = CurrentHp; }
+
+	UFUNCTION(BlueprintPure, Category = "Devil SP")
+		float GetInitialSP() { return Initial_SP; }
+
+	UFUNCTION(BlueprintPure, Category = "Devil SP")
+		float GetCurrentInitialSP() { return CurrentSP; }
+
+	UFUNCTION(BlueprintCallable, Category = "Human SP")
+		void UpdateCurrentSP() { CurrentSP = CurrentSP; }
 public:// 카메라//	
 	// 카메라 위치에서의 총구 오프셋
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)

@@ -4,25 +4,43 @@
 AHUD_Angel::AHUD_Angel()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	Angel_Install_State = false;
-	
 	// UI Create & Initialize	
-	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_INSTALL(TEXT("/Game/Project_Soul/UI/BP_AngelInstalBar.BP_AngelInstalBar_C"));
-	if (UI_HUD_INSTALL.Succeeded())
-	{
-		WidgetClass_InstallBar = UI_HUD_INSTALL.Class;
-	}
+	HumanSoul = 0;
+	CollectCount = 0;
+	ActivateCount = 0;
 }
 
-void AHUD_Angel::BeginPlay()
+void AHUD_Angel::HUD_Update()
 {
-	CurrentWidget_InstallBar = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_InstallBar);
-}
+	if (CollectCount == 1)
+	{
+		if (ActivateCount == 0)
+			printf("Contract 1 Soul : %d", HumanSoul);
+		else if (ActivateCount == 1)
+			print("Contract 1 Soul : Activate");
+	}
+	else if (CollectCount == 2)
+	{
+		if (ActivateCount == 0)
+		{
+			printf("Contract 1 Soul : %d", HumanSoul);
+			print("Contract 2 Soul : 0");
+		}
+		else if (ActivateCount == 1)
+		{
+			print("Contract 1 Soul : Activate");
+			printf("Contract 2 Soul : %d", HumanSoul);
+		}
+		else if (ActivateCount == 2)
+		{
+			print("Contract 1 Soul : Activate");
+			print("Contract 2 Soul : Activate");
+		}
+	}
 
-void AHUD_Angel::HUD_Update(float InstallPercent)
-{	
-	if (WidgetClass_InstallBar != nullptr && Angel_Install_State == true)
-		CurrentWidget_InstallBar->AddToViewport();
-	else if (WidgetClass_InstallBar != nullptr && Angel_Install_State == false)
-		CurrentWidget_InstallBar->RemoveFromViewport();
+	if (HumanSoul == 3 && CollectCount <= 2 && ActivateCount <= 1)
+	{
+		ActivateCount++;
+		HumanSoul = 0;
+	}
 }

@@ -116,12 +116,10 @@ public:
 	FTimerHandle timer;
 	bool isFiring;
 	int ammo;
-
+	FVector vec;
 	//모션 변수
 	bool Is_Zoom;
 	bool Is_Walking;
-	bool Is_LayDowning;
-	
 	// 영혼 수집 함수 및 변수
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Install)
 	float PerCollect;
@@ -140,8 +138,6 @@ public:
 	//모션 함수
 	void Walk();
 	void Stop_Walk();
-	void SitDownFunc();
-	void LayDownFunc();
 	void ReloadFunc();
 	void Stop_ReloadFunc();
 	void Death();
@@ -157,9 +153,9 @@ public:
 	FVector MuzzleLocation;
 
 private:
-	// 총알을 스폰시킬 무기 클래스z
-	UPROPERTY(EditAnywhere, Category = BulletClass)
-	class AHumanWeapon* UserWeapon;
+	//// 총알을 스폰시킬 무기 클래스z
+	//UPROPERTY(EditAnywhere, Category = BulletClass)
+	//class AHumanWeapon* UserWeapon;
 
 	// 스폰 시킬 총알 클래스
 	UPROPERTY(EditAnywhere, Category = BulletClass)

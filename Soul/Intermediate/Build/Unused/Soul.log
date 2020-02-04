@@ -4,7 +4,7 @@ UnrealBuildTool : warning : Couldn't parse '=======' in UnrealBuildTool.ConfigFi
 UnrealBuildTool : warning : Couldn't parse '>>>>>>> Stashed changes' in UnrealBuildTool.ConfigFileSection of D:\LSH\Unreal\backup\DsuSoul\Soul\Config\DefaultEngine.ini
   Parsing headers for SoulEditor
     Running UnrealHeaderTool "D:\LSH\Unreal\backup\DsuSoul\Soul\Soul.uproject" "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\SoulEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
-  Reflection code generated for SoulEditor in 6.0353447 seconds
+  Reflection code generated for SoulEditor in 5.9773637 seconds
   Using Visual Studio 2017 14.16.27023 toolchain (D:\VisualStudio\VC\Tools\MSVC\14.16.27023) and Windows 10.0.16299.0 SDK (D:\Windows Kits\10).
   Distributing 4 actions to XGE
   --------------------Build System Warning---------------------------------------
@@ -14,12 +14,12 @@ UnrealBuildTool : warning : Couldn't parse '>>>>>>> Stashed changes' in UnrealBu
   
   -------------------------------------------------------------------------------
   --------------------Project: Default-------------------------------------------
-  HumanCharacter.cpp (0:03.68 at +0:00)
-  UE4Editor-Soul.dll (0:02.59 at +0:03)
-     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.suppressed.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.suppressed.exp 개체를 생성하고 있습니다.
-  UE4Editor-Soul.lib (0:00.21 at +0:06)
-     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul.exp 개체를 생성하고 있습니다.
-  SoulEditor.target (0:00.18 at +0:06)
+  HumanWeaponBullet.cpp (0:03.45 at +0:00)
+  UE4Editor-Soul-0214.dll (0:02.81 at +0:03)
+     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0214.suppressed.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0214.suppressed.exp 개체를 생성하고 있습니다.
+  UE4Editor-Soul-0214.lib (0:00.35 at +0:06)
+     D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0214.lib 라이브러리 및 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\UE4Editor-Soul-0214.exp 개체를 생성하고 있습니다.
+  SoulEditor.target (0:00.20 at +0:06)
   ---------------------- Done ----------------------
   
       Rebuild All: 1 succeeded, 0 failed, 0 skipped
@@ -27,5 +27,5 @@ UnrealBuildTool : warning : Couldn't parse '>>>>>>> Stashed changes' in UnrealBu
   1 build system warning(s):
      - License is invalid
   
-  Total time in XGE executor: 6.94 seconds
-  Total execution time: 13.71 seconds
+  Total time in XGE executor: 7.15 seconds
+  Total execution time: 14.05 seconds

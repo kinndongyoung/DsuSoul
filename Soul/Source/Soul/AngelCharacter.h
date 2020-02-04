@@ -36,6 +36,7 @@ public:// 트리거 //
 	UPROPERTY(VisibleAnywhere, Category = Trigger)
 	class AAngel_InstallTrigger* pt_Trigger;
 
+
 private:// 컨트롤 관련 //
 	void SetControlMode(EControlMode NewControlMode);
 
@@ -45,10 +46,33 @@ private:// 컨트롤 관련 //
 	void LookUp(float NewAxisValue);
 	void Turn(float NewAxisValue);
 
+	// HUD 클래스
+	UPROPERTY(VisibleAnywhere, Category = HUD)
+		class AHUD_Angel* HUD_Angel;
+
+	// 애니메이션 클래스
+	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
+		class UAngelAnimInstance* AngelAnim;
+
 public:
 	// 스테이터스
 	bool DieState;
 	float Status_HP;
+	int ammo;
+
+	// 공격 변수
+	FTimerHandle timer;
+	bool isFiring;
+	//
+	bool Is_Spirnt;
+public:// 무기관련 //
+	// 공격 함수
+	void StartFire();
+	void Fire();
+	void StopFire();
+	//
+	void Sprint();
+	void Stop_Sprint();
 
 	// 설치 함수 및 변수
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Install)
@@ -59,18 +83,19 @@ public:
 	void Installing();
 	void EndInstall();
 
-	// HUD 클래스
-	UPROPERTY(VisibleAnywhere, Category = HUD)
-	class AHUD_Angel* HUD_Angel;
-
-	// 애니메이션 클래스
-	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
-	class UAngelAnimInstance* AngelAnim;
-
 private:// 카메라//	
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* UserCameraArm;
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
+
+
+	//UPROPERTY(EditAnywhere, Category = BulletClass)
+	//TSubclassOf<class AAngelWeaponBullet> WeaponBulletClass;
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MuzzleOffseet)
+	FVector MuzzleOffset;
 };

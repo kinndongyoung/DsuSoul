@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Client.h"
 #include "HumanAnimInstance.h"
 #include "Engine/Engine.h"
@@ -37,8 +36,10 @@ void AClient::InitCharacter()
 			if (i < 3)
 			{
 				ScreenMsg("HUMAN");
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-4680, -135 - (i * 70), 132), FRotator::ZeroRotator, spawnParams);
+				FVector a = FVector::FVector(-8620.0, 2570 - (i * 100), 400);
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), a, FRotator::ZeroRotator, spawnParams);
 				myPawn = pawns[i];
+				myPawn->vec = a;
 				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
 				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
 				myPawn->HumanAnim->myPlayer = true;
@@ -46,8 +47,10 @@ void AClient::InitCharacter()
 			else if (i < 6)
 			{
 				ScreenMsg("ENGEL");
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1685, 510-((i-3)*70),230 ), FRotator::ZeroRotator, spawnParams);
+				FVector a = FVector::FVector(-1860.0, 6910 - ((i - 3) * 100), 500);
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(),a , FRotator::ZeroRotator, spawnParams);
 				myPawn = pawns[i];
+				myPawn->vec = a;
 				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
 				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
 				myPawn->HumanAnim->myPlayer = true;
@@ -55,8 +58,10 @@ void AClient::InitCharacter()
 			else
 			{
 				ScreenMsg("DEVIL");
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(1311, -1365 - ((i - 6) * 70), 230), FRotator::ZeroRotator, spawnParams);
+				FVector a = FVector::FVector(7190.0, 6800 - ((i - 6) * 100), 400);
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(),a , FRotator::ZeroRotator, spawnParams);
 				myPawn = pawns[i];
+				myPawn->vec = a;
 				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
 				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
 				myPawn->HumanAnim->myPlayer = true;
@@ -68,19 +73,19 @@ void AClient::InitCharacter()
 			if (i < 3)
 			{
 				ScreenMsg("HUMAN");
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-4680, -135 - (i * 70), 132), FRotator::ZeroRotator, spawnParams);
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-8620.0, 2570 - (i * 100), 220), FRotator::ZeroRotator, spawnParams);
 			}
 				
 			else if (i < 6)
 			{
 				ScreenMsg("ENGEL");
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1685, 510 - ((i - 3) * 70), 230), FRotator::ZeroRotator, spawnParams);
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1860.0, 6910 - ((i - 3) * 100), 300), FRotator::ZeroRotator, spawnParams);
 			}
 				
 			else
 			{
 				ScreenMsg("DEVIL");
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(1311, -1365 - ((i - 6) * 70), 230), FRotator::ZeroRotator, spawnParams);
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(7190.0, 6800 - ((i - 6) * 100), 120), FRotator::ZeroRotator, spawnParams);
 			}
 				
 		}
@@ -151,7 +156,7 @@ void AClient::AccessServer()
 		SenderSocket->SendTo((uint8*)&NewData, sizeof(NewData), BytesSent, *RemoteAddr);
 		ScreenMsg("access_server");
 	}
-	else
+	else 
 		ScreenMsg("already_Access_Server");
 }
 void AClient::SendPlayerData()
@@ -170,9 +175,7 @@ void AClient::SendPlayerData()
 	temp.Is_Walking = myPawn->HumanAnim->Is_Walk;
 	temp.Is_Air = myPawn->HumanAnim->IsInAir;
 	temp.CurrentPawnSpeed = myPawn->HumanAnim->CurrentPawnSpeed;
-	temp.Is_LayDown = myPawn->HumanAnim->Is_LayDown;
 	temp.Is_Reload = myPawn->HumanAnim->Is_Reload;
-	temp.Is_SitDown = myPawn->HumanAnim->Is_SitDown;
 	temp.PktSize = sizeof(temp);
 
 	SenderSocket->SendTo((uint8*)&temp, sizeof(temp), BytesSent, *RemoteAddr);
@@ -272,14 +275,6 @@ void AClient::Tick(float DeltaTime)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->IsInAir = true;
 						else if(!pPlayerData->Is_Air)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->IsInAir = false;
-						if(pPlayerData->Is_LayDown)
-							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_LayDown = true;
-						else if (!pPlayerData->Is_LayDown)
-							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_LayDown = false;
-						if(pPlayerData->Is_SitDown)
-							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_SitDown = true;
-						else if (!pPlayerData->Is_SitDown)
-							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_SitDown = false;
 						if(pPlayerData->Is_Reload)
 							pawns[(pPlayerData->user) - 1]->HumanAnim->Is_Reload = true;
 						else if(!pPlayerData->Is_Reload)

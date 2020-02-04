@@ -18,6 +18,8 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 	SOUL_API UClass* Z_Construct_UClass_UHumanAnimInstance();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimInstance();
 	UPackage* Z_Construct_UPackage__Script_Soul();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 // End Cross Module References
 	void UHumanAnimInstance::StaticRegisterNativesUHumanAnimInstance()
 	{
@@ -33,13 +35,17 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SitAniTime_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Scale_Value_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_SitAniTime;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_Scale_Value;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_LayAniTime_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Translation_Value_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_LayAniTime;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_Translation_Value;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Rotate_Value_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_Rotate_Value;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Is_Death_MetaData[];
 #endif
@@ -50,16 +56,6 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 #endif
 		static void NewProp_Is_Reload_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_Is_Reload;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Is_LayDown_MetaData[];
-#endif
-		static void NewProp_Is_LayDown_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_Is_LayDown;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Is_SitDown_MetaData[];
-#endif
-		static void NewProp_Is_SitDown_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_Is_SitDown;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Is_Walk_MetaData[];
 #endif
@@ -95,21 +91,31 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_SitAniTime_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Scale_Value_MetaData[] = {
 		{ "AllowPrivateAccess", "TRUE" },
-		{ "Category", "Pawn" },
+		{ "Category", "Transform" },
 		{ "ModuleRelativePath", "HumanAnimInstance.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_SitAniTime = { "SitAniTime", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, SitAniTime), METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_SitAniTime_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_SitAniTime_MetaData)) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Scale_Value = { "Scale_Value", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, Scale_Value), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Scale_Value_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Scale_Value_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_LayAniTime_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Translation_Value_MetaData[] = {
 		{ "AllowPrivateAccess", "TRUE" },
-		{ "Category", "Pawn" },
+		{ "Category", "Transform" },
 		{ "ModuleRelativePath", "HumanAnimInstance.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_LayAniTime = { "LayAniTime", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, LayAniTime), METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_LayAniTime_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_LayAniTime_MetaData)) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Translation_Value = { "Translation_Value", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, Translation_Value), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Translation_Value_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Translation_Value_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Rotate_Value_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Transform" },
+		{ "Comment", "// Bone Transform\n" },
+		{ "ModuleRelativePath", "HumanAnimInstance.h" },
+		{ "ToolTip", "Bone Transform" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Rotate_Value = { "Rotate_Value", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, Rotate_Value), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Rotate_Value_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Rotate_Value_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Death_MetaData[] = {
 		{ "AllowPrivateAccess", "TRUE" },
@@ -134,30 +140,6 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		((UHumanAnimInstance*)Obj)->Is_Reload = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Reload = { "Is_Reload", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UHumanAnimInstance), &Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Reload_SetBit, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Reload_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Reload_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_LayDown_MetaData[] = {
-		{ "AllowPrivateAccess", "TRUE" },
-		{ "Category", "Pawn" },
-		{ "ModuleRelativePath", "HumanAnimInstance.h" },
-	};
-#endif
-	void Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_LayDown_SetBit(void* Obj)
-	{
-		((UHumanAnimInstance*)Obj)->Is_LayDown = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_LayDown = { "Is_LayDown", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UHumanAnimInstance), &Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_LayDown_SetBit, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_LayDown_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_LayDown_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_SitDown_MetaData[] = {
-		{ "AllowPrivateAccess", "TRUE" },
-		{ "Category", "Pawn" },
-		{ "ModuleRelativePath", "HumanAnimInstance.h" },
-	};
-#endif
-	void Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_SitDown_SetBit(void* Obj)
-	{
-		((UHumanAnimInstance*)Obj)->Is_SitDown = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_SitDown = { "Is_SitDown", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(UHumanAnimInstance), &Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_SitDown_SetBit, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_SitDown_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_SitDown_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Walk_MetaData[] = {
 		{ "AllowPrivateAccess", "TRUE" },
@@ -206,12 +188,11 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_CurrentPawnSpeed = { "CurrentPawnSpeed", nullptr, (EPropertyFlags)0x0010000000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, CurrentPawnSpeed), METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_CurrentPawnSpeed_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_CurrentPawnSpeed_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UHumanAnimInstance_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_SitAniTime,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_LayAniTime,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Scale_Value,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Translation_Value,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Rotate_Value,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Death,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Reload,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_LayDown,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_SitDown,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_Is_Walk,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsFire,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_IsInAir,
@@ -244,7 +225,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHumanAnimInstance, 1747848864);
+	IMPLEMENT_CLASS(UHumanAnimInstance, 1328173971);
 	template<> SOUL_API UClass* StaticClass<UHumanAnimInstance>()
 	{
 		return UHumanAnimInstance::StaticClass();

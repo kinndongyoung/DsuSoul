@@ -22,15 +22,15 @@ ADevilCharacter::ADevilCharacter()
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 	UserCameraArm->TargetArmLength = 200.0f;
 	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 40.0f), FRotator(-30.0f, 0.0f, 0.0f));
-
+	
 	// Skeletal Mesh Initialize
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/AnimStarterPack/UE4_Mannequin/Mesh/SK_Mannequin.SK_Mannequin"));
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/ParagonCountess/Characters/Heroes/Countess/Meshes/SM_Countess.SM_Countess"));
 
 	if (SK_SOUL_USER.Succeeded())
 		GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
 	
 	// Anim Instance Initialize
-	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_DEVILCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_Devil.BP_Devil_C"));
+	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_DEVILCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_DevilChar.BP_DevilChar_C"));
 
 	if (BP_ANIM_DEVILCHAR.Succeeded())
 		GetMesh()->SetAnimInstanceClass(BP_ANIM_DEVILCHAR.Class);
@@ -45,17 +45,26 @@ ADevilCharacter::ADevilCharacter()
 
 	ArmLengthSpeed = 3.0f;
 	ArmRotationSpeed = 10.0f;
-
+	ammo = 30;
 	// Bullet Initialize
 	isFiring = false;
 	MuzzleOffset = FVector(100.0f, 0.0f, 0.0f);
 
-	// 스테이터스
-	DieState = false;
-	Status_HP = 100.0f;
 
 	// Jump Height
-	GetCharacterMovement()->JumpZVelocity = 600.0f;
+	GetCharacterMovement()->JumpZVelocity = 500.0f;
+
+	//
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+	//악마 체력
+	Initial_HP = 100.0f;
+	CurrentHp = Initial_HP;
+	//악마 SP
+	Initial_SP = 0.0f;
+	CurrentSP = Initial_SP;
+	//Respawn
+	DeathTime = 600.0f;
+	RespawnTime = 0.0f;
 }
 
 void ADevilCharacter::BeginPlay()
@@ -71,8 +80,14 @@ void ADevilCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	HUD_Devil->HUD_Update();
-	if (Status_HP <= 0.0f) DieState = true;
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
+	
+	FTransform tr = GetTransform();
+	if (CurrentHp <= 0)
+		Death();
+	if (tr.GetTranslation().Z <= -110)
+		CurrentHp -= 3;
+	printf("%.2f", CurrentHp);
 }
 
 void ADevilCharacter::PostInitializeComponents()
@@ -96,7 +111,11 @@ void ADevilCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ADevilCharacter::StartFire);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &ADevilCharacter::StopFire);
 
-	PlayerInputComponent->BindAxis(TEXT("UpDown"), this, &ADevilCharacter::UpDown);
+
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &ADevilCharacter::Sprint);
+	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &ADevilCharacter::Stop_Sprint);
+
+	PlayerInputComponent->BindAxis(TEXT("ForwardBack"), this, &ADevilCharacter::UpDown);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &ADevilCharacter::LeftRight);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ADevilCharacter::Turn);
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &ADevilCharacter::LookUp);
@@ -120,12 +139,12 @@ void ADevilCharacter::SetControlMode(EControlMode NewControlMode)
 // Move Character
 void ADevilCharacter::UpDown(float NewAxisValue)
 {
-	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
+	AddMovementInput(GetActorForwardVector(), NewAxisValue);
 }
 
 void ADevilCharacter::LeftRight(float NewAxisValue)
 {
-	AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
+	AddMovementInput(GetActorRightVector(), NewAxisValue);
 }
 
 // Rotate Character
@@ -141,8 +160,12 @@ void ADevilCharacter::LookUp(float NewAxisValue)
 
 void ADevilCharacter::StartFire()
 {
-	isFiring = true;
-	Fire();
+	if (ammo >= 0)
+	{
+		isFiring = true;
+		DevilAnim->IsFire = isFiring;
+		Fire();
+	}
 }
 
 void ADevilCharacter::Fire()
@@ -183,13 +206,49 @@ void ADevilCharacter::Fire()
 				}
 			}
 		}
-
+		ammo--;
 		// 연사를 위한 StartFire 함수 생성
-		GetWorld()->GetTimerManager().SetTimer(timer, this, &ADevilCharacter::Fire, 0.1f, false);
+		if (ammo >= 0)
+			GetWorld()->GetTimerManager().SetTimer(timer, this, &ADevilCharacter::Fire, 0.1f, false);
+		else StopFire();
 	}
 }
 
 void ADevilCharacter::StopFire()
 {
 	isFiring = false;
+	DevilAnim->IsFire = isFiring;
+}
+void ADevilCharacter::Sprint()
+{
+	print("Input Shift");
+	Is_Spirnt = true;
+	DevilAnim->Is_Walk = Is_Spirnt;
+	GetCharacterMovement()->MaxWalkSpeed = 1500.0f;
+}
+void ADevilCharacter::Stop_Sprint()
+{
+	Is_Spirnt = false;
+	DevilAnim->Is_Walk = Is_Spirnt;
+	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+}
+void ADevilCharacter::Death()
+{
+	RespawnTime += 2.0f;
+	DevilAnim->Is_Death = true;
+	GetCharacterMovement()->JumpZVelocity = 0.0f;
+	if (DeathTime <= RespawnTime)
+		Respawn();
+	printf("%.2f", RespawnTime);
+}
+void ADevilCharacter::Respawn()
+{
+	ammo = 30;
+	CurrentHp = 100.0f;
+	CurrentSP = 0.0f;
+	DevilAnim->Is_Death = false;
+	RespawnTime = 0.0f;
+	//SetActorLocation(vec);
+
+	//GetCharacterMovement()->JumpZVelocity = 400.0f;
 }

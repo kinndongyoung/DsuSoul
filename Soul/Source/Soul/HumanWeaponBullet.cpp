@@ -25,9 +25,9 @@ AHumanWeaponBullet::AHumanWeaponBullet()
 	BulletMoveComponent->SetUpdatedComponent(CollisionComponent);
 	BulletMoveComponent->InitialSpeed = 3000.0;
 	BulletMoveComponent->MaxSpeed = 3000.0f;
-	BulletMoveComponent->bRotationFollowsVelocity = true;
-	BulletMoveComponent->bShouldBounce = true;
-	BulletMoveComponent->Bounciness = 0.3f;
+	BulletMoveComponent->bRotationFollowsVelocity = false;
+	BulletMoveComponent->bShouldBounce = false;
+	BulletMoveComponent->Bounciness = 0.0f;
 }
 
 // 총알의 속도를 발사 방향으로 초기화시키는 함수
@@ -60,7 +60,7 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 			ADevilCharacter* pt_DevilChar = Cast<ADevilCharacter>(OtherActor);
 			if (pt_DevilChar == nullptr) print("null");
 		
-			pt_DevilChar->Status_HP -= 5;
+			pt_DevilChar->CurrentHp -= 5;
 		}
 		else if (OtherActor->ActorHasTag(FName(TEXT("Angel_Character"))))
 		{

@@ -57,11 +57,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UDevilAnimInstance); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UDevilAnimInstance)
 
 
-#define Soul_Source_Soul_DevilAnimInstance_h_10_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__CurrentPawnSpeed() { return STRUCT_OFFSET(UDevilAnimInstance, CurrentPawnSpeed); } \
-	FORCEINLINE static uint32 __PPO__IsInAir() { return STRUCT_OFFSET(UDevilAnimInstance, IsInAir); }
-
-
+#define Soul_Source_Soul_DevilAnimInstance_h_10_PRIVATE_PROPERTY_OFFSET
 #define Soul_Source_Soul_DevilAnimInstance_h_7_PROLOG
 #define Soul_Source_Soul_DevilAnimInstance_h_10_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

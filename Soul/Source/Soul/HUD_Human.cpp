@@ -19,7 +19,7 @@ AHUD_Human::AHUD_Human()
 	if (UI_HUD_COLLECT.Succeeded())
 		WidgetClass_CollectBar = UI_HUD_COLLECT.Class;
 
-	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_INSTALL(TEXT("/Game/Project_Soul/UI/Character_Hp_SP.Character_Hp_SP_C"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_INSTALL(TEXT("/Game/Project_Soul/UI/Human_Hp_SP.Human_Hp_SP_C"));
 	if (UI_HUD_INSTALL.Succeeded())
 		WidgetClass_Bar = UI_HUD_INSTALL.Class;
 }
@@ -31,19 +31,24 @@ void AHUD_Human::BeginPlay()
 	CrossHairWidget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_CrossHair);
 	CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_Bar);
 	CurrentWidget_CollectBar = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_CollectBar);
-
-	CurrentWidget->AddToViewport();
 }
 
 void AHUD_Human::HUD_CollectBar()
 {
-	// 조준점 조건부
-	if (WidgetClass_CrossHair != nullptr && CrossHair_State == true)
+	// HP, SP, 조준점 UI 조건부
+	if (WidgetClass_CrossHair != nullptr && WidgetClass_Bar != nullptr && CrossHair_State == true)
+	{
+		CurrentWidget->AddToViewport();
 		CrossHairWidget->AddToViewport();
-	else if (WidgetClass_CrossHair != nullptr && CrossHair_State == false)
+	}
+		
+	if (WidgetClass_CrossHair != nullptr && WidgetClass_Bar != nullptr && CrossHair_State == false)
+	{
+		CurrentWidget->RemoveFromViewport();
 		CrossHairWidget->RemoveFromViewport();
+	}		
 
-	// 설치 바 조건부
+	// 설치 UI 조건부
 	if (WidgetClass_CollectBar != nullptr && Human_Collect_State == true)
 		CurrentWidget_CollectBar->AddToViewport();
 	else if (WidgetClass_CollectBar != nullptr && Human_Collect_State == false)

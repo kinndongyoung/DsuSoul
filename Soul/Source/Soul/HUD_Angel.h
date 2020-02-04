@@ -10,20 +10,18 @@ class SOUL_API AHUD_Angel : public AHUD
 	GENERATED_BODY()
 	
 public:
+	int HumanSoul;
+	int CollectCount;
+	int ActivateCount;
+
+public:
 	AHUD_Angel();
 
-protected:
-	virtual void BeginPlay() override;
-
 public:
-	void HUD_Update(float InstallPercent);
-
-public:
-	bool Angel_Install_State;
-
-	UPROPERTY(EditAnywhere, Category = Angel_UI)
-	TSubclassOf<class UUserWidget> WidgetClass_InstallBar;
-
-	UPROPERTY(EditAnywhere, Category = Angel_UI)
-	class UUserWidget* CurrentWidget_InstallBar;
+	void HUD_Update();
+//
+//public:
+//	bool Angel_Install_State;
+//	UPROPERTY(EditAnymhere, Category)
 };
+

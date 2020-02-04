@@ -17,21 +17,22 @@ AHumanCharacter::AHumanCharacter()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CAMERA"));
 
 	// Camera Initialize
-	UserCameraArm->SetupAttachment(GetCapsuleComponent());
+	UserCameraArm->SetupAttachment(GetMesh());
 	Camera->SetupAttachment(UserCameraArm);
 
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
-	UserCameraArm->TargetArmLength = 200.0f;
-	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 40.0f), FRotator(-30.0f, 0.0f, 0.0f));
-
+	UserCameraArm->TargetArmLength = 300.0f;
+	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 160.0f), FRotator(-30.0f, 0.0f, 0.0f));
+	
 	// Skeletal Mesh Initialize
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/AnimStarterPack/UE4_Mannequin/Mesh/SK_Mannequin.SK_Mannequin"));
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Meshes/TwinBlast.TwinBlast"));
 	if (SK_SOUL_USER.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
 	
 	// Anim Instance Initialize
-	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_HUMANCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_Human.BP_Human_C"));
+	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_HUMANCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_HumanChar.BP_HumanChar_C"));
 	if (BP_ANIM_HUMANCHAR.Succeeded()) GetMesh()->SetAnimInstanceClass(BP_ANIM_HUMANCHAR.Class);
-
+	
+	// Bullet BP Initialize
 	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_HumanWeaponBullet.BP_HumanWeaponBullet"));
 	if (BP_SOUL_WEAPON_BULLET.Succeeded()) WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
 
@@ -43,11 +44,11 @@ AHumanCharacter::AHumanCharacter()
 	SetControlMode(EControlMode::TPS);
 
 	ArmLengthSpeed = 0.0f;
-	ArmRotationSpeed = 10.0f;
+	ArmRotationSpeed = 0.0f;
 
 	// Bullet Initialize
 	isFiring = false;
-	MuzzleOffset = FVector(100.0f, 0.0f, 0.0f);
+	MuzzleOffset = FVector(90.0f, 10.0f, 0.0f);
 
 	// 스테이터스
 	GiveSoulState = false;
@@ -56,7 +57,6 @@ AHumanCharacter::AHumanCharacter()
 	//모션 변수
 	Is_Zoom = false;
 	Is_Walking = false; 
-	Is_LayDowning = false;
 	
 	// Install Value Init
 	PerCollect = 0.0f;
@@ -66,7 +66,7 @@ AHumanCharacter::AHumanCharacter()
 	//인간 속도
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 	//점프
-	GetCharacterMovement()->JumpZVelocity = 500.0f;
+	GetCharacterMovement()->JumpZVelocity = 400.0f;
 
 	//인간 체력
 	Initial_HP = 100.0f;
@@ -77,6 +77,13 @@ AHumanCharacter::AHumanCharacter()
 
 	DeathTime = 600.0f;
 	RespawnTime = 0.0f;
+
+	/*vec.X = 8800;
+	vec.Y = 1800;
+	vec.Z = 250;*/
+	/*GetTransform().TransformFVector4(vec);
+	GetActorTransform().SetTranslation(vec);
+	SetActorLocation(vec);*/
 }
 
 void AHumanCharacter::BeginPlay()
@@ -87,16 +94,15 @@ void AHumanCharacter::BeginPlay()
 	HUD_Human = Cast<AHUD_Human>(GetWorld()->GetFirstPlayerController()->GetHUD());
 
 	// Weapon Setting
-	FName WeaponSocket(TEXT("WeaponPoint"));
-	auto CurWeapon = GetWorld()->SpawnActor<AHumanWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
-	 
-	if (nullptr != CurWeapon)
-	{
-		CurWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, WeaponSocket);
-		UserWeapon = CurWeapon;
-	}
+	//FName WeaponSocket(TEXT("Muzzle_L"));
+	//auto CurWeapon = GetWorld()->SpawnActor<AHumanWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
+	// 
+	//if (nullptr != CurWeapon)
+	//{
+	//	CurWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, WeaponSocket);
+	//	UserWeapon = CurWeapon;
+	//}
 }
-
 void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -107,14 +113,12 @@ void AHumanCharacter::Tick(float DeltaTime)
 	UpdateCurrentHP();
 	UpdateCurrentSP();
 	if (CurrentHp <= 0)
-	{
 		Death();
-		RespawnTime += 2.0f;
-		if (DeathTime <= RespawnTime)
-			Respawn();
-	}
-}
+	FTransform tr = GetTransform();
 
+	if (tr.GetTranslation().Z <= -110)
+		CurrentHp -= 3;
+}
 void AHumanCharacter::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
@@ -147,8 +151,6 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &AHumanCharacter::Walk);
 	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_Walk);
 
-	PlayerInputComponent->BindAction(TEXT("LayDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::LayDownFunc);
-	PlayerInputComponent->BindAction(TEXT("SitDown"), EInputEvent::IE_Pressed, this, &AHumanCharacter::SitDownFunc);
 	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Pressed, this, &AHumanCharacter::ReloadFunc);
 	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Released, this, &AHumanCharacter::Stop_ReloadFunc);
 	
@@ -168,7 +170,9 @@ void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 	{
 		case EControlMode::TPS:
 		{
-			ArmLengthTo = 200.0f;
+			ArmLengthTo = 300.0f;
+			Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -50.0f), FRotator(-15.0f, 0.0f, 0.0f));
+			UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
 			UserCameraArm->bUsePawnControlRotation = true;//
 			UserCameraArm->bInheritPitch = true;
 			UserCameraArm->bInheritRoll = true;
@@ -179,7 +183,7 @@ void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 		case EControlMode::FPS:
 		{
 			ArmLengthTo = -20.0f;
-			UserCameraArm->SetRelativeLocation(FVector(0.0f, 0.0f, 60.0f));
+			Camera->SetRelativeLocationAndRotation(FVector(0.0f, 6.0f, 0.0f), FRotator(-3.0f, 80.0f, -90.0f));
 			UserCameraArm->bUsePawnControlRotation = true;
 			UserCameraArm->bInheritPitch = true;
 			UserCameraArm->bInheritRoll = true;
@@ -210,12 +214,17 @@ void AHumanCharacter::LeftRight(float NewAxisValue)
 // Rotate Character
 void AHumanCharacter::Turn(float NewAxisValue)
 {
-	AddControllerYawInput(NewAxisValue);	
+	AddControllerYawInput(NewAxisValue);
 }
 
 void AHumanCharacter::LookUp(float NewAxisValue)
 {
 	AddControllerPitchInput(NewAxisValue);
+
+	if(-40.0f <= HumanAnim->Rotate_Value.Roll && HumanAnim->Rotate_Value.Roll <= 40.0f)
+		HumanAnim->Rotate_Value.Roll += NewAxisValue;
+	else if (-40.0f > HumanAnim->Rotate_Value.Roll) HumanAnim->Rotate_Value.Roll = -40.0f;
+	else if (HumanAnim->Rotate_Value.Roll > 40.0f) HumanAnim->Rotate_Value.Roll = 40.0f;
 }
 
 // Fire
@@ -224,12 +233,14 @@ void AHumanCharacter::Zoom()
 	if (Is_Zoom == false)
 	{
 		Is_Zoom = true;
+		Camera->AttachTo(GetMesh(), "head");
 		HUD_Human->CrossHair_State = true;
 		SetControlMode(EControlMode::FPS);
 	}
 	else if (Is_Zoom == true)
 	{
 		Is_Zoom = false;
+		Camera->AttachTo(UserCameraArm);
 		HUD_Human->CrossHair_State = false;
 		SetControlMode(EControlMode::TPS);
 	}
@@ -303,45 +314,13 @@ void AHumanCharacter::Walk()
 	print("Input Shift");
 	Is_Walking = true;
 	HumanAnim->Is_Walk = Is_Walking;
-	GetCharacterMovement()->MaxWalkSpeed = 300.0f;
+	GetCharacterMovement()->MaxWalkSpeed = 1500.0f;
 }
 void AHumanCharacter::Stop_Walk()
 {
 	Is_Walking = false;
 	HumanAnim->Is_Walk = Is_Walking;
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
-}
-void AHumanCharacter::LayDownFunc()
-{
-	print("X");
-
-	if (HumanAnim->Is_LayDown)
-	{
-		HumanAnim->Is_LayDown = false;
-		GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
-		GetCharacterMovement()->JumpZVelocity = 500.0f;
-	}
-	else
-	{
-		HumanAnim->Is_LayDown = true;
-		GetCharacterMovement()->MaxWalkSpeed = 150.0f;
-		GetCharacterMovement()->JumpZVelocity = 0.0f;
-	}
-}
-void AHumanCharacter::SitDownFunc()
-{
-	print("Ctrl");
-	if (HumanAnim->Is_SitDown)
-	{
-		HumanAnim->Is_SitDown = false;
-		GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
-		GetCharacterMovement()->JumpZVelocity = 500.0f;
-	}
-	else
-	{
-		HumanAnim->Is_SitDown = true;
-		GetCharacterMovement()->MaxWalkSpeed = 300.0f;
-	}
 }
 void AHumanCharacter::ReloadFunc()
 {
@@ -352,12 +331,15 @@ void AHumanCharacter::ReloadFunc()
 void AHumanCharacter::Stop_ReloadFunc()
 {
 	HumanAnim->Is_Reload = false;
-	GetCharacterMovement()->JumpZVelocity = 500.0f;
+	GetCharacterMovement()->JumpZVelocity = 400.0;
 }
 void AHumanCharacter::Death()
 {
+	RespawnTime += 2.0f;
 	HumanAnim->Is_Death = true;
 	GetCharacterMovement()->JumpZVelocity = 0.0f;
+	if (DeathTime <= RespawnTime)
+		Respawn();
 }
 void AHumanCharacter::Respawn()
 {
@@ -366,6 +348,9 @@ void AHumanCharacter::Respawn()
 	CurrentSP = 0.0f;
 	HumanAnim->Is_Death = false;
 	RespawnTime = 0.0f;
+	SetActorLocation(vec);
+	
+	GetCharacterMovement()->JumpZVelocity = 400.0f;
 }
 
 // Install

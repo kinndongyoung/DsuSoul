@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 	SOUL_API UClass* Z_Construct_UClass_AAngelCharacter();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_Soul();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_UAngelAnimInstance_NoRegister();
@@ -37,6 +38,10 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MuzzleOffset_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_MuzzleOffset;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Camera_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Camera;
@@ -45,6 +50,10 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_UserCameraArm;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerInstall_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerInstall;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AngelAnim_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_AngelAnim;
@@ -52,10 +61,6 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HUD_Angel_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HUD_Angel;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerInstall_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerInstall;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_pt_Trigger_MetaData[];
 #endif
@@ -76,6 +81,13 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_MuzzleOffset_MetaData[] = {
+		{ "Category", "MuzzleOffseet" },
+		{ "ModuleRelativePath", "AngelCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_MuzzleOffset = { "MuzzleOffset", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, MuzzleOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_MuzzleOffset_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_MuzzleOffset_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_Camera_MetaData[] = {
 		{ "Category", "Camera" },
 		{ "EditInline", "true" },
@@ -94,24 +106,6 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_UserCameraArm = { "UserCameraArm", nullptr, (EPropertyFlags)0x00400000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, UserCameraArm), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_UserCameraArm_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_UserCameraArm_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim_MetaData[] = {
-		{ "Category", "AnimInstance" },
-		{ "Comment", "// ?\xd6\xb4\xcf\xb8??\xcc\xbc? \xc5\xac????\n" },
-		{ "ModuleRelativePath", "AngelCharacter.h" },
-		{ "ToolTip", "?\xd6\xb4\xcf\xb8??\xcc\xbc? \xc5\xac????" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim = { "AngelAnim", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, AngelAnim), Z_Construct_UClass_UAngelAnimInstance_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel_MetaData[] = {
-		{ "Category", "HUD" },
-		{ "Comment", "// HUD \xc5\xac????\n" },
-		{ "ModuleRelativePath", "AngelCharacter.h" },
-		{ "ToolTip", "HUD \xc5\xac????" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel = { "HUD_Angel", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, HUD_Angel), Z_Construct_UClass_AHUD_Angel_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel_MetaData)) };
-#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_PerInstall_MetaData[] = {
 		{ "Category", "Install" },
 		{ "Comment", "// ??\xc4\xa1 ?\xd4\xbc? ?? ????\n" },
@@ -121,6 +115,24 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_PerInstall = { "PerInstall", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, PerInstall), METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_PerInstall_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_PerInstall_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim_MetaData[] = {
+		{ "Category", "AnimInstance" },
+		{ "Comment", "// ?\xd6\xb4\xcf\xb8??\xcc\xbc? \xc5\xac????\n" },
+		{ "ModuleRelativePath", "AngelCharacter.h" },
+		{ "ToolTip", "?\xd6\xb4\xcf\xb8??\xcc\xbc? \xc5\xac????" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim = { "AngelAnim", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, AngelAnim), Z_Construct_UClass_UAngelAnimInstance_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel_MetaData[] = {
+		{ "Category", "HUD" },
+		{ "Comment", "// HUD \xc5\xac????\n" },
+		{ "ModuleRelativePath", "AngelCharacter.h" },
+		{ "ToolTip", "HUD \xc5\xac????" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel = { "HUD_Angel", nullptr, (EPropertyFlags)0x0040000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, HUD_Angel), Z_Construct_UClass_AHUD_Angel_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAngelCharacter_Statics::NewProp_pt_Trigger_MetaData[] = {
 		{ "Category", "Trigger" },
 		{ "ModuleRelativePath", "AngelCharacter.h" },
@@ -128,11 +140,12 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAngelCharacter_Statics::NewProp_pt_Trigger = { "pt_Trigger", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AAngelCharacter, pt_Trigger), Z_Construct_UClass_AAngel_InstallTrigger_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_pt_Trigger_MetaData, ARRAY_COUNT(Z_Construct_UClass_AAngelCharacter_Statics::NewProp_pt_Trigger_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAngelCharacter_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_MuzzleOffset,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_Camera,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_UserCameraArm,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_PerInstall,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_AngelAnim,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_HUD_Angel,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_PerInstall,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAngelCharacter_Statics::NewProp_pt_Trigger,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AAngelCharacter_Statics::StaticCppClassTypeInfo = {
@@ -162,7 +175,7 @@ void EmptyLinkFunctionForGeneratedCodeAngelCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AAngelCharacter, 592929536);
+	IMPLEMENT_CLASS(AAngelCharacter, 2498045914);
 	template<> SOUL_API UClass* StaticClass<AAngelCharacter>()
 	{
 		return AAngelCharacter::StaticClass();

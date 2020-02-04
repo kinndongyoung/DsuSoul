@@ -1,5 +1,6 @@
 #include "HUD_Devil.h"
 #include "Devil_ContractDoc.h"
+#include "Blueprint/UserWidget.h"
 
 AHUD_Devil::AHUD_Devil()
 {
@@ -9,8 +10,17 @@ AHUD_Devil::AHUD_Devil()
 	HumanSoul = 0;
 	CollectCount = 0;
 	ActivateCount = 0;
-}
 
+	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_INSTALL(TEXT("/Game/Project_Soul/UI/Devil_Hp_Sp.Devil_Hp_Sp_C"));
+	if (UI_HUD_INSTALL.Succeeded())
+		WidgetClass_Bar = UI_HUD_INSTALL.Class;
+}
+void AHUD_Devil::BeginPlay()
+{
+	Super::BeginPlay();
+	CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_Bar);
+	CurrentWidget->AddToViewport();
+}
 void AHUD_Devil::HUD_Update()
 {
 	if (CollectCount == 1)
