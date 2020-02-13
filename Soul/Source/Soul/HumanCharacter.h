@@ -34,6 +34,10 @@ private:
 	FRotator ArmRotationTo = FRotator::ZeroRotator;
 	FVector DirectionToMove = FVector::ZeroVector;
 
+	// 총구 변수
+	FVector MuzzlePos;
+	FRotator MuzzleRot;
+
 public:// 트리거 //
 	bool isTrigger;
 	UPROPERTY(VisibleAnywhere, Category = Trigger)
@@ -75,7 +79,6 @@ public:// 컨트롤 관련 //
 
 	//임시
 	float DeathTime;
-
 	float RespawnTime;
 	
 	//인간 hp,sp - 함수
@@ -97,6 +100,8 @@ public:// 컨트롤 관련 //
 	UFUNCTION(BlueprintCallable, Category = "Human SP")
 	void UpdateCurrentSP() { CurrentSP = CurrentSP; }
 
+	UFUNCTION(BlueprintPure, Category = "Human Death")
+		float Respawn_bar() { return RespawnTime += 2.0f; }
 	// 인간 Collect Progress Bar - 함수
 	UFUNCTION(BlueprintPure, Category = "Human PerCollect")
 	float GetPerCollect() { return PerCollect; }
@@ -109,21 +114,32 @@ private:// 카메라//
 	UCameraComponent* Camera;	
 
 public:
+	//캐릭터 넘버
+	int Number;
+	//총을 맞춘것을 알리는 bool 값// humanweaponbullet 클래스에서 변경해준다.
+	bool Hit;
 	// 스테이터스
 	bool GiveSoulState;
 
 	// 공격 변수
 	FTimerHandle timer;
 	bool isFiring;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Human Bullet")
 	int ammo;
+	
 	FVector vec;
-	//모션 변수
+
+	// 모션 변수
 	bool Is_Zoom;
 	bool Is_Walking;
-	// 영혼 수집 함수 및 변수
+
+	// 영혼 수집 변수
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Install)
 	float PerCollect;
 	bool ColletEnd;
+
+	// 영혼 수집 함수
 	void StartCollect();
 	void Collecting();
 	void EndCollect();
@@ -135,13 +151,19 @@ public:
 	void StopFire();
 	void Zoom();
 
-	//모션 함수
+	// 모션 함수
 	void Walk();
 	void Stop_Walk();
 	void ReloadFunc();
 	void Stop_ReloadFunc();
 	void Death();
 	void Respawn();
+
+	// 총구 함수
+	UFUNCTION(BlueprintPure, Category = "Muzzle")
+	FVector SetMuzzlePos();
+	UFUNCTION(BlueprintPure, Category = "Muzzle")
+	FRotator SetMuzzleRot();
 
 public:
 	// 카메라 위치에서의 총구 오프셋
@@ -153,10 +175,6 @@ public:
 	FVector MuzzleLocation;
 
 private:
-	//// 총알을 스폰시킬 무기 클래스z
-	//UPROPERTY(EditAnywhere, Category = BulletClass)
-	//class AHumanWeapon* UserWeapon;
-
 	// 스폰 시킬 총알 클래스
 	UPROPERTY(EditAnywhere, Category = BulletClass)
 	TSubclassOf<class AHumanWeaponBullet> WeaponBulletClass;

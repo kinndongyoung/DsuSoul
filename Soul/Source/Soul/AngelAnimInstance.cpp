@@ -4,6 +4,7 @@ UAngelAnimInstance::UAngelAnimInstance()
 {
 	CurrentPawnSpeed = 0.0f;
 	IsInAir = false;
+	myPlayer = false;
 }
 
 void UAngelAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
@@ -12,12 +13,15 @@ void UAngelAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 	auto Pawn = TryGetPawnOwner();
 
-	if (::IsValid(Pawn))
-	{
-		CurrentPawnSpeed = Pawn->GetVelocity().Size();
+	//if (myPlayer)//나중에 서버 쓸때 주석처리 풀 것
+	//{
+		if (::IsValid(Pawn))
+		{
+			CurrentPawnSpeed = Pawn->GetVelocity().Size();
 
-		auto Character = Cast<ACharacter>(Pawn);
-		if (Character)
-			IsInAir = Character->GetMovementComponent()->IsFalling();
-	}
+			auto Character = Cast<ACharacter>(Pawn);
+			if (Character)
+				IsInAir = Character->GetMovementComponent()->IsFalling();
+		}
+	//}
 }

@@ -12,6 +12,7 @@ class SOUL_API UAngelAnimInstance : public UAnimInstance
 public:
 	UAngelAnimInstance();
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+	bool myPlayer;
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))

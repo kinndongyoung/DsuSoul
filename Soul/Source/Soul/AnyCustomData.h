@@ -9,6 +9,7 @@
 #define PKT_REQ_ACCESS_LOGIN	0xa0000003 // 서버 로그인 성공 패킷
 #define PKT_REQ_PLAYER_DATA	0xa0000004
 #define PKT_REQ_HUMAN_WIN	0xa0000005
+#define PKT_REQ_HIT	0xa0000006
 
 USTRUCT(BlueprintType)
 struct F_tgPacketHeader
@@ -36,12 +37,21 @@ struct  FPlayerData : public F_tgPacketHeader
 	bool Is_Walking;
 	bool Is_Air;
 	bool Is_Fire;
-	bool Is_LayDown;
+	//bool Is_LayDown;
 	bool Is_Reload;
-	bool Is_SitDown;
+	//bool Is_SitDown;
 	float CurrentPawnSpeed;
 	FPlayerData() {};
 	~FPlayerData() {};
+};
+
+USTRUCT(BlueprintType)
+struct  FPlayerHit : public F_tgPacketHeader
+{
+	GENERATED_USTRUCT_BODY()
+	INT32 HitPlayerNumber;
+	FPlayerHit() {};
+	~FPlayerHit() {};
 };
 
 FORCEINLINE FArchive& operator<<(FArchive &Ar, F_tgPacketHeader& TheStruct)

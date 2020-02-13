@@ -22,7 +22,7 @@ class SOUL_API AClient : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	AHumanCharacter* pawns[9];
+	AHumanCharacter* pawns[3];
 	AHumanCharacter* myPawn;
 	AAngelCharacter* engelpawn[3];
 	AAngelCharacter* myEngel;
@@ -64,8 +64,9 @@ public:
 public:
 	void SendHumanWin();
 	void SendPlayerData();
+	void SendPlayerHit();//총에 맞았다고 보내는 패킷
 	UFUNCTION(BlueprintCallable)
-		void AccessServer();
+	void AccessServer();
 	void InitCharacter();
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

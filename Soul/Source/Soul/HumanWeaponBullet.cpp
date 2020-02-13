@@ -17,7 +17,7 @@ AHumanWeaponBullet::AHumanWeaponBullet()
 
 	// 콜리전 설정
 	CollisionComponent->OnComponentHit.AddDynamic(this, &AHumanWeaponBullet::OnHit);
-	CollisionComponent->InitSphereRadius(15.0f);
+	CollisionComponent->InitSphereRadius(1.5f);
 	CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("HumanBullet"));		
 
 	// ProjectileMovementComponent 를 사용하여 이 발사체의 운동을 관장
@@ -28,6 +28,7 @@ AHumanWeaponBullet::AHumanWeaponBullet()
 	BulletMoveComponent->bRotationFollowsVelocity = false;
 	BulletMoveComponent->bShouldBounce = false;
 	BulletMoveComponent->Bounciness = 0.0f;
+	BulletMoveComponent->ProjectileGravityScale = 0.0f;
 }
 
 // 총알의 속도를 발사 방향으로 초기화시키는 함수
@@ -46,7 +47,11 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 			AHumanCharacter* pt_HumanChar = Cast<AHumanCharacter>(OtherActor);
 			if (pt_HumanChar == nullptr) print("null");
 			
-			if (pt_HumanChar->CurrentHp > 0.0f) pt_HumanChar->CurrentHp -= 10.0f;
+			if (pt_HumanChar->CurrentHp > 0.0f) // 서버에서 총알 맞추는 작업중*********
+			{
+				pt_HumanChar->CurrentHp -= 10.0f;
+				pt_HumanChar->Hit = true;
+			}
 			else print("Other Actor HP = 0");
 
 			if (HumanChar->CurrentSP < 100.0f) HumanChar->CurrentSP += 2.0f;
@@ -74,10 +79,10 @@ void AHumanWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 	else if (OtherActor == HumanChar) print("Hit Self");
 	else print("No Hit Human Bullet");
 
-	printf("Hit Actor : %s", *Hit.GetActor()->GetName());
-	printf("Hit Bone : %s", *Hit.BoneName.ToString());
-	printf("Point : %s", *Hit.ImpactPoint.ToString());
-	printf("Normal : %s", *Hit.ImpactNormal.ToString());
+	//printf("Hit Actor : %s", *Hit.GetActor()->GetName());
+	//printf("Hit Bone : %s", *Hit.BoneName.ToString());
+	//printf("Point : %s", *Hit.ImpactPoint.ToString());
+	//printf("Normal : %s", *Hit.ImpactNormal.ToString());
 
 	Destroy();
 }

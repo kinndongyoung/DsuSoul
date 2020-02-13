@@ -13,10 +13,80 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAnyCustomData() {}
 // Cross Module References
-	SOUL_API UScriptStruct* Z_Construct_UScriptStruct_FPlayerData();
+	SOUL_API UScriptStruct* Z_Construct_UScriptStruct_FPlayerHit();
 	UPackage* Z_Construct_UPackage__Script_Soul();
 	SOUL_API UScriptStruct* Z_Construct_UScriptStruct_F_tgPacketHeader();
+	SOUL_API UScriptStruct* Z_Construct_UScriptStruct_FPlayerData();
 // End Cross Module References
+class UScriptStruct* FPlayerHit::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern SOUL_API uint32 Get_Z_Construct_UScriptStruct_FPlayerHit_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FPlayerHit, Z_Construct_UPackage__Script_Soul(), TEXT("PlayerHit"), sizeof(FPlayerHit), Get_Z_Construct_UScriptStruct_FPlayerHit_Hash());
+	}
+	return Singleton;
+}
+template<> SOUL_API UScriptStruct* StaticStruct<FPlayerHit>()
+{
+	return FPlayerHit::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FPlayerHit(FPlayerHit::StaticStruct, TEXT("/Script/Soul"), TEXT("PlayerHit"), false, nullptr, nullptr);
+static struct FScriptStruct_Soul_StaticRegisterNativesFPlayerHit
+{
+	FScriptStruct_Soul_StaticRegisterNativesFPlayerHit()
+	{
+		UScriptStruct::DeferCppStructOps(FName(TEXT("PlayerHit")),new UScriptStruct::TCppStructOps<FPlayerHit>);
+	}
+} ScriptStruct_Soul_StaticRegisterNativesFPlayerHit;
+	struct Z_Construct_UScriptStruct_FPlayerHit_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPlayerHit_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "AnyCustomData.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FPlayerHit_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FPlayerHit>();
+	}
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FPlayerHit_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_Soul,
+		Z_Construct_UScriptStruct_F_tgPacketHeader,
+		&NewStructOps,
+		"PlayerHit",
+		sizeof(FPlayerHit),
+		alignof(FPlayerHit),
+		nullptr,
+		0,
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FPlayerHit_Statics::Struct_MetaDataParams, ARRAY_COUNT(Z_Construct_UScriptStruct_FPlayerHit_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FPlayerHit()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FPlayerHit_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_Soul();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("PlayerHit"), sizeof(FPlayerHit), Get_Z_Construct_UScriptStruct_FPlayerHit_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FPlayerHit_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FPlayerHit_Hash() { return 451645068U; }
 class UScriptStruct* FPlayerData::StaticStruct()
 {
 	static class UScriptStruct* Singleton = NULL;

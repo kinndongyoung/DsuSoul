@@ -17,6 +17,8 @@ protected:
 
 public:
 	void HUD_CollectBar();
+	void HUD_HPSP();
+	void HUD_Respawn();
 
 public:
 	bool CrossHair_State;
@@ -44,4 +46,11 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Angel_UI)
 	class UUserWidget* CurrentWidget_CollectBar;
+
+	//리스폰 바
+	UPROPERTY(EditAnywhere, Category = Respawn)
+	TSubclassOf<class UUserWidget> WigetClass_Respawn;
+
+	UPROPERTY(EditAnywhere, Category = Respawn)
+	class UUserWidget* CurrentWidget_Respawn;
 };

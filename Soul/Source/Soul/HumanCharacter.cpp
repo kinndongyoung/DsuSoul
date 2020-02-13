@@ -9,21 +9,21 @@
 AHumanCharacter::AHumanCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
 	// Add Tag
 	Tags.AddUnique(TEXT("Human_Character"));
-
+	
 	// Camera Create
 	UserCameraArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CAMERA_ARM"));
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CAMERA"));
-
+	
 	// Camera Initialize
 	UserCameraArm->SetupAttachment(GetMesh());
 	Camera->SetupAttachment(UserCameraArm);
-
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 	UserCameraArm->TargetArmLength = 300.0f;
-	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 160.0f), FRotator(-30.0f, 0.0f, 0.0f));
-	
+	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+
 	// Skeletal Mesh Initialize
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Meshes/TwinBlast.TwinBlast"));
 	if (SK_SOUL_USER.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
@@ -48,7 +48,7 @@ AHumanCharacter::AHumanCharacter()
 
 	// Bullet Initialize
 	isFiring = false;
-	MuzzleOffset = FVector(90.0f, 10.0f, 0.0f);
+	MuzzleOffset = FVector(50.0f, 5.0f, 75.0f);
 
 	// 스테이터스
 	GiveSoulState = false;
@@ -78,12 +78,18 @@ AHumanCharacter::AHumanCharacter()
 	DeathTime = 600.0f;
 	RespawnTime = 0.0f;
 
-	/*vec.X = 8800;
-	vec.Y = 1800;
-	vec.Z = 250;*/
-	/*GetTransform().TransformFVector4(vec);
-	GetActorTransform().SetTranslation(vec);
-	SetActorLocation(vec);*/
+	//캐릭터 넘버
+	Number = 0;
+
+	//총을 맞춘것을 알리는 bool값
+	Hit = false;
+
+	//vec.X = 5500;
+	//vec.Y = 3000;
+	//vec.Z = 300;
+	//GetTransform().TransformFVector4(vec);
+	//GetActorTransform().SetTranslation(vec);
+	//SetActorLocation(vec);
 }
 
 void AHumanCharacter::BeginPlay()
@@ -92,17 +98,8 @@ void AHumanCharacter::BeginPlay()
 
 	// HUD Setting
 	HUD_Human = Cast<AHUD_Human>(GetWorld()->GetFirstPlayerController()->GetHUD());
-
-	// Weapon Setting
-	//FName WeaponSocket(TEXT("Muzzle_L"));
-	//auto CurWeapon = GetWorld()->SpawnActor<AHumanWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
-	// 
-	//if (nullptr != CurWeapon)
-	//{
-	//	CurWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, WeaponSocket);
-	//	UserWeapon = CurWeapon;
-	//}
 }
+
 void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -181,9 +178,10 @@ void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 			bUseControllerRotationYaw = true;//
 		}break;
 		case EControlMode::FPS:
-		{
-			ArmLengthTo = -20.0f;
-			Camera->SetRelativeLocationAndRotation(FVector(0.0f, 6.0f, 0.0f), FRotator(-3.0f, 80.0f, -90.0f));
+		{			
+			ArmLengthTo = 0.0f;
+			Camera->SetRelativeLocationAndRotation(FVector(5.0f, 5.0f, 78.0f), FRotator(0.0f, 0.0f, 0.0f));
+			UserCameraArm->SetRelativeLocation(FVector(0.0f, 0.0f, 88.0f));
 			UserCameraArm->bUsePawnControlRotation = true;
 			UserCameraArm->bInheritPitch = true;
 			UserCameraArm->bInheritRoll = true;
@@ -199,32 +197,41 @@ void AHumanCharacter::ForwardBack(float NewAxisValue)
 {
 	if(HumanAnim->Is_Reload==false && HumanAnim->Is_Death==false)	
 		AddMovementInput(GetActorForwardVector(), NewAxisValue);
-
-	//AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::X), NewAxisValue);
 }
 
 void AHumanCharacter::LeftRight(float NewAxisValue)
 {
 	if(HumanAnim->Is_Reload ==false && HumanAnim->Is_Death == false)
 		AddMovementInput(GetActorRightVector(), NewAxisValue);
-	
-	//AddMovementInput(FRotationMatrix(GetControlRotation()).GetUnitAxis(EAxis::Y), NewAxisValue);
 }
 
 // Rotate Character
 void AHumanCharacter::Turn(float NewAxisValue)
 {
-	AddControllerYawInput(NewAxisValue);
+	if(HumanAnim->Is_Death == false) AddControllerYawInput(NewAxisValue);
 }
 
 void AHumanCharacter::LookUp(float NewAxisValue)
 {
-	AddControllerPitchInput(NewAxisValue);
-
-	if(-40.0f <= HumanAnim->Rotate_Value.Roll && HumanAnim->Rotate_Value.Roll <= 40.0f)
-		HumanAnim->Rotate_Value.Roll += NewAxisValue;
-	else if (-40.0f > HumanAnim->Rotate_Value.Roll) HumanAnim->Rotate_Value.Roll = -40.0f;
-	else if (HumanAnim->Rotate_Value.Roll > 40.0f) HumanAnim->Rotate_Value.Roll = 40.0f;
+	if (HumanAnim->Is_Death == false)
+	{	
+		// 과회전 방지
+		if (-36.0f <= HumanAnim->Rotate_Value.Roll && HumanAnim->Rotate_Value.Roll <= 36.0f)
+		{
+			AddControllerPitchInput(NewAxisValue);
+			HumanAnim->Rotate_Value.Roll += NewAxisValue;
+		}			
+		else if (-36.0f > HumanAnim->Rotate_Value.Roll)
+		{
+			GetControlRotation().SetComponentForAxis(EAxis::Y, 90.0f);
+			HumanAnim->Rotate_Value.Roll = -36.0f;
+		}			
+		else if (HumanAnim->Rotate_Value.Roll > 36.0f)
+		{
+			GetControlRotation().SetComponentForAxis(EAxis::Y, 270.0f);
+			HumanAnim->Rotate_Value.Roll = 36.0f;
+		}			
+	}
 }
 
 // Fire
@@ -233,23 +240,23 @@ void AHumanCharacter::Zoom()
 	if (Is_Zoom == false)
 	{
 		Is_Zoom = true;
-		Camera->AttachTo(GetMesh(), "head");
+		//Camera->AttachTo(GetMesh(), "head");
 		HUD_Human->CrossHair_State = true;
 		SetControlMode(EControlMode::FPS);
 	}
 	else if (Is_Zoom == true)
 	{
 		Is_Zoom = false;
-		Camera->AttachTo(UserCameraArm);
+		//Camera->AttachTo(UserCameraArm);
 		HUD_Human->CrossHair_State = false;
 		SetControlMode(EControlMode::TPS);
 	}
-	HUD_Human->HUD_CollectBar();
+	HUD_Human->HUD_HPSP();
 }
 
 void AHumanCharacter::StartFire()
 {
-	if (ammo >= 0)
+	if (ammo > 0)
 	{
 		isFiring = true;
 		HumanAnim->IsFire = isFiring;
@@ -268,14 +275,11 @@ void AHumanCharacter::Fire()
 			FVector CameraLocation;
 			FRotator CameraRotation;
 			GetActorEyesViewPoint(CameraLocation, CameraRotation);
-
-			MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
+			
+			MuzzleLocation = this->ActorToWorld().GetLocation() + FTransform(CameraRotation).TransformVector(MuzzleOffset);
 			FRotator MuzzleRotation = CameraRotation;
 
-			// 조준을 약간 윗쪽으로 올려줍니다.
-			MuzzleRotation.Pitch += 5.0f;
 			UWorld* World = GetWorld();
-
 			if (World)
 			{
 				FActorSpawnParameters SpawnParams;
@@ -295,9 +299,9 @@ void AHumanCharacter::Fire()
 		}
 
 		ammo--;
-		if (ammo >= 0)
+		if (ammo > 0)
 		{
-			// 연사를 위한 StartFire 함수 생성
+			// 연사를 위한 StartFire 함수 생성			
 			GetWorld()->GetTimerManager().SetTimer(timer, this, &AHumanCharacter::Fire, 0.1f, false);
 		}
 		else StopFire();
@@ -337,7 +341,10 @@ void AHumanCharacter::Death()
 {
 	RespawnTime += 2.0f;
 	HumanAnim->Is_Death = true;
+	HUD_Human->Death_bar = true;
 	GetCharacterMovement()->JumpZVelocity = 0.0f;
+	HUD_Human->HUD_Respawn();
+
 	if (DeathTime <= RespawnTime)
 		Respawn();
 }
@@ -347,10 +354,21 @@ void AHumanCharacter::Respawn()
 	CurrentHp = 100.0f;
 	CurrentSP = 0.0f;
 	HumanAnim->Is_Death = false;
+	HUD_Human->Death_bar = false;
 	RespawnTime = 0.0f;
 	SetActorLocation(vec);
-	
 	GetCharacterMovement()->JumpZVelocity = 400.0f;
+}
+
+// Set Muzzle
+FVector AHumanCharacter::SetMuzzlePos()
+{	
+	return HumanAnim->Translation_Value;
+}
+
+FRotator AHumanCharacter::SetMuzzleRot()
+{
+	return HumanAnim->Rotate_Value * 2.0f;
 }
 
 // Install

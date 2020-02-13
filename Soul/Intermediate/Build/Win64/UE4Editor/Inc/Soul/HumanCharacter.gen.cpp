@@ -22,11 +22,15 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_GetInitialHP();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_GetInitialSP();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_GetPerCollect();
+	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_Respawn_bar();
+	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_UpdateCurrentHP();
 	SOUL_API UFunction* Z_Construct_UFunction_AHumanCharacter_UpdateCurrentSP();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	SOUL_API UClass* Z_Construct_UClass_AHumanWeaponBullet_NoRegister();
-	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_AHUD_Human_NoRegister();
@@ -42,6 +46,9 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 			{ "GetInitialHP", &AHumanCharacter::execGetInitialHP },
 			{ "GetInitialSP", &AHumanCharacter::execGetInitialSP },
 			{ "GetPerCollect", &AHumanCharacter::execGetPerCollect },
+			{ "Respawn_bar", &AHumanCharacter::execRespawn_bar },
+			{ "SetMuzzlePos", &AHumanCharacter::execSetMuzzlePos },
+			{ "SetMuzzleRot", &AHumanCharacter::execSetMuzzleRot },
 			{ "UpdateCurrentHP", &AHumanCharacter::execUpdateCurrentHP },
 			{ "UpdateCurrentSP", &AHumanCharacter::execUpdateCurrentSP },
 		};
@@ -216,6 +223,107 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics
+	{
+		struct HumanCharacter_eventRespawn_bar_Parms
+		{
+			float ReturnValue;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HumanCharacter_eventRespawn_bar_Parms, ReturnValue), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Human Death" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AHumanCharacter, nullptr, "Respawn_bar", nullptr, nullptr, sizeof(HumanCharacter_eventRespawn_bar_Parms), Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AHumanCharacter_Respawn_bar()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AHumanCharacter_Respawn_bar_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics
+	{
+		struct HumanCharacter_eventSetMuzzlePos_Parms
+		{
+			FVector ReturnValue;
+		};
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HumanCharacter_eventSetMuzzlePos_Parms, ReturnValue), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Muzzle" },
+		{ "Comment", "// ?\xd1\xb1? ?\xd4\xbc?\n" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+		{ "ToolTip", "?\xd1\xb1? ?\xd4\xbc?" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AHumanCharacter, nullptr, "SetMuzzlePos", nullptr, nullptr, sizeof(HumanCharacter_eventSetMuzzlePos_Parms), Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics
+	{
+		struct HumanCharacter_eventSetMuzzleRot_Parms
+		{
+			FRotator ReturnValue;
+		};
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(HumanCharacter_eventSetMuzzleRot_Parms, ReturnValue), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Muzzle" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AHumanCharacter, nullptr, "SetMuzzleRot", nullptr, nullptr, sizeof(HumanCharacter_eventSetMuzzleRot_Parms), Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_AHumanCharacter_UpdateCurrentHP_Statics
 	{
 #if WITH_METADATA
@@ -290,6 +398,10 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerCollect;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ammo_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_ammo;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Camera_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Camera;
@@ -343,6 +455,9 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		{ &Z_Construct_UFunction_AHumanCharacter_GetInitialHP, "GetInitialHP" }, // 1691863771
 		{ &Z_Construct_UFunction_AHumanCharacter_GetInitialSP, "GetInitialSP" }, // 2283423036
 		{ &Z_Construct_UFunction_AHumanCharacter_GetPerCollect, "GetPerCollect" }, // 1483609713
+		{ &Z_Construct_UFunction_AHumanCharacter_Respawn_bar, "Respawn_bar" }, // 592103454
+		{ &Z_Construct_UFunction_AHumanCharacter_SetMuzzlePos, "SetMuzzlePos" }, // 3059232105
+		{ &Z_Construct_UFunction_AHumanCharacter_SetMuzzleRot, "SetMuzzleRot" }, // 1336448130
 		{ &Z_Construct_UFunction_AHumanCharacter_UpdateCurrentHP, "UpdateCurrentHP" }, // 2074388899
 		{ &Z_Construct_UFunction_AHumanCharacter_UpdateCurrentSP, "UpdateCurrentSP" }, // 1936527162
 	};
@@ -383,12 +498,19 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect_MetaData[] = {
 		{ "Category", "Install" },
-		{ "Comment", "// ??\xc8\xa5 ???? ?\xd4\xbc? ?? ????\n" },
+		{ "Comment", "// ??\xc8\xa5 ???? ????\n" },
 		{ "ModuleRelativePath", "HumanCharacter.h" },
-		{ "ToolTip", "??\xc8\xa5 ???? ?\xd4\xbc? ?? ????" },
+		{ "ToolTip", "??\xc8\xa5 ???? ????" },
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect = { "PerCollect", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, PerCollect), METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_ammo_MetaData[] = {
+		{ "Category", "Human Bullet" },
+		{ "ModuleRelativePath", "HumanCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AHumanCharacter_Statics::NewProp_ammo = { "ammo", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHumanCharacter, ammo), METADATA_PARAMS(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_ammo_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHumanCharacter_Statics::NewProp_ammo_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHumanCharacter_Statics::NewProp_Camera_MetaData[] = {
 		{ "Category", "Camera" },
@@ -475,6 +597,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_MuzzleLocation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_MuzzleOffset,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_PerCollect,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_ammo,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_Camera,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_UserCameraArm,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHumanCharacter_Statics::NewProp_bar,
@@ -513,7 +636,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHumanCharacter, 650111006);
+	IMPLEMENT_CLASS(AHumanCharacter, 1849332560);
 	template<> SOUL_API UClass* StaticClass<AHumanCharacter>()
 	{
 		return AHumanCharacter::StaticClass();

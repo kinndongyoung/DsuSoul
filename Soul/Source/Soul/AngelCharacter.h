@@ -50,11 +50,14 @@ private:// 컨트롤 관련 //
 	UPROPERTY(VisibleAnywhere, Category = HUD)
 		class AHUD_Angel* HUD_Angel;
 
+	
+	
+
+public:
+
 	// 애니메이션 클래스
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
 		class UAngelAnimInstance* AngelAnim;
-
-public:
 	// 스테이터스
 	bool DieState;
 	float Status_HP;

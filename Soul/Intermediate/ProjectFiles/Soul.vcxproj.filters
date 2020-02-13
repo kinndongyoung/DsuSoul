@@ -230,5 +230,6 @@
     <ClInclude Include="..\..\Source\Soul\Soul_UserController.h">
       <Filter>Source\Soul</Filter>
     </ClInclude>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

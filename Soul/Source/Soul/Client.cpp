@@ -26,17 +26,18 @@ void AClient::BeginPlay()
 }
 void AClient::InitCharacter()
 {
-	FActorSpawnParameters spawnParams;
+	
 	FVector tempVector = FVector::FVector(0, 0, 0);
 	for (int i = 0; i < 9; i++)
 	{
 		if (i + 1 == PlayerNumber)
 		{
 			ScreenMsg("playernumber", PlayerNumber);
+			FActorSpawnParameters spawnParams;
 			if (i < 3)
 			{
 				ScreenMsg("HUMAN");
-				FVector a = FVector::FVector(-8620.0, 2570 - (i * 100), 400);
+				FVector a = FVector::FVector(-8650, 2287 - (i * 100), 400);
 				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), a, FRotator::ZeroRotator, spawnParams);
 				myPawn = pawns[i];
 				myPawn->vec = a;
@@ -48,18 +49,18 @@ void AClient::InitCharacter()
 			{
 				ScreenMsg("ENGEL");
 				FVector a = FVector::FVector(-1860.0, 6910 - ((i - 3) * 100), 500);
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(),a , FRotator::ZeroRotator, spawnParams);
-				myPawn = pawns[i];
-				myPawn->vec = a;
+				engelpawn[i-3] = GetWorld()->SpawnActor<AAngelCharacter>(AAngelCharacter::StaticClass(),a , FRotator::ZeroRotator, spawnParams);
+				myEngel = engelpawn[i - 3];
+				//myEngel->vec = a;
 				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
-				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myPawn);
-				myPawn->HumanAnim->myPlayer = true;
+				GetWorld()->GetFirstPlayerController()->Possess((APawn*)myEngel);
+				//myEngel->AngelAnim->myPlayer = true;
 			}
 			else
 			{
 				ScreenMsg("DEVIL");
 				FVector a = FVector::FVector(7190.0, 6800 - ((i - 6) * 100), 400);
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(),a , FRotator::ZeroRotator, spawnParams);
+				devilpawn[i-6] = GetWorld()->SpawnActor<ADevilCharacter>(ADevilCharacter::StaticClass(),a , FRotator::ZeroRotator, spawnParams);
 				myPawn = pawns[i];
 				myPawn->vec = a;
 				ScreenMsg("playernumber -> ", (int32)PlayerNumber);
@@ -70,24 +71,27 @@ void AClient::InitCharacter()
 
 		else
 		{
+			FActorSpawnParameters spawnParams;
 			if (i < 3)
 			{
 				ScreenMsg("HUMAN");
-				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-8620.0, 2570 - (i * 100), 220), FRotator::ZeroRotator, spawnParams);
+				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-8650, 2287 - (i * 100), 400), FRotator::ZeroRotator, spawnParams);
+				pawns[i]->Number = i + 1;
 			}
 				
 			else if (i < 6)
 			{
 				ScreenMsg("ENGEL");
 				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(-1860.0, 6910 - ((i - 3) * 100), 300), FRotator::ZeroRotator, spawnParams);
+				pawns[i]->Number = i + 1;
 			}
 				
 			else
 			{
 				ScreenMsg("DEVIL");
 				pawns[i] = GetWorld()->SpawnActor<AHumanCharacter>(AHumanCharacter::StaticClass(), FVector::FVector(7190.0, 6800 - ((i - 6) * 100), 120), FRotator::ZeroRotator, spawnParams);
+				pawns[i]->Number = i + 1;
 			}
-				
 		}
 	}
 	b_GameStart = true;
@@ -189,6 +193,23 @@ void AClient::SendHumanWin()
 	temp.PktSize = sizeof(temp);
 	SenderSocket->SendTo((uint8*)&temp, sizeof(temp), BytesSent, *RemoteAddr);
 }
+void AClient::SendPlayerHit()
+{
+	for (int i = 0; i < 9; i++)
+	{
+		if (pawns[i]->Hit&&i+1!=PlayerNumber)
+		{
+			int32 BytesSent = 0;
+			FPlayerHit temp;
+			temp.PktID = PKT_REQ_HIT;
+			temp.user = PlayerNumber;
+			temp.PktSize = sizeof(temp);
+			temp.HitPlayerNumber = i + 1;
+			SenderSocket->SendTo((uint8*)&temp, sizeof(temp), BytesSent, *RemoteAddr);
+			pawns[i]->Hit = false;
+		}
+	}
+}
 void AClient::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -207,8 +228,11 @@ void AClient::Tick(float DeltaTime)
 		{
 			SendHumanWin();
 		}
+		//총알 맞은 캐릭터 클라이언트에게 맞았다고 알리기
+		SendPlayerHit();
 	}
-	
+
+
 	while (SenderSocket->HasPendingData(Size))
 	{
 		int32 Read = 0;
@@ -230,6 +254,14 @@ void AClient::Tick(float DeltaTime)
 		{
 			if (pHeader->PktID == PKT_REQ_LOGINFULL)//9명 모두 채워졌을 시 들어오는 패킷
 				ScreenMsg("full_server");
+
+			else if (pHeader->PktID == PKT_REQ_HIT)//총알에 맞았다는 패킷을 받았을 때
+			{
+				FPlayerHit* pTemp = (FPlayerHit*)pHeader;
+				if(pTemp->HitPlayerNumber==PlayerNumber)
+					myPawn->CurrentHp -= 10.0f;
+			}
+
 			else if (pHeader->PktID == PKT_REQ_ACCESS_LOGIN)//로그인이 되었을 시 들어오는 패킷
 			{
 				if (PlayerNumber == 0)
@@ -240,6 +272,7 @@ void AClient::Tick(float DeltaTime)
 				else
 					ScreenMsg("already_access");
 			}
+
 			else if (pHeader->PktID == PKT_REQ_HUMAN_WIN)
 			{
 				F_tgPacketHeader* pPlayerData = (F_tgPacketHeader*)pHeader;
@@ -252,6 +285,7 @@ void AClient::Tick(float DeltaTime)
 				else
 					UGameplayStatics::OpenLevel(this, "Lose");
 			}
+
 			else if (pHeader->PktID == PKT_REQ_PLAYER_DATA && b_GameStart)
 			{
 				FPlayerData* pPlayerData = (FPlayerData*)pHeader;
