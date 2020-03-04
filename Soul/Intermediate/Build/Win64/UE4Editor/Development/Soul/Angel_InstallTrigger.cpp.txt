@@ -192,6 +192,8 @@ D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Tr
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TriggerSphere.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Angel_InstallTrigger.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\AngelCharacter.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Character_Parent.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Character_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\AngelCharacter.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Public\DrawDebugHelpers.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime/Engine/Public/EngineUtils.h

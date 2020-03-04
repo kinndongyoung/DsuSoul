@@ -8,12 +8,38 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+struct FRotator;
+struct FVector;
 #ifdef SOUL_DevilCharacter_generated_h
 #error "DevilCharacter.generated.h already included, missing '#pragma once' in DevilCharacter.h"
 #endif
 #define SOUL_DevilCharacter_generated_h
 
 #define Soul_Source_Soul_DevilCharacter_h_10_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execSetMuzzleRot) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FRotator*)Z_Param__Result=P_THIS->SetMuzzleRot(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execSetMuzzlePos) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FVector*)Z_Param__Result=P_THIS->SetMuzzlePos(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRespawn_bar) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->Respawn_bar(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execUpdateCurrentSP) \
 	{ \
@@ -65,6 +91,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 
 #define Soul_Source_Soul_DevilCharacter_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execSetMuzzleRot) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FRotator*)Z_Param__Result=P_THIS->SetMuzzleRot(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execSetMuzzlePos) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FVector*)Z_Param__Result=P_THIS->SetMuzzlePos(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRespawn_bar) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->Respawn_bar(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execUpdateCurrentSP) \
 	{ \
@@ -120,7 +170,7 @@ private: \
 	static void StaticRegisterNativesADevilCharacter(); \
 	friend struct Z_Construct_UClass_ADevilCharacter_Statics; \
 public: \
-	DECLARE_CLASS(ADevilCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(ADevilCharacter, ACharacter_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(ADevilCharacter)
 
 
@@ -129,7 +179,7 @@ private: \
 	static void StaticRegisterNativesADevilCharacter(); \
 	friend struct Z_Construct_UClass_ADevilCharacter_Statics; \
 public: \
-	DECLARE_CLASS(ADevilCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(ADevilCharacter, ACharacter_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(ADevilCharacter)
 
 

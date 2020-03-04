@@ -187,9 +187,11 @@ D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Di
 d:\unreal engine\ue_4.23\engine\source\runtime\engine\classes\kismet\GameplayStaticsTypes.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\HUD_Parent.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/DebugTextInfo.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DebugTextInfo.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\HUD.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\HUD_Parent.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\HUD_Devil.generated.h

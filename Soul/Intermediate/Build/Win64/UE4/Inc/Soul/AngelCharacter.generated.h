@@ -8,19 +8,169 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+struct FRotator;
+struct FVector;
 #ifdef SOUL_AngelCharacter_generated_h
 #error "AngelCharacter.generated.h already included, missing '#pragma once' in AngelCharacter.h"
 #endif
 #define SOUL_AngelCharacter_generated_h
 
-#define Soul_Source_Soul_AngelCharacter_h_10_RPC_WRAPPERS
-#define Soul_Source_Soul_AngelCharacter_h_10_RPC_WRAPPERS_NO_PURE_DECLS
+#define Soul_Source_Soul_AngelCharacter_h_10_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execSetMuzzleRot) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FRotator*)Z_Param__Result=P_THIS->SetMuzzleRot(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execSetMuzzlePos) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FVector*)Z_Param__Result=P_THIS->SetMuzzlePos(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRespawn_bar) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->Respawn_bar(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execUpdateCurrentSP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->UpdateCurrentSP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetCurrentInitialSP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetCurrentInitialSP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetInitialSP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetInitialSP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execUpdateCurrentHP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->UpdateCurrentHP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetCurrentInitialHP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetCurrentInitialHP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetInitialHP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetInitialHP(); \
+		P_NATIVE_END; \
+	}
+
+
+#define Soul_Source_Soul_AngelCharacter_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execSetMuzzleRot) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FRotator*)Z_Param__Result=P_THIS->SetMuzzleRot(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execSetMuzzlePos) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(FVector*)Z_Param__Result=P_THIS->SetMuzzlePos(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRespawn_bar) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->Respawn_bar(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execUpdateCurrentSP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->UpdateCurrentSP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetCurrentInitialSP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetCurrentInitialSP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetInitialSP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetInitialSP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execUpdateCurrentHP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->UpdateCurrentHP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetCurrentInitialHP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetCurrentInitialHP(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execGetInitialHP) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetInitialHP(); \
+		P_NATIVE_END; \
+	}
+
+
 #define Soul_Source_Soul_AngelCharacter_h_10_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAAngelCharacter(); \
 	friend struct Z_Construct_UClass_AAngelCharacter_Statics; \
 public: \
-	DECLARE_CLASS(AAngelCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AAngelCharacter, ACharacter_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AAngelCharacter)
 
 
@@ -29,7 +179,7 @@ private: \
 	static void StaticRegisterNativesAAngelCharacter(); \
 	friend struct Z_Construct_UClass_AAngelCharacter_Statics; \
 public: \
-	DECLARE_CLASS(AAngelCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AAngelCharacter, ACharacter_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AAngelCharacter)
 
 
@@ -57,12 +207,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AAngelCharacter); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AAngelCharacter)
 
 
-#define Soul_Source_Soul_AngelCharacter_h_10_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__AngelAnim() { return STRUCT_OFFSET(AAngelCharacter, AngelAnim); } \
-	FORCEINLINE static uint32 __PPO__UserCameraArm() { return STRUCT_OFFSET(AAngelCharacter, UserCameraArm); } \
-	FORCEINLINE static uint32 __PPO__Camera() { return STRUCT_OFFSET(AAngelCharacter, Camera); }
-
-
+#define Soul_Source_Soul_AngelCharacter_h_10_PRIVATE_PROPERTY_OFFSET
 #define Soul_Source_Soul_AngelCharacter_h_7_PROLOG
 #define Soul_Source_Soul_AngelCharacter_h_10_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

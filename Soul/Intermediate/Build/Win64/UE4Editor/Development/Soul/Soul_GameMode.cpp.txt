@@ -190,17 +190,21 @@ D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\So
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\Soul_UserController.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Soul_UserController.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HumanCharacter.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Character_Parent.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Character_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HumanCharacter.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\DevilCharacter.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\DevilCharacter.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\AngelCharacter.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\AngelCharacter.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HUD_Human.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\HUD_Parent.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/DebugTextInfo.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DebugTextInfo.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\HUD.generated.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HUD_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HUD_Human.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HUD_Angel.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HUD_Angel.generated.h

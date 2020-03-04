@@ -186,15 +186,23 @@ D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Di
 d:\unreal engine\ue_4.23\engine\source\runtime\engine\classes\kismet\GameplayStaticsTypes.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Character_Parent.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Character_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\DevilCharacter.generated.h
-d:\lsh\unreal\backup\dsusoul\soul\source\soul\DevilAnimInstance.h
-D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\DevilAnimInstance.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HUD_Devil.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\HUD_Parent.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h
 D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/DebugTextInfo.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DebugTextInfo.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\HUD.generated.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HUD_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HUD_Devil.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\DevilAnimInstance.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\AnimInstance_Parent.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\AnimInstance_Parent.generated.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\DevilAnimInstance.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\DevilWeaponBullet.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Bullet_Parent.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Bullet_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\DevilWeaponBullet.generated.h

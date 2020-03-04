@@ -20,7 +20,7 @@ private: \
 	static void StaticRegisterNativesUDevilAnimInstance(); \
 	friend struct Z_Construct_UClass_UDevilAnimInstance_Statics; \
 public: \
-	DECLARE_CLASS(UDevilAnimInstance, UAnimInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(UDevilAnimInstance, UAnimInstance_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(UDevilAnimInstance)
 
 
@@ -29,7 +29,7 @@ private: \
 	static void StaticRegisterNativesUDevilAnimInstance(); \
 	friend struct Z_Construct_UClass_UDevilAnimInstance_Statics; \
 public: \
-	DECLARE_CLASS(UDevilAnimInstance, UAnimInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(UDevilAnimInstance, UAnimInstance_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(UDevilAnimInstance)
 
 

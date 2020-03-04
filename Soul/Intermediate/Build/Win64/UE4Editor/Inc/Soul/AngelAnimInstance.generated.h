@@ -20,7 +20,7 @@ private: \
 	static void StaticRegisterNativesUAngelAnimInstance(); \
 	friend struct Z_Construct_UClass_UAngelAnimInstance_Statics; \
 public: \
-	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(UAngelAnimInstance)
 
 
@@ -29,7 +29,7 @@ private: \
 	static void StaticRegisterNativesUAngelAnimInstance(); \
 	friend struct Z_Construct_UClass_UAngelAnimInstance_Statics; \
 public: \
-	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(UAngelAnimInstance)
 
 

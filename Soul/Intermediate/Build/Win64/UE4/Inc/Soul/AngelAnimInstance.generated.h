@@ -20,7 +20,7 @@ private: \
 	static void StaticRegisterNativesUAngelAnimInstance(); \
 	friend struct Z_Construct_UClass_UAngelAnimInstance_Statics; \
 public: \
-	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(UAngelAnimInstance)
 
 
@@ -29,7 +29,7 @@ private: \
 	static void StaticRegisterNativesUAngelAnimInstance(); \
 	friend struct Z_Construct_UClass_UAngelAnimInstance_Statics; \
 public: \
-	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(UAngelAnimInstance, UAnimInstance_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(UAngelAnimInstance)
 
 
@@ -57,11 +57,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UAngelAnimInstance); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UAngelAnimInstance)
 
 
-#define Soul_Source_Soul_AngelAnimInstance_h_10_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__CurrentPawnSpeed() { return STRUCT_OFFSET(UAngelAnimInstance, CurrentPawnSpeed); } \
-	FORCEINLINE static uint32 __PPO__IsInAir() { return STRUCT_OFFSET(UAngelAnimInstance, IsInAir); }
-
-
+#define Soul_Source_Soul_AngelAnimInstance_h_10_PRIVATE_PROPERTY_OFFSET
 #define Soul_Source_Soul_AngelAnimInstance_h_7_PROLOG
 #define Soul_Source_Soul_AngelAnimInstance_h_10_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

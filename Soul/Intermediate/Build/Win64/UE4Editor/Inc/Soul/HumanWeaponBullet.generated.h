@@ -8,72 +8,19 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class AHumanCharacter;
-class UPrimitiveComponent;
-class AActor;
-struct FVector;
-struct FHitResult;
 #ifdef SOUL_HumanWeaponBullet_generated_h
 #error "HumanWeaponBullet.generated.h already included, missing '#pragma once' in HumanWeaponBullet.h"
 #endif
 #define SOUL_HumanWeaponBullet_generated_h
 
-#define Soul_Source_Soul_HumanWeaponBullet_h_10_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execFireActor) \
-	{ \
-		P_GET_OBJECT(AHumanCharacter,Z_Param_pt_FireChar); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->FireActor(Z_Param_pt_FireChar); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execOnHit) \
-	{ \
-		P_GET_OBJECT(UPrimitiveComponent,Z_Param_HitComponent); \
-		P_GET_OBJECT(AActor,Z_Param_OtherActor); \
-		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OtherComponent); \
-		P_GET_STRUCT(FVector,Z_Param_NormalImpulse); \
-		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_Hit); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->OnHit(Z_Param_HitComponent,Z_Param_OtherActor,Z_Param_OtherComponent,Z_Param_NormalImpulse,Z_Param_Out_Hit); \
-		P_NATIVE_END; \
-	}
-
-
-#define Soul_Source_Soul_HumanWeaponBullet_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execFireActor) \
-	{ \
-		P_GET_OBJECT(AHumanCharacter,Z_Param_pt_FireChar); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->FireActor(Z_Param_pt_FireChar); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execOnHit) \
-	{ \
-		P_GET_OBJECT(UPrimitiveComponent,Z_Param_HitComponent); \
-		P_GET_OBJECT(AActor,Z_Param_OtherActor); \
-		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OtherComponent); \
-		P_GET_STRUCT(FVector,Z_Param_NormalImpulse); \
-		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_Hit); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->OnHit(Z_Param_HitComponent,Z_Param_OtherActor,Z_Param_OtherComponent,Z_Param_NormalImpulse,Z_Param_Out_Hit); \
-		P_NATIVE_END; \
-	}
-
-
+#define Soul_Source_Soul_HumanWeaponBullet_h_10_RPC_WRAPPERS
+#define Soul_Source_Soul_HumanWeaponBullet_h_10_RPC_WRAPPERS_NO_PURE_DECLS
 #define Soul_Source_Soul_HumanWeaponBullet_h_10_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAHumanWeaponBullet(); \
 	friend struct Z_Construct_UClass_AHumanWeaponBullet_Statics; \
 public: \
-	DECLARE_CLASS(AHumanWeaponBullet, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHumanWeaponBullet, ABullet_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHumanWeaponBullet)
 
 
@@ -82,7 +29,7 @@ private: \
 	static void StaticRegisterNativesAHumanWeaponBullet(); \
 	friend struct Z_Construct_UClass_AHumanWeaponBullet_Statics; \
 public: \
-	DECLARE_CLASS(AHumanWeaponBullet, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHumanWeaponBullet, ABullet_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHumanWeaponBullet)
 
 

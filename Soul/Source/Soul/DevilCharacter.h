@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Soul.h"
-#include "GameFramework/Character.h"
+#include "Character_Parent.h"
 #include "DevilCharacter.generated.h"
 
 UCLASS()
-class SOUL_API ADevilCharacter : public ACharacter
+class SOUL_API ADevilCharacter : public ACharacter_Parent
 {
 	GENERATED_BODY()
 
@@ -13,107 +13,77 @@ public:
 	ADevilCharacter();
 
 protected:
-	virtual void BeginPlay() override;
-	virtual void Tick(float DeltaTime) override;
-	virtual void PostInitializeComponents() override;
-	virtual void PossessedBy(AController* NewController) override;
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-private:
-	// 1인칭, 3인칭
-	enum class EControlMode
-	{
-		TPS, //ThirdPersonShooter
-		FPS  //FirstPersonShooter
-	};
-
-	float ArmLengthTo = 0.0f;      // 캐릭터와 카메라 거리
-	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
-	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
+	void BeginPlay();
+	void Tick(float DeltaTime);
+	void PostInitializeComponents();
+	void PossessedBy(AController* NewController);
+	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 
 public:
-	// 스테이터스
-
-
-	int ammo;
-	float Pos;
-	// 공격 변수
-	FTimerHandle timer;
-	bool isFiring;
-	bool isTrigger;
-	//
+	// 무엇?
 	bool Is_Spirnt;
-public:// 무기관련 //
-	// 공격 함수
-	void StartFire();
-	void Fire();
-	void StopFire();
-	//
-	void Sprint();
-	void Stop_Sprint();
-	void Death();
-	void Respawn();
-
-public:// 컨트롤 관련 //
-	void SetControlMode(EControlMode NewControlMode);
-
-	// 행동	함수
-	void UpDown(float NewAxisValue);
-	void LeftRight(float NewAxisValue);
-	void LookUp(float NewAxisValue);
-	void Turn(float NewAxisValue);
 
 	// HUD 클래스
 	UPROPERTY(VisibleAnywhere, Category = HUD)
-	class AHUD_Devil* HUD_Devil;
+	class AHUD_Devil* HUDDevil;
 
 	// 애니메이션 클래스
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
-	class UDevilAnimInstance* DevilAnim;
+	class UDevilAnimInstance* AnimDevil;
 
-	//악마 hp,sp - 변수
-	UPROPERTY(EditAnywhere, Category = "Devil HP")
-		float Initial_HP;
+public:
+	// 공통 함수
+	// 컨트롤 관련 //
+	virtual void SetControlMode(EControlMode NewControlMode) override;
 
-	UPROPERTY(EditAnywhere, Category = "Devil HP")
-		float CurrentHp;
+	// 행동	함수
+	virtual void ForwardBack(float NewAxisValue) override;
+	virtual void LeftRight(float NewAxisValue) override;
+	virtual void LookUp(float NewAxisValue) override;
+	virtual void Turn(float NewAxisValue) override;
 
-	UPROPERTY(EditAnywhere, Category = "Devil SP")
-		float Initial_SP;
+	// 공격 함수
+	virtual void Zoom() override;
+	virtual void StartFire() override;
+	virtual void Fire() override;
+	virtual void StopFire() override;
 
-	UPROPERTY(EditAnywhere, Category = "Devil SP")
-		float CurrentSP;
-	float DeathTime;
-	float RespawnTime;
-//악마 hp,sp
-	UFUNCTION(BlueprintPure, Category = "Devil HP")
-		float GetInitialHP() { return Initial_HP; }
+	// 모션 함수
+	virtual void Walk() override;
+	virtual void Stop_Walk() override;
+	virtual void ReloadFunc() override;
+	virtual void Stop_ReloadFunc() override;
 
-	UFUNCTION(BlueprintPure, Category = "Devil HP")
-		float GetCurrentInitialHP() { return CurrentHp; }
+	// 리스폰 관련
+	virtual void Death() override;
+	virtual void Respawn() override;
 
-	UFUNCTION(BlueprintCallable, Category = "Human HP")
-		void UpdateCurrentHP() { CurrentHp = CurrentHp; }
+	// hp,sp - 함수
+	UFUNCTION(BlueprintPure, Category = "HP")
+	virtual float GetInitialHP() override { return Initial_HP; }
 
-	UFUNCTION(BlueprintPure, Category = "Devil SP")
-		float GetInitialSP() { return Initial_SP; }
+	UFUNCTION(BlueprintPure, Category = "HP")
+	virtual float GetCurrentInitialHP() override { return CurrentHp; }
 
-	UFUNCTION(BlueprintPure, Category = "Devil SP")
-		float GetCurrentInitialSP() { return CurrentSP; }
+	UFUNCTION(BlueprintCallable, Category = "HP")
+	virtual void UpdateCurrentHP() override { CurrentHp = CurrentHp; }
 
-	UFUNCTION(BlueprintCallable, Category = "Human SP")
-		void UpdateCurrentSP() { CurrentSP = CurrentSP; }
-public:// 카메라//	
-	// 카메라 위치에서의 총구 오프셋
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	FVector MuzzleOffset;
+	UFUNCTION(BlueprintPure, Category = "SP")
+	virtual float GetInitialSP() override { return Initial_SP; }
 
-	UPROPERTY(VisibleAnywhere, Category = Camera)
-	USpringArmComponent* UserCameraArm;
+	UFUNCTION(BlueprintPure, Category = "SP")
+	virtual float GetCurrentInitialSP() override { return CurrentSP; }
 
-	UPROPERTY(VisibleAnywhere, Category = Camera)
-	UCameraComponent* Camera;
+	UFUNCTION(BlueprintCallable, Category = "SP")
+	virtual void UpdateCurrentSP() override { CurrentSP = CurrentSP; }
 
-	UPROPERTY(EditAnywhere, Category = BulletClass)
-	TSubclassOf<class ADevilWeaponBullet> WeaponBulletClass;
+	UFUNCTION(BlueprintPure, Category = "Death")
+	virtual float Respawn_bar() override { return RespawnTime += 2.0f; }
+
+	// 총구 함수
+	UFUNCTION(BlueprintPure, Category = "Muzzle")
+	virtual FVector SetMuzzlePos() override;
+
+	UFUNCTION(BlueprintPure, Category = "Muzzle")
+	virtual FRotator SetMuzzleRot() override;
 };

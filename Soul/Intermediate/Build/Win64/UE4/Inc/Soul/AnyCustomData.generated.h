@@ -13,7 +13,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SOUL_AnyCustomData_generated_h
 
-#define Soul_Source_Soul_AnyCustomData_h_28_GENERATED_BODY \
+#define Soul_Source_Soul_AnyCustomData_h_51_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FPlayerHit_Statics; \
+	SOUL_API static class UScriptStruct* StaticStruct(); \
+	typedef F_tgPacketHeader Super;
+
+
+template<> SOUL_API UScriptStruct* StaticStruct<struct FPlayerHit>();
+
+#define Soul_Source_Soul_AnyCustomData_h_30_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPlayerData_Statics; \
 	SOUL_API static class UScriptStruct* StaticStruct(); \
 	typedef F_tgPacketHeader Super;
@@ -21,7 +29,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> SOUL_API UScriptStruct* StaticStruct<struct FPlayerData>();
 
-#define Soul_Source_Soul_AnyCustomData_h_15_GENERATED_BODY \
+#define Soul_Source_Soul_AnyCustomData_h_17_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_F_tgPacketHeader_Statics; \
 	SOUL_API static class UScriptStruct* StaticStruct();
 

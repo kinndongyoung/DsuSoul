@@ -17,6 +17,14 @@ struct FVector;
 
 #define Soul_Source_Soul_HumanCharacter_h_10_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execGetPerCollect) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetPerCollect(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execSetMuzzleRot) \
 	{ \
 		P_FINISH; \
@@ -30,14 +38,6 @@ struct FVector;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		*(FVector*)Z_Param__Result=P_THIS->SetMuzzlePos(); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execGetPerCollect) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		*(float*)Z_Param__Result=P_THIS->GetPerCollect(); \
 		P_NATIVE_END; \
 	} \
  \
@@ -100,6 +100,14 @@ struct FVector;
 
 #define Soul_Source_Soul_HumanCharacter_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execGetPerCollect) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(float*)Z_Param__Result=P_THIS->GetPerCollect(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execSetMuzzleRot) \
 	{ \
 		P_FINISH; \
@@ -113,14 +121,6 @@ struct FVector;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		*(FVector*)Z_Param__Result=P_THIS->SetMuzzlePos(); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execGetPerCollect) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		*(float*)Z_Param__Result=P_THIS->GetPerCollect(); \
 		P_NATIVE_END; \
 	} \
  \
@@ -186,7 +186,7 @@ private: \
 	static void StaticRegisterNativesAHumanCharacter(); \
 	friend struct Z_Construct_UClass_AHumanCharacter_Statics; \
 public: \
-	DECLARE_CLASS(AHumanCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHumanCharacter, ACharacter_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHumanCharacter)
 
 
@@ -195,7 +195,7 @@ private: \
 	static void StaticRegisterNativesAHumanCharacter(); \
 	friend struct Z_Construct_UClass_AHumanCharacter_Statics; \
 public: \
-	DECLARE_CLASS(AHumanCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHumanCharacter, ACharacter_Parent, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHumanCharacter)
 
 
@@ -223,12 +223,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AHumanCharacter); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AHumanCharacter)
 
 
-#define Soul_Source_Soul_HumanCharacter_h_10_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__UserCameraArm() { return STRUCT_OFFSET(AHumanCharacter, UserCameraArm); } \
-	FORCEINLINE static uint32 __PPO__Camera() { return STRUCT_OFFSET(AHumanCharacter, Camera); } \
-	FORCEINLINE static uint32 __PPO__WeaponBulletClass() { return STRUCT_OFFSET(AHumanCharacter, WeaponBulletClass); }
-
-
+#define Soul_Source_Soul_HumanCharacter_h_10_PRIVATE_PROPERTY_OFFSET
 #define Soul_Source_Soul_HumanCharacter_h_7_PROLOG
 #define Soul_Source_Soul_HumanCharacter_h_10_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

@@ -186,12 +186,14 @@ D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Di
 d:\unreal engine\ue_4.23\engine\source\runtime\engine\classes\kismet\GameplayStaticsTypes.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Bullet_Parent.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Bullet_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HumanWeaponBullet.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\HumanCharacter.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Character_Parent.h
+D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\Character_Parent.generated.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\HumanCharacter.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\DevilCharacter.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\DevilCharacter.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\source\soul\AngelCharacter.h
 D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul\AngelCharacter.generated.h
-D:\Unreal Engine\UE_4.23\Engine\Source\Runtime\Engine/Classes/GameFramework/ProjectileMovementComponent.h
-D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ProjectileMovementComponent.generated.h

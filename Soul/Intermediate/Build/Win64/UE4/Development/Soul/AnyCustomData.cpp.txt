@@ -1,3 +1,0 @@
-D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4\Development\Soul\Definitions.Soul.h
-d:\dsusoul\soul\source\soul\AnyCustomData.h
-D:\DsuSoul\Soul\Intermediate\Build\Win64\UE4\Inc\Soul\AnyCustomData.generated.h

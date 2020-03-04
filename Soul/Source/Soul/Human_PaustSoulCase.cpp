@@ -53,8 +53,8 @@ void AHuman_PaustSoulCase::OnOverlapEnd(class AActor *OverActor, class AActor *O
 			if (pt_Human == nullptr) print("pt_Human = null");
 
 			pt_Human->isTrigger = false;
-			pt_Human->HUD_Human->Human_Collect_State = false;
-			pt_Human->HUD_Human->HUD_CollectBar();			
+			pt_Human->HUDHuman->Human_Collect_State = false;
+			pt_Human->HUDHuman->HUD_CollectBar();			
 		}
 	}
 	else print("I can't contact the Paust");

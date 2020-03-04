@@ -187,4 +187,6 @@ D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Di
 d:\unreal engine\ue_4.23\engine\source\runtime\engine\classes\kismet\GameplayStaticsTypes.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 D:\Unreal Engine\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+d:\lsh\unreal\backup\dsusoul\soul\source\soul\Character_Parent.h
+d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\Character_Parent.generated.h
 d:\lsh\unreal\backup\dsusoul\soul\intermediate\build\win64\ue4editor\inc\soul\DevilCharacter.generated.h

@@ -1,67 +1,70 @@
 #include "DevilWeaponBullet.h"
-#include "HUD_Devil.h"
 #include "HumanCharacter.h"
 #include "DevilCharacter.h"
 #include "AngelCharacter.h"
-#include "Engine/Classes/Components/SphereComponent.h"
-#include "Engine/Classes/GameFramework/ProjectileMovementComponent.h"
+#include "HUD_Devil.h"
 
 ADevilWeaponBullet::ADevilWeaponBullet()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	// 구체를 단순 콜리전 표현으로 사용
-	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
-	CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("DevilBullet"));
-	CollisionComponent->OnComponentHit.AddDynamic(this, &ADevilWeaponBullet::OnHit);
-
-	// 구체의 콜리전 반경을 설정
 	CollisionComponent->InitSphereRadius(15.0f);
-	// 루트 컴포넌트를 콜리전 컴포넌트로 설정
-	RootComponent = CollisionComponent;
-
-	// ProjectileMovementComponent 를 사용하여 이 발사체의 운동을 관장
-	BulletMoveComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("BulletMoveComponent"));
-	BulletMoveComponent->SetUpdatedComponent(CollisionComponent);
-	BulletMoveComponent->InitialSpeed = 3000.0;
-	BulletMoveComponent->MaxSpeed = 3000.0f;
-	BulletMoveComponent->bRotationFollowsVelocity = true;
-	BulletMoveComponent->bShouldBounce = true;
-	BulletMoveComponent->Bounciness = 0.3f;
-
-
-	// 충돌 후 0.5초 뒤 삭제(기능 안함)
-	InitialLifeSpan = 0.5f;
+	CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("DevilBullet"));
 }
 
 void ADevilWeaponBullet::BeginPlay()
 {
+	ABullet_Parent::BeginPlay();
 	Super::BeginPlay();
+	
 	HUD_Devil = Cast<AHUD_Devil>(GetWorld()->GetFirstPlayerController()->GetHUD());
+}
+
+// 총알을 발사하는 액터
+void ADevilWeaponBullet::FireActor(ACharacter_Parent* pt_FireChar)
+{
+	ABullet_Parent::FireActor(dynamic_cast<ADevilCharacter*>(pt_FireChar));
+	DevilChar = dynamic_cast<ADevilCharacter*>(pt_FireChar);
 }
 
 // 총알의 속도를 발사 방향으로 초기화시키는 함수
 void ADevilWeaponBullet::FireInDirection(const FVector& ShootDirection)
 {
-	BulletMoveComponent->Velocity = ShootDirection * BulletMoveComponent->InitialSpeed;
+	ABullet_Parent::FireInDirection(ShootDirection);
 }
 
 // 총알에 무언가 맞으면 호출
 void ADevilWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if (OtherActor != this)
+	ABullet_Parent::OnHit(HitComponent, OtherActor, OtherComponent, NormalImpulse, Hit);
+
+	// 충돌 대상이 나 자신 또는 악마 캐릭터이면 충돌 안하도록함
+	if (OtherActor != this && OtherActor != DevilChar)
 	{
-		if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
+		// 액터의 태그명으로 충돌 대상 확인
+		if (OtherActor->ActorHasTag(FName(TEXT("Devil_Character"))))
+			print("I can't hit Devil");
+		else if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
 		{
 			AHumanCharacter* pt_HumanChar = Cast<AHumanCharacter>(OtherActor);
-			if (pt_HumanChar == nullptr)print("null");
+			if (pt_HumanChar == nullptr) print("null");
 
-			pt_HumanChar->CurrentHp -= 10.0f;
-			pt_HumanChar->CurrentSP += 10.0f;
+			if (pt_HumanChar->CurrentHp > 0.0f) // 서버에서 총알 맞추는 작업중*********
+			{
+				// HP 감소
+				pt_HumanChar->CurrentHp -= 10.0f;
+				pt_HumanChar->Hit = true;
+			}
+			else print("Other Actor HP = 0");
+
+			// SP 증가
+			if (DevilChar->CurrentSP < 100.0f) DevilChar->CurrentSP += 2.0f;
+			else print("Other Actor SP = 100");
 
 			printf("HP : %.2f", pt_HumanChar->CurrentHp);
-			printf("SP : %.2f", pt_HumanChar->CurrentSP);
+			printf("SP : %.2f", DevilChar->CurrentSP);
 
+			// 악마가 인간 영혼 수집 하는 부분
 			if (pt_HumanChar->CurrentHp <= 0 && pt_HumanChar->GiveSoulState == false &&
 				HUD_Devil->ActivateCount < 2 && HUD_Devil->CollectCount > 0)
 			{
@@ -72,15 +75,32 @@ void ADevilWeaponBullet::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherA
 		else if (OtherActor->ActorHasTag(FName(TEXT("Angel_Character"))))
 		{
 			AAngelCharacter* pt_AngelChar = Cast<AAngelCharacter>(OtherActor);
-			if (pt_AngelChar == nullptr)print("null");
-
-			pt_AngelChar->Status_HP -= 5;
+			if (pt_AngelChar == nullptr) print("null");
+		
+			if (pt_AngelChar->CurrentHp > 0.0f) // 서버에서 총알 맞추는 작업중*********
+			{
+				// HP 감소
+				pt_AngelChar->CurrentHp -= 10.0f;
+				pt_AngelChar->Hit = true;
+			}
+			else print("Other Actor HP = 0");
+		
+			// SP 증가
+			if (DevilChar->CurrentSP < 100.0f) DevilChar->CurrentSP += 2.0f;
+			else print("Other Actor SP = 100");
+		
+			printf("HP : %.2f", pt_AngelChar->CurrentHp);
+			printf("SP : %.2f", DevilChar->CurrentSP);
 		}
-
-		//printf("Hit Actor : %s", *Hit.GetActor()->GetName());
-		//printf("Hit Bone : %s", *Hit.BoneName.ToString());
-		//printf("Point : %s", *Hit.ImpactPoint.ToString());
-		//printf("Normal : %s", *Hit.ImpactNormal.ToString());
+		else print("Didn't Hit Character");
 	}
-	else print("No Hit Devil Bullet");
+	else if (OtherActor == DevilChar) print("Hit Self");
+	else print("No Hit Human Bullet");
+
+	//printf("Hit Actor : %s", *Hit.GetActor()->GetName());
+	//printf("Hit Bone : %s", *Hit.BoneName.ToString());
+	//printf("Point : %s", *Hit.ImpactPoint.ToString());
+	//printf("Normal : %s", *Hit.ImpactNormal.ToString());
+
+	Destroy();
 }

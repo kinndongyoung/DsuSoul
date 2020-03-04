@@ -119,11 +119,11 @@
 /I "D:\Windows Kits\10\include\10.0.16299.0\um"
 /I "D:\Windows Kits\10\include\10.0.16299.0\winrt"
 /D_HAS_EXCEPTIONS=0
-/I D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine
-/Yc"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h"
-/Fp"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h.pch"
-"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.cpp"
-/Fo"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h.obj"
+/I D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine
+/Yc"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h"
+/Fp"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h.pch"
+"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.cpp"
+/Fo"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h.obj"
 /TP
 /GR-
 /W4

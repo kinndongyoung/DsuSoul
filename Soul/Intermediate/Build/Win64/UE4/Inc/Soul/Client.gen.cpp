@@ -40,7 +40,9 @@ void EmptyLinkFunctionForGeneratedCodeClient() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AClient_AccessServer_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "//?\xd1\xbf? ?\xc2\xbe\xd2\xb4\xd9\xb0? ?????? ??\xc5\xb6\n" },
 		{ "ModuleRelativePath", "Client.h" },
+		{ "ToolTip", "?\xd1\xbf? ?\xc2\xbe\xd2\xb4\xd9\xb0? ?????? ??\xc5\xb6" },
 	};
 #endif
 	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AClient_AccessServer_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AClient, nullptr, "AccessServer", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AClient_AccessServer_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_AClient_AccessServer_Statics::Function_MetaDataParams)) };
@@ -192,7 +194,7 @@ void EmptyLinkFunctionForGeneratedCodeClient() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_Soul,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AClient_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AClient_AccessServer, "AccessServer" }, // 4106349950
+		{ &Z_Construct_UFunction_AClient_AccessServer, "AccessServer" }, // 2160820343
 		{ &Z_Construct_UFunction_AClient_Server_SendString, "Server_SendString" }, // 2610113987
 		{ &Z_Construct_UFunction_AClient_StartUDPSender, "StartUDPSender" }, // 2821901536
 	};
@@ -243,7 +245,7 @@ void EmptyLinkFunctionForGeneratedCodeClient() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AClient, 3312756813);
+	IMPLEMENT_CLASS(AClient, 2141858396);
 	template<> SOUL_API UClass* StaticClass<AClient>()
 	{
 		return AClient::StaticClass();

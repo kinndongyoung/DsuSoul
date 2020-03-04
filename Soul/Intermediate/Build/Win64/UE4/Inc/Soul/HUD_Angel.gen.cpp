@@ -15,7 +15,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Angel() {}
 // Cross Module References
 	SOUL_API UClass* Z_Construct_UClass_AHUD_Angel_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_AHUD_Angel();
-	ENGINE_API UClass* Z_Construct_UClass_AHUD();
+	SOUL_API UClass* Z_Construct_UClass_AHUD_Parent();
 	UPackage* Z_Construct_UPackage__Script_Soul();
 	UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -46,7 +46,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Angel() {}
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_AHUD_Angel_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_AHUD,
+		(UObject* (*)())Z_Construct_UClass_AHUD_Parent,
 		(UObject* (*)())Z_Construct_UPackage__Script_Soul,
 	};
 #if WITH_METADATA
@@ -68,7 +68,9 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Angel() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHUD_Angel_Statics::NewProp_WidgetClass_InstallBar_MetaData[] = {
 		{ "Category", "Angel_UI" },
+		{ "Comment", "// ??\xc4\xa1 ??\n" },
 		{ "ModuleRelativePath", "HUD_Angel.h" },
+		{ "ToolTip", "??\xc4\xa1 ??" },
 	};
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AHUD_Angel_Statics::NewProp_WidgetClass_InstallBar = { "WidgetClass_InstallBar", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHUD_Angel, WidgetClass_InstallBar), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AHUD_Angel_Statics::NewProp_WidgetClass_InstallBar_MetaData, ARRAY_COUNT(Z_Construct_UClass_AHUD_Angel_Statics::NewProp_WidgetClass_InstallBar_MetaData)) };
@@ -103,7 +105,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Angel() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHUD_Angel, 2107849371);
+	IMPLEMENT_CLASS(AHUD_Angel, 3952321053);
 	template<> SOUL_API UClass* StaticClass<AHUD_Angel>()
 	{
 		return AHUD_Angel::StaticClass();

@@ -20,7 +20,7 @@ private: \
 	static void StaticRegisterNativesAHUD_Angel(); \
 	friend struct Z_Construct_UClass_AHUD_Angel_Statics; \
 public: \
-	DECLARE_CLASS(AHUD_Angel, AHUD, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHUD_Angel, AHUD_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHUD_Angel)
 
 
@@ -29,7 +29,7 @@ private: \
 	static void StaticRegisterNativesAHUD_Angel(); \
 	friend struct Z_Construct_UClass_AHUD_Angel_Statics; \
 public: \
-	DECLARE_CLASS(AHUD_Angel, AHUD, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHUD_Angel, AHUD_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHUD_Angel)
 
 

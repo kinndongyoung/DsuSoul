@@ -268,9 +268,43 @@
 /I ..\Intermediate\Build\Win64\UE4\Inc\AnimationCore
 /I Runtime\AnimationCore\Public
 /I Runtime\AnimationCore
-/I D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4\Inc\Soul
-/I D:\LSH\Unreal\Soul\Soul\Source
-/I D:\LSH\Unreal\Soul\Soul\Source\Soul
+/I ..\Intermediate\Build\Win64\UE4\Inc\AIModule
+/I Runtime\NavigationSystem\Public
+/I Runtime\AIModule\Public
+/I Runtime\AIModule\Classes
+/I Runtime\AIModule
+/I ..\Intermediate\Build\Win64\UE4\Inc\GameplayTasks
+/I Runtime\GameplayTasks\Classes
+/I Runtime\GameplayTasks\Public
+/I Runtime\GameplayTasks
+/I ..\Intermediate\Build\Win64\UE4\Inc\NavigationSystem
+/I Runtime\NavigationSystem
+/I Runtime\NavigationSystem\Public\NavAreas
+/I Runtime\NavigationSystem\Public\NavFilters
+/I Runtime\NavigationSystem\Public\NavGraph
+/I Runtime\NavigationSystem\Public\NavMesh
+/I ..\Intermediate\Build\Win64\UE4\Inc\GeometryCollectionEngine
+/I Runtime\Experimental\GeometryCollectionEngine\Public
+/I Runtime\Experimental\GeometryCollectionEngine
+/I Runtime\Experimental\GeometryCollectionEngine\Public\GeometryCollection
+/I ..\Intermediate\Build\Win64\UE4\Inc\FieldSystemEngine
+/I Runtime\Experimental\FieldSystem\Source\FieldSystemEngine\Public
+/I Runtime\Experimental\FieldSystem\Source\FieldSystemEngine
+/I Runtime\Experimental\FieldSystem\Source\FieldSystemEngine\Public\Field
+/I ..\Intermediate\Build\Win64\UE4\Inc\ChaosSolverEngine
+/I Runtime\Experimental\ChaosSolverEngine\Public
+/I Runtime\Experimental\ChaosSolverEngine
+/I Runtime\Experimental\ChaosSolverEngine\Public\Chaos
+/I Runtime\Experimental\FieldSystem\Source\FieldSystemSimulationCore\Public
+/I Runtime\Experimental\FieldSystem\Source\FieldSystemSimulationCore
+/I Runtime\Experimental\FieldSystem\Source\FieldSystemSimulationCore\Public\Field
+/I ..\Plugins\Runtime\ApexDestruction\Intermediate\Build\Win64\UE4\Inc\ApexDestruction
+/I ..\Plugins\Runtime\ApexDestruction\Source
+/I ..\Plugins\Runtime\ApexDestruction\Source\ApexDestruction\Public
+/I ..\Plugins\Runtime\ApexDestruction\Source\ApexDestruction
+/I D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4\Inc\Soul
+/I D:\LSH\Unreal\backup\DsuSoul\Soul\Source
+/I D:\LSH\Unreal\backup\DsuSoul\Soul\Source\Soul
 /I ..\Intermediate\Build\Win64\UE4\Inc\UMG
 /I Runtime\UMG\Public
 /I Runtime\UMG
@@ -310,6 +344,12 @@
 /I ..\Intermediate\Build\Win64\UE4\Inc\PropertyPath
 /I Runtime\PropertyPath\Public
 /I Runtime\PropertyPath
+/I Runtime\Networking\Public
+/I Runtime\Networking
+/I Runtime\Networking\Public\Common
+/I Runtime\Networking\Public\Interfaces
+/I Runtime\Networking\Public\Interfaces\IPv4
+/I Runtime\Networking\Public\Interfaces\Steam
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf
@@ -321,6 +361,18 @@
 /I ThirdParty\PhysX3\PhysX_3.4\Include\common
 /I ThirdParty\PhysX3\PhysX_3.4\Include\extensions
 /I ThirdParty\PhysX3\PhysX_3.4\Include\geometry
+/I ThirdParty\PhysX3\APEX_1.4\include
+/I ThirdParty\PhysX3\APEX_1.4\include\clothing
+/I ThirdParty\PhysX3\APEX_1.4\include\nvparameterized
+/I ThirdParty\PhysX3\APEX_1.4\include\legacy
+/I ThirdParty\PhysX3\APEX_1.4\include\PhysX3
+/I ThirdParty\PhysX3\APEX_1.4\common\include
+/I ThirdParty\PhysX3\APEX_1.4\common\include\autogen
+/I ThirdParty\PhysX3\APEX_1.4\framework\include
+/I ThirdParty\PhysX3\APEX_1.4\framework\include\autogen
+/I ThirdParty\PhysX3\APEX_1.4\shared\general\RenderDebug\public
+/I ThirdParty\PhysX3\APEX_1.4\shared\general\PairFilter\include
+/I ThirdParty\PhysX3\APEX_1.4\shared\internal\include
 /I D:\VisualStudio\VC\Tools\MSVC\14.16.27023\INCLUDE
 /I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"
 /I "D:\Windows Kits\10\include\10.0.16299.0\ucrt"
@@ -329,12 +381,12 @@
 /I "D:\Windows Kits\10\include\10.0.16299.0\winrt"
 /D_HAS_EXCEPTIONS=0
 /D_HAS_EXCEPTIONS=0
-/FI"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h"
-/Yu"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h"
-/Fp"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h.pch"
-"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4\Inc\Soul\Soul_GameMode.gen.cpp"
-/FI"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4\DebugGame\Soul\Definitions.Soul.h"
-/Fo"D:\LSH\Unreal\Soul\Soul\Intermediate\Build\Win64\UE4\DebugGame\Soul\Soul_GameMode.gen.cpp.obj"
+/FI"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h"
+/Yu"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h"
+/Fp"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\Soul\DebugGame\Engine\SharedPCH.Engine.NonOptimized.h.pch"
+"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4\Inc\Soul\Soul_GameMode.gen.cpp"
+/FI"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4\DebugGame\Soul\Definitions.Soul.h"
+/Fo"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4\DebugGame\Soul\Soul_GameMode.gen.cpp.obj"
 /TP
 /GR-
 /W4

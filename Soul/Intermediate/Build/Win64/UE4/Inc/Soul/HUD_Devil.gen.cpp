@@ -15,7 +15,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Devil() {}
 // Cross Module References
 	SOUL_API UClass* Z_Construct_UClass_AHUD_Devil_NoRegister();
 	SOUL_API UClass* Z_Construct_UClass_AHUD_Devil();
-	ENGINE_API UClass* Z_Construct_UClass_AHUD();
+	SOUL_API UClass* Z_Construct_UClass_AHUD_Parent();
 	UPackage* Z_Construct_UPackage__Script_Soul();
 // End Cross Module References
 	void AHUD_Devil::StaticRegisterNativesAHUD_Devil()
@@ -35,12 +35,11 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Devil() {}
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_AHUD_Devil_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_AHUD,
+		(UObject* (*)())Z_Construct_UClass_AHUD_Parent,
 		(UObject* (*)())Z_Construct_UPackage__Script_Soul,
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHUD_Devil_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "HideCategories", "Rendering Actor Input Replication" },
 		{ "IncludePath", "HUD_Devil.h" },
 		{ "ModuleRelativePath", "HUD_Devil.h" },
@@ -74,7 +73,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Devil() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHUD_Devil, 619879585);
+	IMPLEMENT_CLASS(AHUD_Devil, 1257916079);
 	template<> SOUL_API UClass* StaticClass<AHUD_Devil>()
 	{
 		return AHUD_Devil::StaticClass();

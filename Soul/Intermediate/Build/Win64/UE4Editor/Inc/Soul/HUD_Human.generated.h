@@ -20,7 +20,7 @@ private: \
 	static void StaticRegisterNativesAHUD_Human(); \
 	friend struct Z_Construct_UClass_AHUD_Human_Statics; \
 public: \
-	DECLARE_CLASS(AHUD_Human, AHUD, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHUD_Human, AHUD_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHUD_Human)
 
 
@@ -29,7 +29,7 @@ private: \
 	static void StaticRegisterNativesAHUD_Human(); \
 	friend struct Z_Construct_UClass_AHUD_Human_Statics; \
 public: \
-	DECLARE_CLASS(AHUD_Human, AHUD, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
+	DECLARE_CLASS(AHUD_Human, AHUD_Parent, COMPILED_IN_FLAGS(0 | CLASS_Transient | CLASS_Config), CASTCLASS_None, TEXT("/Script/Soul"), NO_API) \
 	DECLARE_SERIALIZER(AHUD_Human)
 
 

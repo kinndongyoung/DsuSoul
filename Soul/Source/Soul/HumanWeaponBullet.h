@@ -1,36 +1,31 @@
 #pragma once
 
 #include "Soul.h"
-#include "GameFramework/Actor.h"
+#include "Bullet_Parent.h"
 #include "HumanWeaponBullet.generated.h"
 
 UCLASS()
-class SOUL_API AHumanWeaponBullet : public AActor
+class SOUL_API AHumanWeaponBullet : public ABullet_Parent
 {
 	GENERATED_BODY()
-	
+
 public:
-	// 구체 콜리전 컴포넌트
-	UPROPERTY(VisibleDefaultsOnly, Category = Bullet)
-	USphereComponent* CollisionComponent;
-
-	// 프로젝타일 무브먼트 컴포넌트
-	UPROPERTY(VisibleAnywhere, Category = Movement)
-	class UProjectileMovementComponent* BulletMoveComponent;
-
-	UPROPERTY(VisibleAnywhere, Category = FireActor)
-	class AHumanCharacter *HumanChar;
+	UPROPERTY(VisibleAnywhere, Category = HumanActor)
+	class AHumanCharacter* HumanChar;
 
 public:
 	AHumanWeaponBullet();
+
+protected:
+	void BeginPlay();
+
+public:
+	// 총알을 발사하는 액터
+	void FireActor(ACharacter_Parent* pt_FireChar);
 
 	// 발사체의 속도를 발사 방향으로 초기화시킴
 	void FireInDirection(const FVector& ShootDirection);
 
 	// 총알이 무언가에 맞으면 호출되는 함수
-	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse ,const FHitResult& Hit);
-	
-	UFUNCTION()
-	void FireActor(class AHumanCharacter* pt_FireChar) { HumanChar = pt_FireChar; }
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };

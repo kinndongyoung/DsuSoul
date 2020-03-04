@@ -5,22 +5,37 @@
 AHUD_Devil::AHUD_Devil()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	// UI Create & Initialize	
+	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_IMG(TEXT("/Game/Project_Soul/UI/Devil_Img.Devil_Img_C"));
+	if (UI_HUD_IMG.Succeeded()) WidgetClass_Img = UI_HUD_IMG.Class;
+
 	HumanSoul = 0;
 	CollectCount = 0;
 	ActivateCount = 0;
-
-	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_INSTALL(TEXT("/Game/Project_Soul/UI/Devil_Hp_Sp.Devil_Hp_Sp_C"));
-	if (UI_HUD_INSTALL.Succeeded())
-		WidgetClass_Bar = UI_HUD_INSTALL.Class;
 }
 void AHUD_Devil::BeginPlay()
 {
+	AHUD_Parent::BeginPlay();
 	Super::BeginPlay();
-	CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_Bar);
+
+	ImgWidget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_Img);
 	CurrentWidget->AddToViewport();
 }
+
+// HP, SP, 남은 총알, 조준점
+void AHUD_Devil::HUD_HPSP()
+{
+	AHUD_Parent::HUD_HPSP();
+}
+
+//리스폰
+void AHUD_Devil::HUD_Respawn()
+{
+	AHUD_Parent::HUD_Respawn();
+}
+
+// 인간 영혼 수집 UI
 void AHUD_Devil::HUD_Update()
 {
 	if (CollectCount == 1)

@@ -1,6 +1,6 @@
 #include "DevilCharacter.h"
-#include "DevilAnimInstance.h"
 #include "HUD_Devil.h"
+#include "DevilAnimInstance.h"
 #include "DevilWeaponBullet.h"
 
 // 생성자에서 User 초기화
@@ -11,244 +11,229 @@ ADevilCharacter::ADevilCharacter()
 	// Add Tag
 	Tags.AddUnique(TEXT("Devil_Character"));
 
-	// Camera Create
-	UserCameraArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CAMERA_ARM"));
-	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CAMERA"));
-
-	// Camera Initialize
-	UserCameraArm->SetupAttachment(GetCapsuleComponent());
+	// Camera Attachment
+	UserCameraArm->SetupAttachment(GetMesh());
 	Camera->SetupAttachment(UserCameraArm);
 
+	// Set Mesh, Camera
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
-	UserCameraArm->TargetArmLength = 200.0f;
-	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 40.0f), FRotator(-30.0f, 0.0f, 0.0f));
-	
+	UserCameraArm->TargetArmLength = 300.0f;
+	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+
+	// Control
+	SetControlMode(EControlMode::TPS);
+
 	// Skeletal Mesh Initialize
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/ParagonCountess/Characters/Heroes/Countess/Meshes/SM_Countess.SM_Countess"));
-
-	if (SK_SOUL_USER.Succeeded())
-		GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
+	if (SK_SOUL_USER.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
 	
 	// Anim Instance Initialize
 	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_DEVILCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_DevilChar.BP_DevilChar_C"));
-
-	if (BP_ANIM_DEVILCHAR.Succeeded())
-		GetMesh()->SetAnimInstanceClass(BP_ANIM_DEVILCHAR.Class);
+	if (BP_ANIM_DEVILCHAR.Succeeded()) GetMesh()->SetAnimInstanceClass(BP_ANIM_DEVILCHAR.Class);
 	
+	// Bullet BP Initialize
 	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_DevilWeaponBullet.BP_DevilWeaponBullet"));
-
-	if (BP_SOUL_WEAPON_BULLET.Succeeded())
-		WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
-
-	// Value Initialize
-	SetControlMode(EControlMode::TPS);
-
-	ArmLengthSpeed = 3.0f;
-	ArmRotationSpeed = 10.0f;
-	ammo = 30;
-	// Bullet Initialize
-	isFiring = false;
-	MuzzleOffset = FVector(100.0f, 0.0f, 0.0f);
-
-
-	// Jump Height
-	GetCharacterMovement()->JumpZVelocity = 500.0f;
-
-	//
-	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
-	//악마 체력
-	Initial_HP = 100.0f;
-	CurrentHp = Initial_HP;
-	//악마 SP
-	Initial_SP = 0.0f;
-	CurrentSP = Initial_SP;
-	//Respawn
-	DeathTime = 600.0f;
-	RespawnTime = 0.0f;
+	if (BP_SOUL_WEAPON_BULLET.Succeeded()) ACharacter_Parent::WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
 }
 
 void ADevilCharacter::BeginPlay()
 {
+	ACharacter_Parent::BeginPlay();
 	Super::BeginPlay();
-	HUD_Devil = Cast<AHUD_Devil>(GetWorld()->GetFirstPlayerController()->GetHUD());
 
-	// Controll Setting
-	bUseControllerRotationYaw = true;
+	// Set Property
+	GetMesh()->CanCharacterStepUp(false);
+	GetCapsuleComponent()->CanCharacterStepUp(false);
+	GetMesh()->BodyInstance.SetCollisionProfileName(TEXT("DevilChar"));
+	GetCapsuleComponent()->BodyInstance.SetCollisionProfileName(TEXT("DevilChar"));
+
+	// HUD Setting
+	HUDDevil = Cast<AHUD_Devil>(GetWorld()->GetFirstPlayerController()->GetHUD());
+	HUDParent = HUDDevil;
+
+	// Anim Setting
+	AnimDevil = Cast<UDevilAnimInstance>(GetMesh()->GetAnimInstance());
+	AnimParent = AnimDevil;
+
+	// Install Value Init
+	MuzzleOffset = FVector(50.0f, 5.0f, 75.0f);
+
+	//vec.X = 5500;
+	//vec.Y = 3000;
+	//vec.Z = 300;
+	//GetTransform().TransformFVector4(vec);
+	//GetActorTransform().SetTranslation(vec);
+	//SetActorLocation(vec);
 }
 
 void ADevilCharacter::Tick(float DeltaTime)
 {
+	ACharacter_Parent::Tick(DeltaTime);
 	Super::Tick(DeltaTime);
-	HUD_Devil->HUD_Update();
+
+	// HUD Update
+	HUDDevil->HUD_Update();
+
+	// 카메라 관련
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
-	
+
+	// HP 및 SP 관련
+	UpdateCurrentHP();
+	UpdateCurrentSP();
+
+	if (CurrentHp <= 0) Death();
+
 	FTransform tr = GetTransform();
-	if (CurrentHp <= 0)
-		Death();
-	if (tr.GetTranslation().Z <= -110)
-		CurrentHp -= 3;
-	printf("%.2f", CurrentHp);
+	if (tr.GetTranslation().Z <= -110) CurrentHp -= 3;
 }
 
 void ADevilCharacter::PostInitializeComponents()
 {
+	ACharacter_Parent::PostInitializeComponents();
 	Super::PostInitializeComponents();
-
-	DevilAnim = Cast<UDevilAnimInstance>(GetMesh()->GetAnimInstance());
 }
 
 void ADevilCharacter::PossessedBy(AController* NewController)
 {
+	ACharacter_Parent::PossessedBy(NewController);
 	Super::PossessedBy(NewController);
 }
 
 // Input Key
 void ADevilCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
+	ACharacter_Parent::SetupPlayerInputComponent(PlayerInputComponent);
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADevilCharacter::Jump);
-	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ADevilCharacter::StartFire);
-	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &ADevilCharacter::StopFire);
-
-
-	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &ADevilCharacter::Sprint);
-	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &ADevilCharacter::Stop_Sprint);
-
-	PlayerInputComponent->BindAxis(TEXT("ForwardBack"), this, &ADevilCharacter::UpDown);
-	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &ADevilCharacter::LeftRight);
-	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ADevilCharacter::Turn);
-	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &ADevilCharacter::LookUp);
+	// 인칭 전환
+	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &ADevilCharacter::Zoom);
 }
 
 // Set Camera Arm
 void ADevilCharacter::SetControlMode(EControlMode NewControlMode)
 {
-	ArmLengthTo = 200.0f;
-	UserCameraArm->bUsePawnControlRotation = true;
-	UserCameraArm->bInheritPitch = true;
-	UserCameraArm->bInheritRoll = true;
-	UserCameraArm->bInheritYaw = true;
-	UserCameraArm->bDoCollisionTest = true;
-	bUseControllerRotationYaw = true;
-	//GetCharacterMovement()->bOrientRotationToMovement = true;
-	//GetCharacterMovement()->bUseControllerDesiredRotation = false;
-	//GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f);
+	CurrentControlMode = NewControlMode;
+
+	switch (CurrentControlMode)
+	{
+		case EControlMode::TPS:
+		{
+			ArmLengthTo = 300.0f;
+			Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -50.0f), FRotator(-15.0f, 0.0f, 0.0f));
+			UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+		}break;
+		case EControlMode::FPS:
+		{
+			ArmLengthTo = 0.0f;
+			Camera->SetRelativeLocationAndRotation(FVector(5.0f, 5.0f, 78.0f), FRotator(0.0f, 0.0f, 0.0f));
+			UserCameraArm->SetRelativeLocation(FVector(0.0f, 0.0f, 88.0f));
+		}break;
+	}
+	ACharacter_Parent::SetControlMode(NewControlMode);
 }
 
 // Move Character
-void ADevilCharacter::UpDown(float NewAxisValue)
+void ADevilCharacter::ForwardBack(float NewAxisValue)
 {
-	AddMovementInput(GetActorForwardVector(), NewAxisValue);
+	ACharacter_Parent::ForwardBack(NewAxisValue);
 }
 
 void ADevilCharacter::LeftRight(float NewAxisValue)
 {
-	AddMovementInput(GetActorRightVector(), NewAxisValue);
+	ACharacter_Parent::LeftRight(NewAxisValue);
 }
 
 // Rotate Character
 void ADevilCharacter::Turn(float NewAxisValue)
 {
-	AddControllerYawInput(NewAxisValue);
+	ACharacter_Parent::Turn(NewAxisValue);
 }
 
 void ADevilCharacter::LookUp(float NewAxisValue)
 {
-	AddControllerPitchInput(NewAxisValue);
+	ACharacter_Parent::LookUp(NewAxisValue);
 }
 
+// Fire
+void ADevilCharacter::Zoom()
+{
+	if (Is_Zoom == false)
+	{
+		HUDDevil->CrossHair_State = true;
+		SetControlMode(EControlMode::FPS);
+	}
+	else if (Is_Zoom == true)
+	{
+		HUDDevil->CrossHair_State = false;
+		SetControlMode(EControlMode::TPS);
+	}
+
+	ACharacter_Parent::Zoom();
+	HUDDevil->HUD_HPSP();
+}
 void ADevilCharacter::StartFire()
 {
-	if (ammo >= 0)
-	{
-		isFiring = true;
-		DevilAnim->IsFire = isFiring;
-		Fire();
-	}
+	ACharacter_Parent::StartFire();
 }
 
 void ADevilCharacter::Fire()
 {
-	if (isFiring)
-	{
-		// 프로젝타일 발사를 시도합니다.
-		if (WeaponBulletClass)
-		{
-			// MuzzleOffset 을 카메라 스페이스에서 월드 스페이스로 변환합니다.
-			//FVector MuzzleLocation = UserWeapon->ActorToWorld().GetLocation() + FVector(30.0f, 100.0f, 0.0f);
-			//FRotator MuzzleRotation = GetMesh()->GetComponentRotation() + FRotator(0.0f, 90.0f, 0.0f);
-
-			FVector CameraLocation;
-			FRotator CameraRotation;
-			GetActorEyesViewPoint(CameraLocation, CameraRotation);
-
-			FVector MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
-			FRotator MuzzleRotation = CameraRotation;
-
-			// 조준을 약간 윗쪽으로 올려줍니다.
-			MuzzleRotation.Pitch += 5.0f;
-			UWorld* World = GetWorld();
-
-			if (World)
-			{
-				FActorSpawnParameters SpawnParams;
-				SpawnParams.Owner = this;
-				SpawnParams.Instigator = Instigator;
-
-				// 총구 위치에 발사체를 스폰시킵니다.
-				ADevilWeaponBullet* Bullet = World->SpawnActor<ADevilWeaponBullet>(WeaponBulletClass, MuzzleLocation, MuzzleRotation, SpawnParams);
-				if (Bullet)
-				{
-					// 발사 방향을 알아냅니다.
-					FVector LaunchDirection = MuzzleRotation.Vector();
-					Bullet->FireInDirection(LaunchDirection);
-				}
-			}
-		}
-		ammo--;
-		// 연사를 위한 StartFire 함수 생성
-		if (ammo >= 0)
-			GetWorld()->GetTimerManager().SetTimer(timer, this, &ADevilCharacter::Fire, 0.1f, false);
-		else StopFire();
-	}
+	ACharacter_Parent::Fire();
 }
 
 void ADevilCharacter::StopFire()
 {
-	isFiring = false;
-	DevilAnim->IsFire = isFiring;
+	ACharacter_Parent::StopFire();
 }
-void ADevilCharacter::Sprint()
+
+// Active
+void ADevilCharacter::Walk()
 {
-	print("Input Shift");
-	Is_Spirnt = true;
-	DevilAnim->Is_Walk = Is_Spirnt;
-	GetCharacterMovement()->MaxWalkSpeed = 1500.0f;
+	ACharacter_Parent::Walk();
 }
-void ADevilCharacter::Stop_Sprint()
+
+void ADevilCharacter::Stop_Walk()
 {
-	Is_Spirnt = false;
-	DevilAnim->Is_Walk = Is_Spirnt;
-	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
+	ACharacter_Parent::Stop_Walk();
 }
+
+void ADevilCharacter::ReloadFunc()
+{
+	ACharacter_Parent::ReloadFunc();
+}
+
+void ADevilCharacter::Stop_ReloadFunc()
+{
+	ACharacter_Parent::Stop_ReloadFunc();
+}
+
+// Death
 void ADevilCharacter::Death()
 {
-	RespawnTime += 2.0f;
-	DevilAnim->Is_Death = true;
-	GetCharacterMovement()->JumpZVelocity = 0.0f;
+	ACharacter_Parent::Death();
+
+	HUDDevil->Death_bar = true;
+	HUDDevil->HUD_Respawn();
+
 	if (DeathTime <= RespawnTime)
-		Respawn();
-	printf("%.2f", RespawnTime);
+		ACharacter_Parent::Respawn();
 }
+
 void ADevilCharacter::Respawn()
 {
-	ammo = 30;
-	CurrentHp = 100.0f;
-	CurrentSP = 0.0f;
-	DevilAnim->Is_Death = false;
-	RespawnTime = 0.0f;
-	//SetActorLocation(vec);
+	ACharacter_Parent::Respawn();
 
-	//GetCharacterMovement()->JumpZVelocity = 400.0f;
+	HUDDevil->Death_bar = false;
+	RespawnTime = 0.0f;
+}
+
+// Muzzle
+FVector ADevilCharacter::SetMuzzlePos()
+{
+	return AnimDevil->Translation_Value;
+}
+
+FRotator ADevilCharacter::SetMuzzleRot()
+{
+	return AnimDevil->Rotate_Value * 2.0f;
 }
