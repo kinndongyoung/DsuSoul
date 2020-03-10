@@ -8,6 +8,7 @@ UCLASS()
 class SOUL_API AHUD_Parent : public AHUD
 {
 	GENERATED_BODY()
+
 public:
 	AHUD_Parent();
 
@@ -19,6 +20,7 @@ public:
 	virtual void HUD_Respawn();
 
 public:
+	bool HUD_State;
 	bool CrossHair_State;
 	bool Death_bar;
 
@@ -36,12 +38,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = Image)
 	class UUserWidget* ImgWidget;
 
-	// HP, SP, 남은 총알
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HPSP", Meta = (BluePrintProtected = "true"))
-	TSubclassOf<class UUserWidget> WidgetClass_Bar;
+	// HP, SP, 남은 총알 - FPS
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FPS", Meta = (BluePrintProtected = "true"))
+	TSubclassOf<class UUserWidget> WidgetClass_Bar_FPS;
 
-	UPROPERTY(EditAnywhere, Category = HPSP)
-	class UUserWidget* CurrentWidget;
+	UPROPERTY(EditAnywhere, Category = FPS)
+	class UUserWidget* CurrentWidget_FPS;
 
 	//리스폰 바
 	UPROPERTY(EditAnywhere, Category = Respawn)

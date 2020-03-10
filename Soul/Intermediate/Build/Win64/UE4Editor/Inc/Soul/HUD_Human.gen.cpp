@@ -105,7 +105,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Human() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHUD_Human, 1775201090);
+	IMPLEMENT_CLASS(AHUD_Human, 4160537320);
 	template<> SOUL_API UClass* StaticClass<AHUD_Human>()
 	{
 		return AHUD_Human::StaticClass();

@@ -3,6 +3,7 @@
 #include "HumanAnimInstance.h"
 #include "HumanWeaponBullet.h"
 #include "Human_PaustSoulCase.h"
+#include "Components/WidgetComponent.h"
 
 // 생성자에서 User 초기화
 AHumanCharacter::AHumanCharacter()
@@ -15,6 +16,7 @@ AHumanCharacter::AHumanCharacter()
 	// Camera Attachment
 	UserCameraArm->SetupAttachment(GetMesh());
 	Camera->SetupAttachment(UserCameraArm);
+	WidgetClass_Bar_TPS->SetupAttachment(GetMesh());
 
 	// Set Mesh, Camera
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
@@ -51,7 +53,13 @@ void AHumanCharacter::BeginPlay()
 	// HUD Setting
 	HUDHuman = Cast<AHUD_Human>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDHuman;
-	
+
+	// TPS Setting
+	WidgetClass_Bar_TPS->SetWidgetSpace(EWidgetSpace::World);
+	WidgetClass_Bar_TPS->SetPivot(FVector2D(0.0f, 2.0f));
+	WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
+	WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, 10.0f, -10.0f), FRotator(0.0f, -90.0f, 0.0f));
+
 	// Anim Setting
 	AnimHuman = Cast<UHumanAnimInstance>(GetMesh()->GetAnimInstance());
 	AnimParent = AnimHuman;
@@ -169,11 +177,13 @@ void AHumanCharacter::Zoom()
 	{
 		HUDHuman->CrossHair_State = true;
 		SetControlMode(EControlMode::FPS);
+		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -1000.0f));
 	}		
 	else if (Is_Zoom == true)
 	{
 		HUDHuman->CrossHair_State = false;
 		SetControlMode(EControlMode::TPS);
+		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -10.0f));
 	}		
 	
 	ACharacter_Parent::Zoom();

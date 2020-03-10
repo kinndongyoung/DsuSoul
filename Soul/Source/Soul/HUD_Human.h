@@ -25,11 +25,11 @@ public:
 
 protected:
 	// 상속 함수
-	void BeginPlay();
+	virtual void BeginPlay() override;
 
 public:
-	void HUD_HPSP();
-	void HUD_Respawn();
+	virtual void HUD_HPSP() override;
+	virtual void HUD_Respawn() override;
 
 public:
 	// 비 상속 함수

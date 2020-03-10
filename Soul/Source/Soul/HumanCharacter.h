@@ -37,7 +37,7 @@ public:
 	// HUD 클래스
 	UPROPERTY(VisibleAnywhere, Category = HUD)
 	class AHUD_Human* HUDHuman;
-
+	
 	// 애니메이션 클래스
 	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
 	class UHumanAnimInstance* AnimHuman;

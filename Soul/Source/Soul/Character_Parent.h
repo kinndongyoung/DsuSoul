@@ -57,7 +57,11 @@ public:
 	float DeathTime;
 	float RespawnTime;
 
-	// hp,sp - 변수
+	// HUD 변수
+	float HUD_Rot;
+	float HUD_Pos_Y;
+
+	// HP, SP - 변수
 	float Initial_HP;
 	float CurrentHp;
 	float Initial_SP;
@@ -82,7 +86,11 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
 	
-	// HUD 클래스
+	// HUD 클래스 - TPS
+	UPROPERTY(VisibleAnywhere, Category = TPS)
+	class UWidgetComponent* WidgetClass_Bar_TPS;
+
+	// HUD 클래스 - FPS
 	class AHUD_Parent* HUDParent;
 
 	// 애니메이션 클래스

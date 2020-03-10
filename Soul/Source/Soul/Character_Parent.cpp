@@ -2,6 +2,7 @@
 #include "AnimInstance_Parent.h"
 #include "Bullet_Parent.h"
 #include "HUD_Parent.h"
+#include "Components/WidgetComponent.h"
 
 ACharacter_Parent::ACharacter_Parent()
 {
@@ -10,6 +11,11 @@ ACharacter_Parent::ACharacter_Parent()
 	// Camera Create
 	UserCameraArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CAMERA_ARM"));
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CAMERA"));
+	WidgetClass_Bar_TPS = CreateDefaultSubobject<UWidgetComponent>(TEXT("WIDGET"));
+
+	// TPS HUD 
+	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_TPS(TEXT("/Game/Project_Soul/UI/TPS_HP_SP.TPS_HP_SP_C"));
+	if (UI_HUD_TPS.Succeeded()) WidgetClass_Bar_TPS->SetWidgetClass(UI_HUD_TPS.Class);
 }
 
 void ACharacter_Parent::BeginPlay()
@@ -29,6 +35,9 @@ void ACharacter_Parent::BeginPlay()
 	// Character Number
 	Number = 0;
 
+	// HUD º¯¼ö
+	HUD_Rot = 0.0f;
+	HUD_Pos_Y = 10.0f;
 	// HP
 	Initial_HP = 100.0f;
 	CurrentHp = Initial_HP;
@@ -144,16 +153,21 @@ void ACharacter_Parent::LookUp(float NewAxisValue)
 		{
 			AddControllerPitchInput(NewAxisValue);
 			AnimParent->Rotate_Value.Roll += NewAxisValue;
+			//WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, HUD_Pos_Y -= NewAxisValue, -10.0f), FRotator(HUD_Rot += NewAxisValue, -90.0f, 0.0f));
 		}
 		else if (-36.0f > AnimParent->Rotate_Value.Roll)
 		{
 			GetControlRotation().SetComponentForAxis(EAxis::Y, 90.0f);
 			AnimParent->Rotate_Value.Roll = -36.0f;
+			//HUD_Rot = -36.0f;
+			//HUD_Pos_Y = -26.0f;
 		}
 		else if (AnimParent->Rotate_Value.Roll > 36.0f)
 		{
 			GetControlRotation().SetComponentForAxis(EAxis::Y, 270.0f);
 			AnimParent->Rotate_Value.Roll = 36.0f;
+			//HUD_Rot = 36.0f;
+			//HUD_Pos_Y = 46.0f;
 		}
 	}
 }
@@ -164,12 +178,12 @@ void ACharacter_Parent::Zoom()
 	if (Is_Zoom == false)
 	{
 		Is_Zoom = true;
-		HUDParent->CrossHair_State = true;
+		HUDParent->HUD_State = false;
 	}
 	else if (Is_Zoom == true)
 	{
 		Is_Zoom = false;
-		HUDParent->CrossHair_State = false;
+		HUDParent->HUD_State = true;
 	}
 }
 

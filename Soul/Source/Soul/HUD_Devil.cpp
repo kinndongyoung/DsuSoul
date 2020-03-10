@@ -7,7 +7,7 @@ AHUD_Devil::AHUD_Devil()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	// UI Create & Initialize	
-	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_IMG(TEXT("/Game/Project_Soul/UI/Devil_Img.Devil_Img_C"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_IMG(TEXT("/Game/Project_Soul/UI/FPS_Devil_Img.FPS_Devil_Img_C"));
 	if (UI_HUD_IMG.Succeeded()) WidgetClass_Img = UI_HUD_IMG.Class;
 
 	HumanSoul = 0;
@@ -20,7 +20,6 @@ void AHUD_Devil::BeginPlay()
 	Super::BeginPlay();
 
 	ImgWidget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_Img);
-	CurrentWidget->AddToViewport();
 }
 
 // HP, SP, 남은 총알, 조준점

@@ -4,9 +4,9 @@
 AHUD_Human::AHUD_Human()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	// UI Create & Initialize	
-	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_IMG(TEXT("/Game/Project_Soul/UI/Human_Img.Human_Img_C"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_IMG(TEXT("/Game/Project_Soul/UI/FPS_Human_Img.FPS_Human_Img_C"));
 	if (UI_HUD_IMG.Succeeded()) WidgetClass_Img = UI_HUD_IMG.Class;
 	
 	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_COLLECT(TEXT("/Game/Project_Soul/UI/BP_HumanCollectBar.BP_HumanCollectBar_C"));
