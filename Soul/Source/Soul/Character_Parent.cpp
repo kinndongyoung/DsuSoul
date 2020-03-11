@@ -190,7 +190,6 @@ void ACharacter_Parent::Zoom()
 
 void ACharacter_Parent::StartFire()
 {
-	print("0");
 	if (ammo > 0)
 	{
 		isFiring = true;

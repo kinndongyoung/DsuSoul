@@ -10,7 +10,7 @@
 ASoul_GameMode::ASoul_GameMode()
 {
 	// 일단 캐릭터 및 직군 디폴트 값 HUMAN_TANKER 로 지정
-	e_SelectChar = ESelectCharacter::DEVIL_TANKER;
+	e_SelectChar = ESelectCharacter::HUMAN_TANKER;
 
 	// 월드셋팅 - Game Mode
 	// 종족 및 직군을 GameMode에 지정

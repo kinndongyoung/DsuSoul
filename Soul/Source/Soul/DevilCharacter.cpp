@@ -2,6 +2,7 @@
 #include "HUD_Devil.h"
 #include "DevilAnimInstance.h"
 #include "DevilWeaponBullet.h"
+#include "Components/WidgetComponent.h"
 
 // 생성자에서 User 초기화
 ADevilCharacter::ADevilCharacter()
@@ -14,6 +15,7 @@ ADevilCharacter::ADevilCharacter()
 	// Camera Attachment
 	UserCameraArm->SetupAttachment(GetMesh());
 	Camera->SetupAttachment(UserCameraArm);
+	WidgetClass_Bar_TPS->SetupAttachment(GetMesh());
 
 	// Set Mesh, Camera
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
@@ -50,6 +52,12 @@ void ADevilCharacter::BeginPlay()
 	// HUD Setting
 	HUDDevil = Cast<AHUD_Devil>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDDevil;
+
+	// TPS Setting
+	WidgetClass_Bar_TPS->SetWidgetSpace(EWidgetSpace::World);
+	WidgetClass_Bar_TPS->SetPivot(FVector2D(0.0f, 2.0f));
+	WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
+	WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, 10.0f, -10.0f), FRotator(0.0f, -90.0f, 0.0f));
 
 	// Anim Setting
 	AnimDevil = Cast<UDevilAnimInstance>(GetMesh()->GetAnimInstance());
@@ -161,11 +169,13 @@ void ADevilCharacter::Zoom()
 	{
 		HUDDevil->CrossHair_State = true;
 		SetControlMode(EControlMode::FPS);
+		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -1000.0f));
 	}
 	else if (Is_Zoom == true)
 	{
 		HUDDevil->CrossHair_State = false;
 		SetControlMode(EControlMode::TPS);
+		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -10.0f));
 	}
 
 	ACharacter_Parent::Zoom();
