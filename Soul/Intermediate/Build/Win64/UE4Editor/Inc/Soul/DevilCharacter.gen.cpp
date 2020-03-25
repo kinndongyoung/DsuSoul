@@ -549,11 +549,7 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 		}
 		return OuterClass;
 	}
-<<<<<<< HEAD
 	IMPLEMENT_CLASS(ADevilCharacter, 3494216299);
-=======
-	IMPLEMENT_CLASS(ADevilCharacter, 636782734);
->>>>>>> LSH
 	template<> SOUL_API UClass* StaticClass<ADevilCharacter>()
 	{
 		return ADevilCharacter::StaticClass();

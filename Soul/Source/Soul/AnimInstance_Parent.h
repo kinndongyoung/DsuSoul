@@ -37,7 +37,6 @@ public:
 	bool Is_Death;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-<<<<<<< HEAD
 	bool Is_Left_Walk;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
@@ -45,15 +44,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	bool Is_Back_Walk;
-=======
-	bool Is_Left;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-	bool Is_Right;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
-	bool Is_Back;
->>>>>>> LSH
 
 	// Bone Transform
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Transform, Meta = (AllowPrivateAccess = true))
