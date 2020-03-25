@@ -51,7 +51,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+<<<<<<< HEAD
     <ProjectGuid>{641A2684-4953-4336-BF56-1ADD49D3E205}</ProjectGuid>
+=======
+    <ProjectGuid>{4A799428-7134-4E77-B048-F29C2C0783D6}</ProjectGuid>
+>>>>>>> LSH
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>Soul</RootNamespace>
     <PlatformToolset>v141</PlatformToolset>

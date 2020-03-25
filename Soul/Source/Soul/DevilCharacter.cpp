@@ -166,6 +166,18 @@ void ADevilCharacter::CameraSwitch()
 				Camera->SetRelativeLocation(FVector(-150.0f, -100.0f, 80.0f));
 				WidgetClass_Bar_TPS->SetRelativeLocation(FVector(90.0f, 10.0f, 105.0f));
 			}break;
+			case ECameraMode::ZOOM_LEFT:
+			{
+				ArmLengthTo = 150.0f;
+				Camera->SetRelativeLocation(FVector(0.0f, 100.0f, 80.0f));
+				WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-45.0f, 10.0f, 100.0f));
+			}break;
+			case ECameraMode::ZOOM_RIGHT:
+			{
+				ArmLengthTo = 0.0f;
+				Camera->SetRelativeLocation(FVector(-150.0f, -100.0f, 80.0f));
+				WidgetClass_Bar_TPS->SetRelativeLocation(FVector(90.0f, 10.0f, 105.0f));
+			}break;
 		}
 		ACharacter_Parent::CameraSwitch();
 	}

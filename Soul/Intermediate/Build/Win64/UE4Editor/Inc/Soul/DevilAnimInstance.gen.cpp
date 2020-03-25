@@ -122,7 +122,11 @@ void EmptyLinkFunctionForGeneratedCodeDevilAnimInstance() {}
 		}
 		return OuterClass;
 	}
+<<<<<<< HEAD
 	IMPLEMENT_CLASS(UDevilAnimInstance, 2546943034);
+=======
+	IMPLEMENT_CLASS(UDevilAnimInstance, 1579698883);
+>>>>>>> LSH
 	template<> SOUL_API UClass* StaticClass<UDevilAnimInstance>()
 	{
 		return UDevilAnimInstance::StaticClass();
