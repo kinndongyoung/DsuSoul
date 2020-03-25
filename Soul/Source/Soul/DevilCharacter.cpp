@@ -20,7 +20,14 @@ ADevilCharacter::ADevilCharacter()
 	// Set Mesh, Camera
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 	UserCameraArm->TargetArmLength = 300.0f;
-	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 100.0f), FRotator(0.0f, 0.0f, 0.0f));
+	Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -80.0f), FRotator(0.0f, 0.0f, 0.0f));
+
+	// Set Property
+	GetMesh()->CanCharacterStepUp(false);
+	GetCapsuleComponent()->CanCharacterStepUp(false);
+	GetMesh()->BodyInstance.SetCollisionProfileName(TEXT("DevilChar"));
+	GetCapsuleComponent()->BodyInstance.SetCollisionProfileName(TEXT("DevilChar"));
 
 	// Control
 	SetControlMode(EControlMode::TPS);
@@ -53,18 +60,17 @@ void ADevilCharacter::BeginPlay()
 	HUDDevil = Cast<AHUD_Devil>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDDevil;
 
-	// TPS Setting
-	WidgetClass_Bar_TPS->SetWidgetSpace(EWidgetSpace::World);
-	WidgetClass_Bar_TPS->SetPivot(FVector2D(0.0f, 2.0f));
-	WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
-	WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, 10.0f, -10.0f), FRotator(0.0f, -90.0f, 0.0f));
-
 	// Anim Setting
 	AnimDevil = Cast<UDevilAnimInstance>(GetMesh()->GetAnimInstance());
 	AnimParent = AnimDevil;
 
 	// Install Value Init
 	MuzzleOffset = FVector(50.0f, 5.0f, 75.0f);
+
+	// Devil Combo Motion
+	IsAtttacking = false;
+	MaxCombo = 3;
+	DevilAttackEnd();
 
 	//vec.X = 5500;
 	//vec.Y = 3000;
@@ -81,9 +87,6 @@ void ADevilCharacter::Tick(float DeltaTime)
 
 	// HUD Update
 	HUDDevil->HUD_Update();
-
-	// 카메라 관련
-	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
 
 	// HP 및 SP 관련
 	UpdateCurrentHP();
@@ -113,11 +116,12 @@ void ADevilCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	ACharacter_Parent::SetupPlayerInputComponent(PlayerInputComponent);
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	// 인칭 전환
+	// 카메라
 	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &ADevilCharacter::Zoom);
+	PlayerInputComponent->BindAction(TEXT("CameraSwitch"), IE_Pressed, this, &ADevilCharacter::CameraSwitch);
 }
 
-// Set Camera Arm
+// Set Camera
 void ADevilCharacter::SetControlMode(EControlMode NewControlMode)
 {
 	CurrentControlMode = NewControlMode;
@@ -127,22 +131,56 @@ void ADevilCharacter::SetControlMode(EControlMode NewControlMode)
 		case EControlMode::TPS:
 		{
 			ArmLengthTo = 300.0f;
-			Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -50.0f), FRotator(-15.0f, 0.0f, 0.0f));
-			UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+			Camera->SetRelativeLocation(FVector(-100.0f, 0.0f, 150.0f));
 		}break;
 		case EControlMode::FPS:
 		{
-			ArmLengthTo = 0.0f;
-			Camera->SetRelativeLocationAndRotation(FVector(5.0f, 5.0f, 78.0f), FRotator(0.0f, 0.0f, 0.0f));
-			UserCameraArm->SetRelativeLocation(FVector(0.0f, 0.0f, 88.0f));
+			ArmLengthTo = 150.0f;
+			Camera->SetRelativeLocation(FVector(0.0f, 100.0f, 80.0f));
 		}break;
 	}
 	ACharacter_Parent::SetControlMode(NewControlMode);
 }
 
+void ADevilCharacter::Zoom()
+{
+	ACharacter_Parent::Zoom();
+	HUDDevil->HUD_HPSP();
+}
+
+void ADevilCharacter::CameraSwitch()
+{
+	if (CurrentControlMode == EControlMode::FPS)
+	{
+		switch (CurrentCameraMode)
+		{
+			case ECameraMode::ZOOM_LEFT:
+			{
+				ArmLengthTo = 150.0f;
+				Camera->SetRelativeLocation(FVector(0.0f, 100.0f, 80.0f));
+				WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-45.0f, 10.0f, 100.0f));
+			}break;
+			case ECameraMode::ZOOM_RIGHT:
+			{
+				ArmLengthTo = 0.0f;
+				Camera->SetRelativeLocation(FVector(-150.0f, -100.0f, 80.0f));
+				WidgetClass_Bar_TPS->SetRelativeLocation(FVector(90.0f, 10.0f, 105.0f));
+			}break;
+		}
+		ACharacter_Parent::CameraSwitch();
+	}
+}
+
 // Move Character
 void ADevilCharacter::ForwardBack(float NewAxisValue)
 {
+	ACharacter_Parent::ForwardBack(NewAxisValue);
+
+	if (NewAxisValue < 0)
+	{
+		AnimDevil->Is_Back_Walk = true;
+	}
+	else AnimDevil->Is_Back_Walk = false;
 	ACharacter_Parent::ForwardBack(NewAxisValue);
 }
 
@@ -163,24 +201,6 @@ void ADevilCharacter::LookUp(float NewAxisValue)
 }
 
 // Fire
-void ADevilCharacter::Zoom()
-{
-	if (Is_Zoom == false)
-	{
-		HUDDevil->CrossHair_State = true;
-		SetControlMode(EControlMode::FPS);
-		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -1000.0f));
-	}
-	else if (Is_Zoom == true)
-	{
-		HUDDevil->CrossHair_State = false;
-		SetControlMode(EControlMode::TPS);
-		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -10.0f));
-	}
-
-	ACharacter_Parent::Zoom();
-	HUDDevil->HUD_HPSP();
-}
 void ADevilCharacter::StartFire()
 {
 	ACharacter_Parent::StartFire();
@@ -189,6 +209,23 @@ void ADevilCharacter::StartFire()
 void ADevilCharacter::Fire()
 {
 	ACharacter_Parent::Fire();
+
+	if (IsAtttacking)
+	{
+		ABCHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 1, MaxCombo));
+		if (CanNextCombo)
+		{
+			IsComboInputOn = true;
+		}
+	}
+	else
+	{
+		ABCHECK(CurrentCombo == 0);
+		DevilAttackStart();
+		AnimDevil->DevilAttackMontage();
+		AnimDevil->JumpToAttackMontage(CurrentCombo);
+		IsAtttacking = true;
+	}
 }
 
 void ADevilCharacter::StopFire()
@@ -224,6 +261,7 @@ void ADevilCharacter::Death()
 
 	HUDDevil->Death_bar = true;
 	HUDDevil->HUD_Respawn();
+	Is_Zoom = true;
 
 	if (DeathTime <= RespawnTime)
 		ACharacter_Parent::Respawn();
@@ -246,4 +284,30 @@ FVector ADevilCharacter::SetMuzzlePos()
 FRotator ADevilCharacter::SetMuzzleRot()
 {
 	return AnimDevil->Rotate_Value * 2.0f;
+}
+
+// Combo
+void ADevilCharacter::DevilAttackStart()
+{
+	ABLOG_S(Warning);
+	CanNextCombo = true;
+	IsComboInputOn = false;
+	ABCHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 0, MaxCombo - 1));
+	CurrentCombo = FMath::Clamp<int32>(CurrentCombo + 1, 1, MaxCombo);
+}
+
+void ADevilCharacter::DevilAttackEnd()
+{
+	ABLOG_S(Warning);
+	IsComboInputOn = false;
+	CanNextCombo = false;
+	CurrentCombo = 0;
+}
+
+void ADevilCharacter::OnAttackMontageEnd(UAnimMontage* Montage, bool bInterrupted)
+{
+	ABCHECK(IsAtttacking);
+	ABCHECK(CurrentCombo > 0);
+	IsAtttacking = false;
+	DevilAttackEnd();
 }

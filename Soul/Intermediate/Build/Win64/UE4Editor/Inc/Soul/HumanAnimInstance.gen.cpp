@@ -18,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 	SOUL_API UClass* Z_Construct_UClass_UHumanAnimInstance();
 	SOUL_API UClass* Z_Construct_UClass_UAnimInstance_Parent();
 	UPackage* Z_Construct_UPackage__Script_Soul();
+	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 // End Cross Module References
 	void UHumanAnimInstance::StaticRegisterNativesUHumanAnimInstance()
 	{
@@ -32,6 +33,11 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HumanAttack_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HumanAttack;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -46,6 +52,17 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		{ "ModuleRelativePath", "HumanAnimInstance.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_HumanAttack_MetaData[] = {
+		{ "AllowPrivateAcces", "TRUE" },
+		{ "Category", "Attack" },
+		{ "ModuleRelativePath", "HumanAnimInstance.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_HumanAttack = { "HumanAttack", nullptr, (EPropertyFlags)0x0010000000030015, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UHumanAnimInstance, HumanAttack), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_HumanAttack_MetaData, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_HumanAttack_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UHumanAnimInstance_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UHumanAnimInstance_Statics::NewProp_HumanAttack,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UHumanAnimInstance_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UHumanAnimInstance>::IsAbstract,
 	};
@@ -55,11 +72,11 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_UHumanAnimInstance_Statics::PropPointers,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::PropPointers),
 		0,
 		0x009000A8u,
 		METADATA_PARAMS(Z_Construct_UClass_UHumanAnimInstance_Statics::Class_MetaDataParams, ARRAY_COUNT(Z_Construct_UClass_UHumanAnimInstance_Statics::Class_MetaDataParams))
@@ -73,7 +90,7 @@ void EmptyLinkFunctionForGeneratedCodeHumanAnimInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UHumanAnimInstance, 1657248463);
+	IMPLEMENT_CLASS(UHumanAnimInstance, 906200347);
 	template<> SOUL_API UClass* StaticClass<UHumanAnimInstance>()
 	{
 		return UHumanAnimInstance::StaticClass();

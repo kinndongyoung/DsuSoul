@@ -6,9 +6,6 @@ AHUD_Angel::AHUD_Angel()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	// UI Create & Initialize	
-	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_IMG(TEXT("/Game/Project_Soul/UI/FPS_Angel_Img.FPS_Angel_Img_C"));
-	if (UI_HUD_IMG.Succeeded()) WidgetClass_Img = UI_HUD_IMG.Class;
-
 	static ConstructorHelpers::FClassFinder<UUserWidget> UI_HUD_INSTALL(TEXT("/Game/Project_Soul/UI/BP_AngelInstalBar.BP_AngelInstalBar_C"));
 	if (UI_HUD_INSTALL.Succeeded()) WidgetClass_InstallBar = UI_HUD_INSTALL.Class;
 	
@@ -20,7 +17,6 @@ void AHUD_Angel::BeginPlay()
 	AHUD_Parent::BeginPlay();
 	Super::BeginPlay();
 
-	ImgWidget = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_Img);
 	CurrentWidget_InstallBar = CreateWidget<UUserWidget>(GetWorld(), WidgetClass_InstallBar);
 }
 

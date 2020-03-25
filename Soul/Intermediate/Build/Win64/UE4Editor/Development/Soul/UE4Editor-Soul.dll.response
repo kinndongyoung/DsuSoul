@@ -33,6 +33,7 @@
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h.obj"
+"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\AiNpcCharacter.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\AngelAnimInstance.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\AngelCharacter.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Angel_InstallTrigger.cpp.obj"
@@ -62,6 +63,7 @@
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Soul.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Soul_GameMode.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Soul_UserController.cpp.obj"
+"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\AiNpcCharacter.gen.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\AngelAnimInstance.gen.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\AngelCharacter.gen.cpp.obj"
 "D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Angel_InstallTrigger.gen.cpp.obj"

@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UAnimMontage;
 struct FRotator;
 struct FVector;
 #ifdef SOUL_DevilCharacter_generated_h
@@ -16,6 +17,16 @@ struct FVector;
 #define SOUL_DevilCharacter_generated_h
 
 #define Soul_Source_Soul_DevilCharacter_h_10_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnAttackMontageEnd) \
+	{ \
+		P_GET_OBJECT(UAnimMontage,Z_Param_Montage); \
+		P_GET_UBOOL(Z_Param_bInterrupted); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->OnAttackMontageEnd(Z_Param_Montage,Z_Param_bInterrupted); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execSetMuzzleRot) \
 	{ \
@@ -91,6 +102,16 @@ struct FVector;
 
 
 #define Soul_Source_Soul_DevilCharacter_h_10_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnAttackMontageEnd) \
+	{ \
+		P_GET_OBJECT(UAnimMontage,Z_Param_Montage); \
+		P_GET_UBOOL(Z_Param_bInterrupted); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->OnAttackMontageEnd(Z_Param_Montage,Z_Param_bInterrupted); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execSetMuzzleRot) \
 	{ \

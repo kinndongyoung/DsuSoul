@@ -21,6 +21,8 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 	SOUL_API UFunction* Z_Construct_UFunction_ADevilCharacter_GetCurrentInitialSP();
 	SOUL_API UFunction* Z_Construct_UFunction_ADevilCharacter_GetInitialHP();
 	SOUL_API UFunction* Z_Construct_UFunction_ADevilCharacter_GetInitialSP();
+	SOUL_API UFunction* Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd();
+	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	SOUL_API UFunction* Z_Construct_UFunction_ADevilCharacter_Respawn_bar();
 	SOUL_API UFunction* Z_Construct_UFunction_ADevilCharacter_SetMuzzlePos();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
@@ -39,6 +41,7 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 			{ "GetCurrentInitialSP", &ADevilCharacter::execGetCurrentInitialSP },
 			{ "GetInitialHP", &ADevilCharacter::execGetInitialHP },
 			{ "GetInitialSP", &ADevilCharacter::execGetInitialSP },
+			{ "OnAttackMontageEnd", &ADevilCharacter::execOnAttackMontageEnd },
 			{ "Respawn_bar", &ADevilCharacter::execRespawn_bar },
 			{ "SetMuzzlePos", &ADevilCharacter::execSetMuzzlePos },
 			{ "SetMuzzleRot", &ADevilCharacter::execSetMuzzleRot },
@@ -178,6 +181,49 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ADevilCharacter_GetInitialSP_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics
+	{
+		struct DevilCharacter_eventOnAttackMontageEnd_Parms
+		{
+			UAnimMontage* Montage;
+			bool bInterrupted;
+		};
+		static void NewProp_bInterrupted_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bInterrupted;
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Montage;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::NewProp_bInterrupted_SetBit(void* Obj)
+	{
+		((DevilCharacter_eventOnAttackMontageEnd_Parms*)Obj)->bInterrupted = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::NewProp_bInterrupted = { "bInterrupted", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(DevilCharacter_eventOnAttackMontageEnd_Parms), &Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::NewProp_bInterrupted_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::NewProp_Montage = { "Montage", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(DevilCharacter_eventOnAttackMontageEnd_Parms, Montage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::NewProp_bInterrupted,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::NewProp_Montage,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "// ?\xde\xba? ???? - ????\xc8\xad ???\xc9\xbc? ????\n" },
+		{ "ModuleRelativePath", "DevilCharacter.h" },
+		{ "ToolTip", "?\xde\xba? ???? - ????\xc8\xad ???\xc9\xbc? ????" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ADevilCharacter, nullptr, "OnAttackMontageEnd", nullptr, nullptr, sizeof(DevilCharacter_eventOnAttackMontageEnd_Parms), Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -340,6 +386,29 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaxCombo_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_MaxCombo;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CurrentCombo_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_CurrentCombo;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_IsComboInputOn_MetaData[];
+#endif
+		static void NewProp_IsComboInputOn_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_IsComboInputOn;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CanNextCombo_MetaData[];
+#endif
+		static void NewProp_CanNextCombo_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_CanNextCombo;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_IsAtttacking_MetaData[];
+#endif
+		static void NewProp_IsAtttacking_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_IsAtttacking;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AnimDevil_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_AnimDevil;
@@ -360,6 +429,7 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 		{ &Z_Construct_UFunction_ADevilCharacter_GetCurrentInitialSP, "GetCurrentInitialSP" }, // 480715678
 		{ &Z_Construct_UFunction_ADevilCharacter_GetInitialHP, "GetInitialHP" }, // 2890161690
 		{ &Z_Construct_UFunction_ADevilCharacter_GetInitialSP, "GetInitialSP" }, // 3901804747
+		{ &Z_Construct_UFunction_ADevilCharacter_OnAttackMontageEnd, "OnAttackMontageEnd" }, // 955174760
 		{ &Z_Construct_UFunction_ADevilCharacter_Respawn_bar, "Respawn_bar" }, // 3965981116
 		{ &Z_Construct_UFunction_ADevilCharacter_SetMuzzlePos, "SetMuzzlePos" }, // 1710617817
 		{ &Z_Construct_UFunction_ADevilCharacter_SetMuzzleRot, "SetMuzzleRot" }, // 4192270211
@@ -373,6 +443,58 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 		{ "ModuleRelativePath", "DevilCharacter.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADevilCharacter_Statics::NewProp_MaxCombo_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Attack" },
+		{ "ModuleRelativePath", "DevilCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_ADevilCharacter_Statics::NewProp_MaxCombo = { "MaxCombo", nullptr, (EPropertyFlags)0x0010000000020815, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADevilCharacter, MaxCombo), METADATA_PARAMS(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_MaxCombo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_MaxCombo_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CurrentCombo_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Attack" },
+		{ "ModuleRelativePath", "DevilCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CurrentCombo = { "CurrentCombo", nullptr, (EPropertyFlags)0x0010000000020815, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADevilCharacter, CurrentCombo), METADATA_PARAMS(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CurrentCombo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CurrentCombo_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsComboInputOn_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Attack" },
+		{ "ModuleRelativePath", "DevilCharacter.h" },
+	};
+#endif
+	void Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsComboInputOn_SetBit(void* Obj)
+	{
+		((ADevilCharacter*)Obj)->IsComboInputOn = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsComboInputOn = { "IsComboInputOn", nullptr, (EPropertyFlags)0x0010000000020815, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ADevilCharacter), &Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsComboInputOn_SetBit, METADATA_PARAMS(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsComboInputOn_MetaData, ARRAY_COUNT(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsComboInputOn_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CanNextCombo_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Attack" },
+		{ "ModuleRelativePath", "DevilCharacter.h" },
+	};
+#endif
+	void Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CanNextCombo_SetBit(void* Obj)
+	{
+		((ADevilCharacter*)Obj)->CanNextCombo = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CanNextCombo = { "CanNextCombo", nullptr, (EPropertyFlags)0x0010000000020815, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ADevilCharacter), &Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CanNextCombo_SetBit, METADATA_PARAMS(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CanNextCombo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CanNextCombo_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsAtttacking_MetaData[] = {
+		{ "AllowPrivateAccess", "TRUE" },
+		{ "Category", "Attack" },
+		{ "ModuleRelativePath", "DevilCharacter.h" },
+	};
+#endif
+	void Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsAtttacking_SetBit(void* Obj)
+	{
+		((ADevilCharacter*)Obj)->IsAtttacking = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsAtttacking = { "IsAtttacking", nullptr, (EPropertyFlags)0x0010000000020815, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ADevilCharacter), &Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsAtttacking_SetBit, METADATA_PARAMS(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsAtttacking_MetaData, ARRAY_COUNT(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsAtttacking_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ADevilCharacter_Statics::NewProp_AnimDevil_MetaData[] = {
 		{ "Category", "AnimInstance" },
@@ -392,6 +514,11 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ADevilCharacter_Statics::NewProp_HUDDevil = { "HUDDevil", nullptr, (EPropertyFlags)0x0010000000020001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ADevilCharacter, HUDDevil), Z_Construct_UClass_AHUD_Devil_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_HUDDevil_MetaData, ARRAY_COUNT(Z_Construct_UClass_ADevilCharacter_Statics::NewProp_HUDDevil_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ADevilCharacter_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADevilCharacter_Statics::NewProp_MaxCombo,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CurrentCombo,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsComboInputOn,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADevilCharacter_Statics::NewProp_CanNextCombo,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADevilCharacter_Statics::NewProp_IsAtttacking,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADevilCharacter_Statics::NewProp_AnimDevil,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ADevilCharacter_Statics::NewProp_HUDDevil,
 	};
@@ -422,7 +549,7 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ADevilCharacter, 3973608144);
+	IMPLEMENT_CLASS(ADevilCharacter, 3494216299);
 	template<> SOUL_API UClass* StaticClass<ADevilCharacter>()
 	{
 		return ADevilCharacter::StaticClass();

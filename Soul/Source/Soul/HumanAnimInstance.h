@@ -12,4 +12,9 @@ class SOUL_API UHumanAnimInstance : public UAnimInstance_Parent
 public:
 	UHumanAnimInstance();
 	void NativeUpdateAnimation(float DeltaSeconds);
+
+	void HumanMontageAttack();
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAcces = true))
+	UAnimMontage* HumanAttack;
 };

@@ -20,9 +20,6 @@ protected:
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 
 public:
-	// 무엇?
-	bool Is_Spirnt;
-
 	// HUD 클래스
 	UPROPERTY(VisibleAnywhere, Category = HUD)
 	class AHUD_Devil* HUDDevil;
@@ -33,8 +30,10 @@ public:
 
 public:
 	// 공통 함수
-	// 컨트롤 관련 //
+	// 카메라 관련 //
 	virtual void SetControlMode(EControlMode NewControlMode) override;
+	virtual void Zoom() override;
+	virtual void CameraSwitch() override;
 
 	// 행동	함수
 	virtual void ForwardBack(float NewAxisValue) override;
@@ -43,7 +42,6 @@ public:
 	virtual void Turn(float NewAxisValue) override;
 
 	// 공격 함수
-	virtual void Zoom() override;
 	virtual void StartFire() override;
 	virtual void Fire() override;
 	virtual void StopFire() override;
@@ -86,4 +84,26 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Muzzle")
 	virtual FRotator SetMuzzleRot() override;
+
+	// 콤보 공격 - 상속화 가능성 있음
+	UFUNCTION()
+	void OnAttackMontageEnd(UAnimMontage* Montage, bool bInterrupted);
+
+	void DevilAttackStart();
+	void DevilAttackEnd();
+
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	bool IsAtttacking;
+	
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	bool CanNextCombo;
+	
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	bool IsComboInputOn;
+	
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	int32 CurrentCombo;
+	
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	int32 MaxCombo;
 };

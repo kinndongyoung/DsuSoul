@@ -12,4 +12,9 @@ class SOUL_API UAngelAnimInstance : public UAnimInstance_Parent
 public:
 	UAngelAnimInstance();
 	void NativeUpdateAnimation(float DeltaSeconds);
+
+	void AngelMotangeAttack();
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAcces = true))
+		UAnimMontage* AngelAttack;
 };

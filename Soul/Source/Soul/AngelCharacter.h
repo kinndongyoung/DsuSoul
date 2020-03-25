@@ -23,9 +23,6 @@ public:
 	// 스테이터스
 	bool DieState;
 
-	// 이건 무엇?
-	bool Is_Spirnt;
-
 public:
 	// 설치 변수
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Install)
@@ -47,8 +44,10 @@ public:
 
 public:
 	// 공통 함수
-	// 컨트롤 관련 //
+	// 카메라 관련 //
 	virtual void SetControlMode(EControlMode NewControlMode) override;
+	virtual void Zoom() override;
+	virtual void CameraSwitch() override;
 
 	// 행동	함수
 	virtual void ForwardBack(float NewAxisValue) override;
@@ -57,7 +56,6 @@ public:
 	virtual void Turn(float NewAxisValue) override;
 
 	// 공격 함수
-	virtual void Zoom() override;
 	virtual void StartFire() override;
 	virtual void Fire() override;
 	virtual void StopFire() override;

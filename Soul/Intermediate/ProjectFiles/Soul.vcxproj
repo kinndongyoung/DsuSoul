@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C1D7A216-136E-43A0-A98E-15CC81CCAA83}</ProjectGuid>
+    <ProjectGuid>{641A2684-4953-4336-BF56-1ADD49D3E205}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>Soul</RootNamespace>
     <PlatformToolset>v141</PlatformToolset>
@@ -280,6 +280,8 @@
     <None Include="..\..\Config\Switch\SwitchEngine.ini"/>
     <None Include="..\..\Config\Windows\WindowsEngine.ini"/>
     <None Include="..\..\Config\XboxOne\XboxOneEngine.ini"/>
+    <ClCompile Include="..\..\Source\Soul\AiNpcCharacter.cpp"/>
+    <ClInclude Include="..\..\Source\Soul\AiNpcCharacter.h"/>
     <ClCompile Include="..\..\Source\Soul\AngelAnimInstance.cpp"/>
     <ClInclude Include="..\..\Source\Soul\AngelAnimInstance.h"/>
     <ClCompile Include="..\..\Source\Soul\AngelCharacter.cpp"/>
