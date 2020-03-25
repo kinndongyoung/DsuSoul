@@ -31,20 +31,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = CrossHair)
 	class UUserWidget* CrossHairWidget;
 
-	// 캐릭터 이미지
-	UPROPERTY(EditAnywhere, Category = Image)
-	TSubclassOf<class UUserWidget> WidgetClass_Img;
-
-	UPROPERTY(EditAnywhere, Category = Image)
-	class UUserWidget* ImgWidget;
-
-	// HP, SP, 남은 총알 - FPS
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FPS", Meta = (BluePrintProtected = "true"))
-	TSubclassOf<class UUserWidget> WidgetClass_Bar_FPS;
-
-	UPROPERTY(EditAnywhere, Category = FPS)
-	class UUserWidget* CurrentWidget_FPS;
-
 	//리스폰 바
 	UPROPERTY(EditAnywhere, Category = Respawn)
 	TSubclassOf<class UUserWidget> WigetClass_Respawn;

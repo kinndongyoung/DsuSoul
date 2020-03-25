@@ -36,6 +36,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	bool Is_Death;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
+	bool Is_Left;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
+	bool Is_Right;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Pawn, Meta = (AllowPrivateAccess = true))
+	bool Is_Back;
+
 	// Bone Transform
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Transform, Meta = (AllowPrivateAccess = true))
 	FRotator Rotate_Value;

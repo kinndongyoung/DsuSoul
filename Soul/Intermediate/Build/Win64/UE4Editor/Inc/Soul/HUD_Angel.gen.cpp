@@ -105,7 +105,7 @@ void EmptyLinkFunctionForGeneratedCodeHUD_Angel() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHUD_Angel, 4124454029);
+	IMPLEMENT_CLASS(AHUD_Angel, 223441073);
 	template<> SOUL_API UClass* StaticClass<AHUD_Angel>()
 	{
 		return AHUD_Angel::StaticClass();

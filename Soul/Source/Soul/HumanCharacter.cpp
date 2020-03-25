@@ -21,14 +21,15 @@ AHumanCharacter::AHumanCharacter()
 	// Set Mesh, Camera
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 	UserCameraArm->TargetArmLength = 300.0f;
-	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 100.0f), FRotator(0.0f, 0.0f, 0.0f));
+	Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -80.0f), FRotator(0.0f, 0.0f, 0.0f));
 
 	// Set Property
 	GetMesh()->CanCharacterStepUp(false);
 	GetCapsuleComponent()->CanCharacterStepUp(false);
 	GetMesh()->BodyInstance.SetCollisionProfileName(TEXT("HumanChar"));
 	GetCapsuleComponent()->BodyInstance.SetCollisionProfileName(TEXT("HumanChar"));
-
+	
 	// Control
 	SetControlMode(EControlMode::TPS);
 
@@ -53,12 +54,6 @@ void AHumanCharacter::BeginPlay()
 	// HUD Setting
 	HUDHuman = Cast<AHUD_Human>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDHuman;
-
-	// TPS Setting
-	WidgetClass_Bar_TPS->SetWidgetSpace(EWidgetSpace::World);
-	WidgetClass_Bar_TPS->SetPivot(FVector2D(0.0f, 2.0f));
-	WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
-	WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, 10.0f, -10.0f), FRotator(0.0f, -90.0f, 0.0f));
 
 	// Anim Setting
 	AnimHuman = Cast<UHumanAnimInstance>(GetMesh()->GetAnimInstance());
@@ -86,9 +81,6 @@ void AHumanCharacter::Tick(float DeltaTime)
 	ACharacter_Parent::Tick(DeltaTime);
 	Super::Tick(DeltaTime);
 	
-	// 카메라 관련
-	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
-
 	// HP 및 SP 관련
 	UpdateCurrentHP();
 	UpdateCurrentSP();
@@ -116,8 +108,9 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	
-	// 인칭 전환
+	// 카메라
 	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &AHumanCharacter::Zoom);
+	PlayerInputComponent->BindAction(TEXT("CameraSwitch"), IE_Pressed, this, &AHumanCharacter::CameraSwitch);
 
 	// 상호작용
 	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Pressed, this, &AHumanCharacter::StartCollect);
@@ -125,7 +118,7 @@ void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Released, this, &AHumanCharacter::EndCollect);
 }
 
-// Set Camera Arm
+// Set Camera
 void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 {
 	CurrentControlMode = NewControlMode;
@@ -135,17 +128,44 @@ void AHumanCharacter::SetControlMode(EControlMode NewControlMode)
 		case EControlMode::TPS:
 		{
 			ArmLengthTo = 300.0f;
-			Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -50.0f), FRotator(-15.0f, 0.0f, 0.0f));
-			UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+			Camera->SetRelativeLocation(FVector(-100.0f, 0.0f, 150.0f));
 		}break;
 		case EControlMode::FPS:
-		{			
-			ArmLengthTo = 0.0f;
-			Camera->SetRelativeLocationAndRotation(FVector(5.0f, 5.0f, 78.0f), FRotator(0.0f, 0.0f, 0.0f));
-			UserCameraArm->SetRelativeLocation(FVector(0.0f, 0.0f, 88.0f));
+		{
+			ArmLengthTo = 150.0f;
+			Camera->SetRelativeLocation(FVector(0.0f, 100.0f, 80.0f));
 		}break;
 	}
 	ACharacter_Parent::SetControlMode(NewControlMode);
+}
+
+void AHumanCharacter::Zoom()
+{
+	ACharacter_Parent::Zoom();
+	HUDHuman->HUD_HPSP();
+}
+
+void AHumanCharacter::CameraSwitch()
+{
+	if (CurrentControlMode == EControlMode::FPS)
+	{
+		switch (CurrentCameraMode)
+		{
+			case ECameraMode::ZOOM_LEFT:
+			{				
+				ArmLengthTo = 150.0f;
+				Camera->SetRelativeLocation(FVector(0.0f, 100.0f, 80.0f));
+				WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-45.0f, 10.0f, 100.0f));
+			}break;
+			case ECameraMode::ZOOM_RIGHT:
+			{
+				ArmLengthTo = 0.0f;
+				Camera->SetRelativeLocation(FVector(-150.0f, -100.0f, 80.0f));
+				WidgetClass_Bar_TPS->SetRelativeLocation(FVector(90.0f, 10.0f, 105.0f));
+			}break;
+		}
+		ACharacter_Parent::CameraSwitch();
+	}	
 }
 
 // Move Character
@@ -171,25 +191,6 @@ void AHumanCharacter::LookUp(float NewAxisValue)
 }
 
 // Fire
-void AHumanCharacter::Zoom()
-{
-	if (Is_Zoom == false)
-	{
-		HUDHuman->CrossHair_State = true;
-		SetControlMode(EControlMode::FPS);
-		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -1000.0f));
-	}		
-	else if (Is_Zoom == true)
-	{
-		HUDHuman->CrossHair_State = false;
-		SetControlMode(EControlMode::TPS);
-		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -10.0f));
-	}		
-	
-	ACharacter_Parent::Zoom();
-	HUDHuman->HUD_HPSP();
-}
-
 void AHumanCharacter::StartFire()
 {
 	ACharacter_Parent::StartFire();
@@ -233,7 +234,8 @@ void AHumanCharacter::Death()
 
 	HUDHuman->Death_bar = true;
 	HUDHuman->HUD_Respawn();
-	
+	Is_Zoom = true;
+
 	if (DeathTime <= RespawnTime)
 		ACharacter_Parent::Respawn();
 }

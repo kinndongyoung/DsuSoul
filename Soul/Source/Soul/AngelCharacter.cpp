@@ -21,7 +21,14 @@ AAngelCharacter::AAngelCharacter()
 	// Set Mesh, Camera
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 	UserCameraArm->TargetArmLength = 300.0f;
-	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+	UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 100.0f), FRotator(0.0f, 0.0f, 0.0f));
+	Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -80.0f), FRotator(0.0f, 0.0f, 0.0f));
+
+	// Set Property
+	GetMesh()->CanCharacterStepUp(false);
+	GetCapsuleComponent()->CanCharacterStepUp(false);
+	GetMesh()->BodyInstance.SetCollisionProfileName(TEXT("HumanChar"));
+	GetCapsuleComponent()->BodyInstance.SetCollisionProfileName(TEXT("HumanChar"));
 
 	// Control
 	SetControlMode(EControlMode::TPS);
@@ -54,12 +61,6 @@ void AAngelCharacter::BeginPlay()
 	HUDAngel = Cast<AHUD_Angel>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDAngel;
 
-	// TPS Setting
-	WidgetClass_Bar_TPS->SetWidgetSpace(EWidgetSpace::World);
-	WidgetClass_Bar_TPS->SetPivot(FVector2D(0.0f, 2.0f));
-	WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
-	WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, 10.0f, -10.0f), FRotator(0.0f, -90.0f, 0.0f));
-
 	// Anim Setting
 	AnimAngel = Cast<UAngelAnimInstance>(GetMesh()->GetAnimInstance());
 	AnimParent = AnimAngel;
@@ -89,9 +90,6 @@ void AAngelCharacter::Tick(float DeltaTime)
 	// HUD Update
 	HUDAngel->HUD_Update(PerInstall);
 
-	// 카메라 관련
-	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
-
 	// HP 및 SP 관련
 	UpdateCurrentHP();
 	UpdateCurrentSP();
@@ -120,8 +118,9 @@ void AAngelCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	ACharacter_Parent::SetupPlayerInputComponent(PlayerInputComponent);
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	// 인칭 전환
+	// 카메라
 	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &AAngelCharacter::Zoom);
+	PlayerInputComponent->BindAction(TEXT("CameraSwitch"), IE_Pressed, this, &AAngelCharacter::CameraSwitch);
 
 	// 상호작용
 	PlayerInputComponent->BindAction(TEXT("InterAction"), EInputEvent::IE_Pressed, this, &AAngelCharacter::StartInstall);
@@ -129,7 +128,7 @@ void AAngelCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(TEXT("InterAction"), EInputEvent::IE_Released, this, &AAngelCharacter::EndInstall);
 }
 
-// Set Camera Arm
+// Set Camera
 void AAngelCharacter::SetControlMode(EControlMode NewControlMode)
 {
 	CurrentControlMode = NewControlMode;
@@ -139,17 +138,44 @@ void AAngelCharacter::SetControlMode(EControlMode NewControlMode)
 		case EControlMode::TPS:
 		{
 			ArmLengthTo = 300.0f;
-			Camera->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -50.0f), FRotator(-15.0f, 0.0f, 0.0f));
-			UserCameraArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 310.0f), FRotator(-30.0f, 0.0f, 0.0f));
+			Camera->SetRelativeLocation(FVector(-100.0f, 0.0f, 150.0f));
 		}break;
 		case EControlMode::FPS:
 		{
-			ArmLengthTo = 0.0f;
-			Camera->SetRelativeLocationAndRotation(FVector(5.0f, 5.0f, 78.0f), FRotator(0.0f, 0.0f, 0.0f));
-			UserCameraArm->SetRelativeLocation(FVector(0.0f, 0.0f, 88.0f));
+			ArmLengthTo = 150.0f;
+			Camera->SetRelativeLocation(FVector(0.0f, 100.0f, 80.0f));
 		}break;
 	}
 	ACharacter_Parent::SetControlMode(NewControlMode);
+}
+
+void AAngelCharacter::Zoom()
+{
+	ACharacter_Parent::Zoom();
+	HUDAngel->HUD_HPSP();
+}
+
+void AAngelCharacter::CameraSwitch()
+{
+	if (CurrentControlMode == EControlMode::FPS)
+	{
+		switch (CurrentCameraMode)
+		{
+		case ECameraMode::ZOOM_LEFT:
+		{
+			ArmLengthTo = 150.0f;
+			Camera->SetRelativeLocation(FVector(0.0f, 100.0f, 80.0f));
+			WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-45.0f, 10.0f, 100.0f));
+		}break;
+		case ECameraMode::ZOOM_RIGHT:
+		{
+			ArmLengthTo = 0.0f;
+			Camera->SetRelativeLocation(FVector(-150.0f, -100.0f, 80.0f));
+			WidgetClass_Bar_TPS->SetRelativeLocation(FVector(90.0f, 10.0f, 105.0f));
+		}break;
+		}
+		ACharacter_Parent::CameraSwitch();
+	}
 }
 
 // Move Character
@@ -175,24 +201,6 @@ void AAngelCharacter::LookUp(float NewAxisValue)
 }
 
 // Fire
-void AAngelCharacter::Zoom()
-{
-	if (Is_Zoom == false)
-	{
-		HUDAngel->CrossHair_State = true;
-		SetControlMode(EControlMode::FPS);
-		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -1000.0f));
-	}
-	else if (Is_Zoom == true)
-	{
-		HUDAngel->CrossHair_State = false;
-		SetControlMode(EControlMode::TPS);
-		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 10.0f, -10.0f));
-	}
-
-	ACharacter_Parent::Zoom();
-	HUDAngel->HUD_HPSP();
-}
 void AAngelCharacter::StartFire()
 {
 	ACharacter_Parent::StartFire();
@@ -236,6 +244,7 @@ void AAngelCharacter::Death()
 
 	HUDAngel->Death_bar = true;
 	HUDAngel->HUD_Respawn();
+	Is_Zoom = true;
 
 	if (DeathTime <= RespawnTime)
 		ACharacter_Parent::Respawn();

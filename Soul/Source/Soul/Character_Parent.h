@@ -19,16 +19,26 @@ protected:
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-public:	
+public:
 	// 1인칭, 3인칭
 	enum class EControlMode
 	{
 		TPS, //ThirdPersonShooter
 		FPS,  //FirstPersonShooter
-		NPC
 	};
 	EControlMode CurrentControlMode = EControlMode::TPS;
+
+	// 1인칭, 3인칭
+	enum class ECameraMode
+	{
+		ZOOM_LEFT,
+		ZOOM_RIGHT
+	};
+	ECameraMode CurrentCameraMode = ECameraMode::ZOOM_RIGHT;
+
+
 	float ArmLengthTo = 0.0f;      // 캐릭터와 카메라 거리
+	UPROPERTY(EditAnywhere, Category = ArmSpd)
 	float ArmLengthSpeed = 0.0f;   // 카메라 전환 속도(Zoom 만들 때 사용)
 	float ArmRotationSpeed = 0.0f; // 카메라 회전 속도
 	FRotator ArmRotationTo = FRotator::ZeroRotator;
@@ -46,6 +56,7 @@ public:
 	bool Hit;
 
 	// 모션 변수
+	bool Is_MaxLookUp;
 	bool Is_Zoom;
 	bool Is_Walking;
 
@@ -101,8 +112,10 @@ public:
 
 public:
 	// 공통 함수
-	// 컨트롤 관련 //
+	// 카메라 관련 //
 	virtual void SetControlMode(EControlMode NewControlMode);
+	virtual void Zoom();
+	virtual void CameraSwitch();
 
 	// 행동	함수
 	virtual void ForwardBack(float NewAxisValue);
@@ -111,7 +124,6 @@ public:
 	virtual void Turn(float NewAxisValue);
 
 	// 공격 함수
-	virtual void Zoom();
 	virtual void StartFire();
 	virtual void Fire();
 	virtual void StopFire();

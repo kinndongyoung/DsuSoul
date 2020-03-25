@@ -3,6 +3,7 @@
 #include "Bullet_Parent.h"
 #include "HUD_Parent.h"
 #include "Components/WidgetComponent.h"
+#include "DrawDebugHelpers.h"
 
 ACharacter_Parent::ACharacter_Parent()
 {
@@ -23,11 +24,12 @@ void ACharacter_Parent::BeginPlay()
 	Super::BeginPlay();
 
 	// Camera
-	ArmLengthSpeed = 0.0f;
-	ArmRotationSpeed = 0.0f;
+	ArmLengthSpeed = 5.0f;
+	ArmRotationSpeed = 10.0f;
 
 	// Animation
 	isFiring = false;
+	Is_MaxLookUp = false;
 	Is_Zoom = false;
 	Is_Walking = false;
 
@@ -35,9 +37,15 @@ void ACharacter_Parent::BeginPlay()
 	// Character Number
 	Number = 0;
 
-	// HUD 변수
+	// HUD/
 	HUD_Rot = 0.0f;
-	HUD_Pos_Y = 10.0f;
+
+	// TPS Setting
+	WidgetClass_Bar_TPS->SetWidgetSpace(EWidgetSpace::World);
+	WidgetClass_Bar_TPS->SetPivot(FVector2D(0.0f, 1.0f));
+	WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
+	WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, 0.0f, 80.0f), FRotator(0.0f, -90.0f, 0.0f));
+	
 	// HP
 	Initial_HP = 100.0f;
 	CurrentHp = Initial_HP;
@@ -50,7 +58,7 @@ void ACharacter_Parent::BeginPlay()
 	// Move Speed
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 	// Jump Speed
-	GetCharacterMovement()->JumpZVelocity = 400.0f;
+	GetCharacterMovement()->JumpZVelocity = 800.0f;
 
 	// Respawn Value
 	DeathTime = 600.0f;
@@ -62,6 +70,7 @@ void ACharacter_Parent::BeginPlay()
 void ACharacter_Parent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
 }
 
 void ACharacter_Parent::PostInitializeComponents()
@@ -83,13 +92,14 @@ void ACharacter_Parent::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ACharacter_Parent::StartFire);
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Released, this, &ACharacter_Parent::StopFire);
 
-	//모션
-	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Pressed, this, &ACharacter_Parent::Walk);
-	PlayerInputComponent->BindAction(TEXT("Walk"), EInputEvent::IE_Released, this, &ACharacter_Parent::Stop_Walk);
-
-	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Pressed, this, &ACharacter_Parent::ReloadFunc);
-	PlayerInputComponent->BindAction(TEXT("Reload"), EInputEvent::IE_Released, this, &ACharacter_Parent::Stop_ReloadFunc);
-
+	// 모션
+	// 걷기
+	PlayerInputComponent->BindAction(TEXT("Walk"), IE_Pressed, this, &ACharacter_Parent::Walk);
+	PlayerInputComponent->BindAction(TEXT("Walk"), IE_Released, this, &ACharacter_Parent::Stop_Walk);
+	// 재장전
+	PlayerInputComponent->BindAction(TEXT("Reload"), IE_Pressed, this, &ACharacter_Parent::ReloadFunc);
+	PlayerInputComponent->BindAction(TEXT("Reload"), IE_Released, this, &ACharacter_Parent::Stop_ReloadFunc);
+	
 	// 이동 및 회전
 	PlayerInputComponent->BindAxis(TEXT("ForwardBack"), this, &ACharacter_Parent::ForwardBack);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &ACharacter_Parent::LeftRight);
@@ -97,7 +107,7 @@ void ACharacter_Parent::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &ACharacter_Parent::LookUp);
 }
 
-// Set Camera Arm
+// Set Camera
 void ACharacter_Parent::SetControlMode(EControlMode NewControlMode)
 {
 	CurrentControlMode = NewControlMode;
@@ -111,6 +121,10 @@ void ACharacter_Parent::SetControlMode(EControlMode NewControlMode)
 			UserCameraArm->bInheritRoll = true;
 			UserCameraArm->bInheritYaw = true;
 			UserCameraArm->bDoCollisionTest = true;
+			UserCameraArm->bEnableCameraLag = true;
+			UserCameraArm->bEnableCameraRotationLag = true;
+			UserCameraArm->CameraLagSpeed = 20.0f;
+			UserCameraArm->CameraRotationLagSpeed = 20.0f;
 			bUseControllerRotationYaw = true;
 		}break;
 		case EControlMode::FPS:
@@ -120,8 +134,44 @@ void ACharacter_Parent::SetControlMode(EControlMode NewControlMode)
 			UserCameraArm->bInheritRoll = true;
 			UserCameraArm->bInheritYaw = true;
 			UserCameraArm->bDoCollisionTest = true;
+			UserCameraArm->bEnableCameraLag = false;
+			UserCameraArm->bEnableCameraRotationLag = false;
 			bUseControllerRotationYaw = true;
 		}break;
+	}
+}
+
+void ACharacter_Parent::Zoom()
+{
+	if (Is_Zoom == false)
+	{
+		SetControlMode(EControlMode::FPS);
+
+		WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.1f, 0.1f, 0.1f));
+		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-45.0f, 10.0f, 100.0f));
+
+		HUDParent->CrossHair_State = true;
+		Is_Zoom = true;
+	}
+	else if (Is_Zoom == true)
+	{
+		SetControlMode(EControlMode::TPS);
+		CurrentCameraMode = ECameraMode::ZOOM_RIGHT;
+
+		WidgetClass_Bar_TPS->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
+		WidgetClass_Bar_TPS->SetRelativeLocation(FVector(-40.0f, 0.0f, 80.0f));
+
+		HUDParent->CrossHair_State = false;
+		Is_Zoom = false;
+	}
+}
+
+void ACharacter_Parent::CameraSwitch()
+{
+	switch (CurrentCameraMode)
+	{
+		case ECameraMode::ZOOM_LEFT: CurrentCameraMode = ECameraMode::ZOOM_RIGHT; break;
+		case ECameraMode::ZOOM_RIGHT: CurrentCameraMode = ECameraMode::ZOOM_LEFT; break;
 	}
 }
 
@@ -149,45 +199,35 @@ void ACharacter_Parent::LookUp(float NewAxisValue)
 	if (AnimParent->Is_Death == false)
 	{
 		// 과회전 방지
-		if (-36.0f <= AnimParent->Rotate_Value.Roll && AnimParent->Rotate_Value.Roll <= 36.0f)
+		if (-70.0f <= AnimParent->Rotate_Value.Roll && AnimParent->Rotate_Value.Roll <= 70.0f)
 		{
-			AddControllerPitchInput(NewAxisValue);
-			AnimParent->Rotate_Value.Roll += NewAxisValue;
-			//WidgetClass_Bar_TPS->SetRelativeLocationAndRotation(FVector(-40.0f, HUD_Pos_Y -= NewAxisValue, -10.0f), FRotator(HUD_Rot += NewAxisValue, -90.0f, 0.0f));
+			if (Is_MaxLookUp == false)
+				AddControllerPitchInput(NewAxisValue);
+			else if (Is_MaxLookUp == true)
+				Is_MaxLookUp = false;
+
+			AnimParent->Rotate_Value.Roll += (NewAxisValue * 2.95f);//2.94~2.95
+			WidgetClass_Bar_TPS->SetRelativeRotation(FRotator(HUD_Rot += (NewAxisValue * 3.0f), -90.0f, 0.0f));//3.5~4.0
 		}
-		else if (-36.0f > AnimParent->Rotate_Value.Roll)
+		
+		if (-70.0f > AnimParent->Rotate_Value.Roll)
 		{
+			Is_MaxLookUp = true;
 			GetControlRotation().SetComponentForAxis(EAxis::Y, 90.0f);
-			AnimParent->Rotate_Value.Roll = -36.0f;
-			//HUD_Rot = -36.0f;
-			//HUD_Pos_Y = -26.0f;
+			AnimParent->Rotate_Value.Roll = -70.0f;
+			HUD_Rot = -70.0f;
 		}
-		else if (AnimParent->Rotate_Value.Roll > 36.0f)
+		else if (AnimParent->Rotate_Value.Roll > 70.0f)
 		{
+			Is_MaxLookUp = true;
 			GetControlRotation().SetComponentForAxis(EAxis::Y, 270.0f);
-			AnimParent->Rotate_Value.Roll = 36.0f;
-			//HUD_Rot = 36.0f;
-			//HUD_Pos_Y = 46.0f;
+			AnimParent->Rotate_Value.Roll = 70.0f;
+			HUD_Rot = 70.0f;
 		}
 	}
 }
 
 // Fire
-void ACharacter_Parent::Zoom()
-{
-	if (Is_Zoom == false)
-	{
-		Is_Zoom = true;
-		HUDParent->HUD_State = false;
-	}
-	else if (Is_Zoom == true)
-	{
-		Is_Zoom = false;
-		HUDParent->HUD_State = true;
-	}
-}
-
-
 void ACharacter_Parent::StartFire()
 {
 	if (ammo > 0)
@@ -201,41 +241,24 @@ void ACharacter_Parent::StartFire()
 void ACharacter_Parent::Fire()
 {
 	if (isFiring)
-	{
-		// 프로젝타일 발사를 시도합니다.
-		if (WeaponBulletClass)
-		{
-			// MuzzleOffset 을 카메라 스페이스에서 월드 스페이스로 변환합니다.
-			FVector CameraLocation;
-			FRotator CameraRotation;
-			GetActorEyesViewPoint(CameraLocation, CameraRotation);
+	{		
+		FHitResult OutHit;
+		FVector StartVector = Camera->GetComponentLocation();
+		FVector ForwardVector = Camera->GetForwardVector();
+		FVector EndVector = (StartVector + (ForwardVector*10000.0f));
+		FCollisionQueryParams CollisionParams;
 
-			MuzzleLocation = this->ActorToWorld().GetLocation() + FTransform(CameraRotation).TransformVector(MuzzleOffset);
-			FRotator MuzzleRotation = CameraRotation;
+		DrawDebugLine(GetWorld(), StartVector, EndVector, FColor::Red, true);
 
-			UWorld* World = GetWorld();
-			if (World)
-			{
-				FActorSpawnParameters SpawnParams;
-				SpawnParams.Owner = this;
-				SpawnParams.Instigator = Instigator;
+		bool isHit = GetWorld()->LineTraceSingleByChannel(OutHit, StartVector, EndVector, ECC_Visibility, CollisionParams);
+		
+		printf("Hit Actor : %s", *OutHit.GetActor()->GetName());
+		printf("Hit Bone : %s", *OutHit.BoneName.ToString());
 
-				// 총구 위치에 발사체를 스폰시킵니다.
-				ABullet_Parent* Bullet = World->SpawnActor<ABullet_Parent>(WeaponBulletClass, MuzzleLocation, MuzzleRotation, SpawnParams);
-				if (Bullet)
-				{
-					// 발사 방향을 알아냅니다.
-					FVector LaunchDirection = MuzzleRotation.Vector();
-					Bullet->FireInDirection(LaunchDirection);
-					Bullet->FireActor(this);
-				}
-				ammo--;
-			}
-		}
-
+		ammo--;
 		if (ammo > 0)
 		{
-			// 연사를 위한 StartFire 함수 생성			
+			// 연사를 위한 StartFire 함수 생성		
 			GetWorld()->GetTimerManager().SetTimer(timer, this, &ACharacter_Parent::Fire, 0.1f, false);
 		}
 		else StopFire();
@@ -285,6 +308,7 @@ void ACharacter_Parent::Death()
 	GetCharacterMovement()->JumpZVelocity = 0.0f;
 	HUDParent->Death_bar = true;
 	HUDParent->HUD_Respawn();
+	
 
 	if (DeathTime <= RespawnTime) Respawn();
 }

@@ -73,7 +73,7 @@ void EmptyLinkFunctionForGeneratedCodeAngelAnimInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UAngelAnimInstance, 261392371);
+	IMPLEMENT_CLASS(UAngelAnimInstance, 3792915255);
 	template<> SOUL_API UClass* StaticClass<UAngelAnimInstance>()
 	{
 		return UAngelAnimInstance::StaticClass();

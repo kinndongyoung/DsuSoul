@@ -422,7 +422,7 @@ void EmptyLinkFunctionForGeneratedCodeDevilCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ADevilCharacter, 3973608144);
+	IMPLEMENT_CLASS(ADevilCharacter, 636782734);
 	template<> SOUL_API UClass* StaticClass<ADevilCharacter>()
 	{
 		return ADevilCharacter::StaticClass();
