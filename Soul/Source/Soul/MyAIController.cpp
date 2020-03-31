@@ -29,12 +29,14 @@ AMyAIController::AMyAIController()
 void AMyAIController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
+
 	if (UseBlackboard(BBAsset, Blackboard))
 	{
 		Blackboard->SetValueAsVector(HomePosKey, InPawn->GetActorLocation());
 		
 		if (!RunBehaviorTree(BTAsset))
 		{
+			print("Error");
 		}
 	}
 

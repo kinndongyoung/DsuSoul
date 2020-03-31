@@ -502,9 +502,9 @@
 /I ..\Plugins\Runtime\ApexDestruction\Source
 /I ..\Plugins\Runtime\ApexDestruction\Source\ApexDestruction\Public
 /I ..\Plugins\Runtime\ApexDestruction\Source\ApexDestruction
-/I D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul
-/I D:\LSH\Unreal\backup\DsuSoul\Soul\Source
-/I D:\LSH\Unreal\backup\DsuSoul\Soul\Source\Soul
+/I D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Inc\Soul
+/I D:\Soul\Soul\Source
+/I D:\Soul\Soul\Source\Soul
 /I Runtime\Networking\Public
 /I Runtime\Networking
 /I Runtime\Networking\Public\Common
@@ -534,18 +534,18 @@
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\RenderDebug\public
 /I ThirdParty\PhysX3\APEX_1.4\shared\general\PairFilter\include
 /I ThirdParty\PhysX3\APEX_1.4\shared\internal\include
-/I D:\VisualStudio\VC\Tools\MSVC\14.16.27023\INCLUDE
+/I "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\INCLUDE"
 /I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"
-/I "D:\Windows Kits\10\include\10.0.16299.0\ucrt"
-/I "D:\Windows Kits\10\include\10.0.16299.0\shared"
-/I "D:\Windows Kits\10\include\10.0.16299.0\um"
-/I "D:\Windows Kits\10\include\10.0.16299.0\winrt"
-/FI"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
-/Yu"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
-/Fp"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h.pch"
-"D:\LSH\Unreal\backup\DsuSoul\Soul\Source\Soul\HUD_Devil.cpp"
-/FI"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Definitions.Soul.h"
-/Fo"D:\LSH\Unreal\backup\DsuSoul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\HUD_Devil.cpp.obj"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"
+/FI"D:\Soul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
+/Yu"D:\Soul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h"
+/Fp"D:\Soul\Soul\Intermediate\Build\Win64\SoulEditor\Development\Engine\SharedPCH.Engine.h.pch"
+"D:\Soul\Soul\Source\Soul\HUD_Devil.cpp"
+/FI"D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\Definitions.Soul.h"
+/Fo"D:\Soul\Soul\Intermediate\Build\Win64\UE4Editor\Development\Soul\HUD_Devil.cpp.obj"
 /TP
 /GR-
 /W4
