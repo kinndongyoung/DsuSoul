@@ -171,30 +171,11 @@ void AHumanCharacter::CameraSwitch()
 // Move Character
 void AHumanCharacter::ForwardBack(float NewAxisValue)
 {
-	if (NewAxisValue < 0)
-	{
-		AnimHuman->Is_Back_Walk = true;
-	}
-	else AnimHuman->Is_Back_Walk = false;
 	ACharacter_Parent::ForwardBack(NewAxisValue);
 }
 
 void AHumanCharacter::LeftRight(float NewAxisValue)
 {
-	if (NewAxisValue > 0)
-	{
-		AnimHuman->Is_Right_Walk = true;
-	}
-	else if (NewAxisValue < 0)
-	{
-		AnimHuman->Is_Left_Walk = true;
-	}
-	else
-	{
-		AnimHuman->Is_Left_Walk = false;
-		AnimHuman->Is_Right_Walk = false;
-
-	}
 	ACharacter_Parent::LeftRight(NewAxisValue);
 }
 

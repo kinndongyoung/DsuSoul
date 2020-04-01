@@ -6,8 +6,6 @@
 #include "HumanCharacter.h"
 #include "BehaviorTree//BlackboardComponent.h"
 #include "DrawDebugHelpers.h"
-#include "AiNpcCharacter.h"
-#include "Engine/EngineTypes.h"
 
 UBTService_Detect::UBTService_Detect()
 {
@@ -23,7 +21,7 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	if (nullptr == ControllingPawn)return;
 	UWorld* World = ControllingPawn->GetWorld();
 	FVector Center = ControllingPawn->GetActorLocation();
-	float DetectRadius = 1500.0f;
+	float DetectRadius = 600.0f;
 
 	if (nullptr == World) return;
 	TArray<FOverlapResult>OverlapResults;
@@ -33,22 +31,21 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 		OverlapResults,
 		Center,
 		FQuat::Identity,
-		ECollisionChannel::ECC_GameTraceChannel1,
+		ECollisionChannel::ECC_GameTraceChannel2,
 		FCollisionShape::MakeSphere(DetectRadius),
 		CollisionQueryParam
 	);
 
 	if (bResult)							
-	{		
-		print("bResult");
+	{															 
 		for (auto OverlapResult : OverlapResults)
 		{
 			AHumanCharacter* ABCharacter = Cast<AHumanCharacter>(OverlapResult.GetActor());
 
-			if (ABCharacter && ABCharacter->GetController()->IsPlayerController())
+			if (ABCharacter)// && ABCharacter->GetController()->IsPlayerController())
 			{
 				OwnerComp.GetBlackboardComponent()->SetValueAsObject(AMyAIController::TargetKey, ABCharacter);
-				//DrawDebugSphere(World, Center, DetectRadius, 16, FColor::Green, false, 0.2f);
+				DrawDebugSphere(World, Center, DetectRadius, 16, FColor::Green, false, 0.2f);
 				DrawDebugPoint(World, ABCharacter->GetActorLocation(), 10.0f, FColor::Blue, false, 0.2f);
 				DrawDebugLine(World, ControllingPawn->GetActorLocation(), ABCharacter->GetActorLocation(), FColor::Blue, false, 0.2f);
 				return;
@@ -57,10 +54,9 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	}
 	else
 	{
-		print("bResult Error");
 		OwnerComp.GetBlackboardComponent()->SetValueAsObject(AMyAIController::TargetKey, nullptr);
 	}
 
 
-	//DrawDebugSphere(World, Center, DetectRadius, 16, FColor::Red, false, 0.2f);
+	DrawDebugSphere(World, Center, DetectRadius, 16, FColor::Red, false, 0.2f);
 }
