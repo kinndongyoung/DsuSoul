@@ -29,7 +29,9 @@ void AHuman_PaustSoulCase::BeginPlay()
 
 void AHuman_PaustSoulCase::OnOverlapBegin(class AActor *OverlappedActor, class AActor *OtherActor)
 {
-	if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
+	if (OtherActor->ActorHasTag(FName(TEXT("Human_Shielder"))) ||
+		OtherActor->ActorHasTag(FName(TEXT("Human_Dealer"))) ||
+		OtherActor->ActorHasTag(FName(TEXT("Human_Healer"))))
 	{
 		if (OtherActor && (OtherActor != this))
 		{
@@ -45,7 +47,9 @@ void AHuman_PaustSoulCase::OnOverlapBegin(class AActor *OverlappedActor, class A
 
 void AHuman_PaustSoulCase::OnOverlapEnd(class AActor *OverActor, class AActor *OtherActor)
 {
-	if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
+	if (OtherActor->ActorHasTag(FName(TEXT("Human_Shielder"))) ||
+		OtherActor->ActorHasTag(FName(TEXT("Human_Dealer"))) ||
+		OtherActor->ActorHasTag(FName(TEXT("Human_Healer"))))
 	{
 		if (OtherActor && (OtherActor != this))
 		{

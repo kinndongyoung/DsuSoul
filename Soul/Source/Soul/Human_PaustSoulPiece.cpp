@@ -30,7 +30,9 @@ void AHuman_PaustSoulPiece::BeginPlay()
 
 void AHuman_PaustSoulPiece::OnOverlapBegin(class AActor *OverlappedActor, class AActor *OtherActor)
 {
-	if (OtherActor->ActorHasTag(FName(TEXT("Human_Character"))))
+	if (OtherActor->ActorHasTag(FName(TEXT("Human_Shielder"))) ||
+		OtherActor->ActorHasTag(FName(TEXT("Human_Dealer")))   ||
+		OtherActor->ActorHasTag(FName(TEXT("Human_Healer"))))
 	{
 		if (OtherActor && (OtherActor != this))
 		{

@@ -4,7 +4,7 @@
 #include "HUD_Parent.h"
 #include "Components/WidgetComponent.h"
 #include "DrawDebugHelpers.h"
-
+                                                                                                                                                                                                      
 ACharacter_Parent::ACharacter_Parent()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -22,7 +22,7 @@ ACharacter_Parent::ACharacter_Parent()
 void ACharacter_Parent::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	// Camera
 	ArmLengthSpeed = 5.0f;
 	ArmRotationSpeed = 10.0f;
@@ -36,8 +36,12 @@ void ACharacter_Parent::BeginPlay()
 	// Status
 	// Character Number
 	Number = 0;
+	// Hit Value
+	TakeHit_State = false;
+	Regeneration_Interval = 0.0f;
+	TakeHit_State_Interval = 0.0f;
 
-	// HUD/
+	// HUD
 	HUD_Rot = 0.0f;
 
 	// TPS Setting
@@ -54,11 +58,14 @@ void ACharacter_Parent::BeginPlay()
 	CurrentSP = Initial_SP;
 	// Bullet
 	ammo = 30;
+	// Skill
+	Activate_Skill = false;
+
 
 	// Move Speed
 	GetCharacterMovement()->MaxWalkSpeed = 1000.0f;
 	// Jump Speed
-	GetCharacterMovement()->JumpZVelocity = 800.0f;
+	GetCharacterMovement()->JumpZVelocity = 600.0f;
 
 	// Respawn Value
 	DeathTime = 600.0f;
@@ -70,7 +77,38 @@ void ACharacter_Parent::BeginPlay()
 void ACharacter_Parent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	// 카메라 전환 부드럽게 하는 부분
 	UserCameraArm->TargetArmLength = FMath::FInterpTo(UserCameraArm->TargetArmLength, ArmLengthTo, DeltaTime, ArmLengthSpeed);
+
+	// HP Regeneration	
+	if (TakeHit_State == false && CurrentHp < 100.0f) // 1초마다 체력 재생
+	{
+		if (Regeneration_Interval <= 1.0f)
+			Regeneration_Interval += DeltaTime;
+		else if (Regeneration_Interval >= 1.0f)
+		{
+			Regeneration_Interval = 0.0f;
+
+			// 직업이 탱커일 경우 직업 활성화시 1초마다 체력 4재생
+			if (CurrentCharJob == ECharacterJob::CLASS_TANKER)
+			{
+				if (Activate_Skill) CurrentHp += 4.0f;
+				else CurrentHp += 2.5f;
+			}// 다른 직업들은 모두 2.5씩 재생
+			else CurrentHp += 2.5f;
+		}
+	}
+	else if (TakeHit_State == true) // 3초 피격 안받으면 회복하도록 지시하는 부분
+	{
+		if (TakeHit_State_Interval <= 3.0f)
+			TakeHit_State_Interval += DeltaTime;
+		else if (TakeHit_State_Interval >= 3.0f)
+		{
+			TakeHit_State_Interval = 0.0f;
+			TakeHit_State = false;
+		}
+	}
 }
 
 void ACharacter_Parent::PostInitializeComponents()
@@ -180,12 +218,43 @@ void ACharacter_Parent::ForwardBack(float NewAxisValue)
 {
 	if (AnimParent->Is_Reload == false && AnimParent->Is_Death == false)
 		AddMovementInput(GetActorForwardVector(), NewAxisValue);
+	if (NewAxisValue < 0)
+	{
+		AnimParent->Is_Back_Walk = true;
+		CurrentBlinkDir_PosX = EBlinkDirect_PosX::BLINK_DIR_BACK;
+	}
+	else if(NewAxisValue > 0)
+	{
+		AnimParent->Is_Back_Walk = false;
+		CurrentBlinkDir_PosX = EBlinkDirect_PosX::BLINK_DIR_FORWARD;
+	}
+	else
+	{
+		CurrentBlinkDir_PosX = EBlinkDirect_PosX::BLINK_DIR_INIT;
+	}
 }
 
 void ACharacter_Parent::LeftRight(float NewAxisValue)
 {
 	if (AnimParent->Is_Reload == false && AnimParent->Is_Death == false)
 		AddMovementInput(GetActorRightVector(), NewAxisValue);
+	if (NewAxisValue < 0)
+	{
+		AnimParent->Is_Right_Walk = true;
+		CurrentBlinkDir_PosZ = EBlinkDirect_PosZ::BLINK_DIR_RIGHT;
+	}		
+	else if (NewAxisValue > 0)
+	{
+		AnimParent->Is_Left_Walk = true;
+		CurrentBlinkDir_PosZ = EBlinkDirect_PosZ::BLINK_DIR_LEFT;
+	}		
+	else
+	{
+		AnimParent->Is_Left_Walk = false;
+		AnimParent->Is_Right_Walk = false;
+		CurrentBlinkDir_PosZ = EBlinkDirect_PosZ::BLINK_DIR_INIT;
+	}
+
 }
 
 // Rotate Character
@@ -230,7 +299,7 @@ void ACharacter_Parent::LookUp(float NewAxisValue)
 // Fire
 void ACharacter_Parent::StartFire()
 {
-	if (ammo > 0)
+	if (ammo > 0 && isFiring == false)
 	{
 		isFiring = true;
 		AnimParent->IsFire = isFiring;
@@ -241,25 +310,15 @@ void ACharacter_Parent::StartFire()
 void ACharacter_Parent::Fire()
 {
 	if (isFiring)
-	{		
-		FHitResult OutHit;
-		FVector StartVector = Camera->GetComponentLocation();
-		FVector ForwardVector = Camera->GetForwardVector();
-		FVector EndVector = (StartVector + (ForwardVector*10000.0f));
-		FCollisionQueryParams CollisionParams;
-
-		DrawDebugLine(GetWorld(), StartVector, EndVector, FColor::Red, true);
-
-		bool isHit = GetWorld()->LineTraceSingleByChannel(OutHit, StartVector, EndVector, ECC_Visibility, CollisionParams);
-		
-		printf("Hit Actor : %s", *OutHit.GetActor()->GetName());
-		printf("Hit Bone : %s", *OutHit.BoneName.ToString());
+	{	
+		CameraLineTrace();
+		UserLineTrace();
 
 		ammo--;
 		if (ammo > 0)
 		{
-			// 연사를 위한 StartFire 함수 생성		
-			GetWorld()->GetTimerManager().SetTimer(timer, this, &ACharacter_Parent::Fire, 0.1f, false);
+			// 연사를 위한 StartFire 함수 생성	
+			GetWorld()->GetTimerManager().SetTimer(timer, this, &ACharacter_Parent::Fire, 0.3f, false);
 		}
 		else StopFire();
 	}
@@ -277,7 +336,7 @@ void ACharacter_Parent::Walk()
 	print("Input Shift");
 	Is_Walking = true;
 	AnimParent->Is_Walk = ACharacter_Parent::Is_Walking;
-	GetCharacterMovement()->MaxWalkSpeed = 1500.0f;
+	GetCharacterMovement()->MaxWalkSpeed = 1250.0f;
 }
 
 void ACharacter_Parent::Stop_Walk()
@@ -320,6 +379,49 @@ void ACharacter_Parent::Respawn()
 	CurrentSP = 0.0f;
 	RespawnTime = 0.0f;
 	SetActorLocation(vec);
-	GetCharacterMovement()->JumpZVelocity = 400.0f;
+	GetCharacterMovement()->JumpZVelocity = 600.0f;
 	HUDParent->Death_bar = false;
+}
+
+// User 라인 트레이스
+void ACharacter_Parent::UserLineTrace()
+{	
+	User_StartVector = GetMesh()->GetComponentLocation() + FVector(0.0f, 0.0f, 160.0f);
+	User_EndVector = Camera_OutHit.ImpactPoint;
+
+	DrawDebugLine(GetWorld(), User_StartVector, User_EndVector, FColor::Blue, true);
+	User_isHit = GetWorld()->LineTraceSingleByChannel(User_OutHit, User_StartVector, User_EndVector, ECC_Visibility, User_CollisionParams);
+
+	if (User_isHit)
+	{
+		if (User_OutHit.GetActor()->ActorHasTag("Human_Character") ||
+			User_OutHit.GetActor()->ActorHasTag("Devil_Character") ||
+			User_OutHit.GetActor()->ActorHasTag("Angel_Character"))
+		{			
+			// SP 증가
+			if (CurrentSP < 100.0f) CurrentSP += 5.0f;
+			if (CurrentSP >= 100.0f)
+			{
+				Activate_Skill = true;
+				if (CurrentCharJob == ECharacterJob::CLASS_DEALER)
+					GetCharacterMovement()->MaxWalkSpeed = 1250.0f;
+			}
+
+			//printf("User Shoot -> Hit Actor : %s", *User_OutHit.GetActor()->GetName());
+			//printf("User Shoot -> Hit Bone : %s", *User_OutHit.BoneName.ToString());
+			//printf("User Shoot -> Hit Distance : %f", User_OutHit.Distance);
+		}
+	}
+	else print("No Hit Character");
+}
+
+// Camera 라인 트레이스
+void ACharacter_Parent::CameraLineTrace()
+{
+	Camera_StartVector = Camera->GetComponentLocation();
+	Camera_ForwardVector = Camera->GetForwardVector();
+	Camera_EndVector = (Camera_StartVector + (Camera_ForwardVector*10000.0f));
+
+	DrawDebugLine(GetWorld(), Camera_StartVector, Camera_EndVector, FColor::Red, true);
+	Camera_isHit = GetWorld()->LineTraceSingleByChannel(Camera_OutHit, Camera_StartVector, Camera_EndVector, ECC_Visibility, Camera_CollisionParams);
 }

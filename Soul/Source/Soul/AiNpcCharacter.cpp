@@ -18,12 +18,12 @@ AAiNpcCharacter::AAiNpcCharacter()
 		FRotator(0.0f, -90.0f, 0.0f));
 	SpringArm->TargetArmLength = 400.0f;
 	SpringArm->SetRelativeRotation(FRotator(-15.0f, 0.0f, 0.0f));
-
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_AI(TEXT("/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Meshes/TwinBlast.TwinBlast"));
+	
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_AI(TEXT("/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Skins/Tier2/ActionMovie/Meshes/TwinBlast_ActionHero.TwinBlast_ActionHero"));
 	if (SK_SOUL_AI.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_AI.Object);
 	
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
-	static ConstructorHelpers::FClassFinder<UAnimInstance>BP_SOUL_AI(TEXT("/Game/Project_Soul/BluePrint/BP_HumanChar.BP_HumanChar_C"));
+	static ConstructorHelpers::FClassFinder<UAnimInstance>BP_SOUL_AI(TEXT("/Game/Project_Soul/BluePrint/BP_HumanAI.BP_HumanAI_C"));
 	if (BP_SOUL_AI.Succeeded()) GetMesh()->SetAnimInstanceClass(BP_SOUL_AI.Class);
 }
 
@@ -31,14 +31,12 @@ AAiNpcCharacter::AAiNpcCharacter()
 void AAiNpcCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AAiNpcCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -48,8 +46,6 @@ void AAiNpcCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	PlayerInputComponent->BindAxis(TEXT("ForwardBack"), this, &AAiNpcCharacter::ForwardBack);
 	PlayerInputComponent->BindAxis(TEXT("LeftRight"), this, &AAiNpcCharacter::LeftRight);
-
-
 }
 
 void AAiNpcCharacter::ForwardBack(float NewAxisValue)

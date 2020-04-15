@@ -29,8 +29,6 @@ protected:
 	};
 	ESelectCharacter e_SelectChar;
 
-	
-
 public:
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 };

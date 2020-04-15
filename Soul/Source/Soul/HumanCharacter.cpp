@@ -1,7 +1,5 @@
 #include "HumanCharacter.h"
 #include "HUD_Human.h"
-#include "HumanAnimInstance.h"
-#include "HumanWeaponBullet.h"
 #include "Human_PaustSoulCase.h"
 #include "Components/WidgetComponent.h"
 
@@ -32,18 +30,6 @@ AHumanCharacter::AHumanCharacter()
 	
 	// Control
 	SetControlMode(EControlMode::TPS);
-	
-	// Skeletal Mesh Initialize
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/ParagonTwinblast/Characters/Heroes/TwinBlast/Meshes/TwinBlast.TwinBlast"));
-	if (SK_SOUL_USER.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
-	
-	// Anim Instance Initialize
-	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_SOUL_ANIM(TEXT("/Game/Project_Soul/BluePrint/BP_HumanChar.BP_HumanChar_C"));
-	if (BP_SOUL_ANIM.Succeeded()) GetMesh()->SetAnimInstanceClass(BP_SOUL_ANIM.Class);
-	
-	// Bullet BP Initialize
-	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_HumanWeaponBullet.BP_HumanWeaponBullet"));
-	if (BP_SOUL_WEAPON_BULLET.Succeeded()) WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
 }
 
 void AHumanCharacter::BeginPlay()
@@ -55,10 +41,6 @@ void AHumanCharacter::BeginPlay()
 	HUDHuman = Cast<AHUD_Human>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDHuman;
 
-	// Anim Setting
-	AnimHuman = Cast<UHumanAnimInstance>(GetMesh()->GetAnimInstance());
-	AnimParent = AnimHuman;
-
 	// Status
 	GiveSoulState = false;
 
@@ -68,9 +50,9 @@ void AHumanCharacter::BeginPlay()
 	isTrigger = false;
 	ColletEnd = false;
 
-	//vec.X = 5500;
-	//vec.Y = 3000;
-	//vec.Z = 300;
+	//vec.X = -4549.069824;
+	//vec.Y = -769.621643;
+	//vec.Z = 53.026909;
 	//GetTransform().TransformFVector4(vec);
 	//GetActorTransform().SetTranslation(vec);
 	//SetActorLocation(vec);
@@ -106,16 +88,8 @@ void AHumanCharacter::PossessedBy(AController* NewController)
 // Input Key
 void AHumanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
+	ACharacter_Parent::SetupPlayerInputComponent(PlayerInputComponent);
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	
-	// 카메라
-	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &AHumanCharacter::Zoom);
-	PlayerInputComponent->BindAction(TEXT("CameraSwitch"), IE_Pressed, this, &AHumanCharacter::CameraSwitch);
-
-	// 상호작용
-	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Pressed, this, &AHumanCharacter::StartCollect);
-	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Repeat, this, &AHumanCharacter::Collecting);
-	PlayerInputComponent->BindAction(TEXT("InterAction"), IE_Released, this, &AHumanCharacter::EndCollect);
 }
 
 // Set Camera
@@ -199,10 +173,6 @@ void AHumanCharacter::StartFire()
 void AHumanCharacter::Fire()
 {
 	ACharacter_Parent::Fire();
-
-	auto HumanInstance = Cast<UHumanAnimInstance>(GetMesh()->GetAnimInstance());	
-	if (nullptr == HumanInstance) return;
-	HumanInstance->HumanMontageAttack();
 }
 
 void AHumanCharacter::StopFire()
@@ -250,17 +220,6 @@ void AHumanCharacter::Respawn()
 
 	HUDHuman->Death_bar = false;
 	RespawnTime = 0.0f;
-}
-
-// Muzzle
-FVector AHumanCharacter::SetMuzzlePos()
-{
-	return AnimHuman->Translation_Value;
-}
-
-FRotator AHumanCharacter::SetMuzzleRot()
-{
-	return AnimHuman->Rotate_Value * 2.0f;
 }
 
 // Install

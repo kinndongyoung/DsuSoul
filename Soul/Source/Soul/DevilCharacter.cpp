@@ -1,7 +1,5 @@
 #include "DevilCharacter.h"
 #include "HUD_Devil.h"
-#include "DevilAnimInstance.h"
-#include "DevilWeaponBullet.h"
 #include "Components/WidgetComponent.h"
 
 // 생성자에서 User 초기화
@@ -31,18 +29,6 @@ ADevilCharacter::ADevilCharacter()
 
 	// Control
 	SetControlMode(EControlMode::TPS);
-
-	// Skeletal Mesh Initialize
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/ParagonCountess/Characters/Heroes/Countess/Meshes/SM_Countess.SM_Countess"));
-	if (SK_SOUL_USER.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
-	
-	// Anim Instance Initialize
-	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_DEVILCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_DevilChar.BP_DevilChar_C"));
-	if (BP_ANIM_DEVILCHAR.Succeeded()) GetMesh()->SetAnimInstanceClass(BP_ANIM_DEVILCHAR.Class);
-	
-	// Bullet BP Initialize
-	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_DevilWeaponBullet.BP_DevilWeaponBullet"));
-	if (BP_SOUL_WEAPON_BULLET.Succeeded()) ACharacter_Parent::WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
 }
 
 void ADevilCharacter::BeginPlay()
@@ -59,10 +45,6 @@ void ADevilCharacter::BeginPlay()
 	// HUD Setting
 	HUDDevil = Cast<AHUD_Devil>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDDevil;
-
-	// Anim Setting
-	AnimDevil = Cast<UDevilAnimInstance>(GetMesh()->GetAnimInstance());
-	AnimParent = AnimDevil;
 
 	// Install Value Init
 	MuzzleOffset = FVector(50.0f, 5.0f, 75.0f);
@@ -115,10 +97,6 @@ void ADevilCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	ACharacter_Parent::SetupPlayerInputComponent(PlayerInputComponent);
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	// 카메라
-	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &ADevilCharacter::Zoom);
-	PlayerInputComponent->BindAction(TEXT("CameraSwitch"), IE_Pressed, this, &ADevilCharacter::CameraSwitch);
 }
 
 // Set Camera
@@ -175,13 +153,6 @@ void ADevilCharacter::CameraSwitch()
 void ADevilCharacter::ForwardBack(float NewAxisValue)
 {
 	ACharacter_Parent::ForwardBack(NewAxisValue);
-
-	if (NewAxisValue < 0)
-	{
-		AnimDevil->Is_Back_Walk = true;
-	}
-	else AnimDevil->Is_Back_Walk = false;
-	ACharacter_Parent::ForwardBack(NewAxisValue);
 }
 
 void ADevilCharacter::LeftRight(float NewAxisValue)
@@ -209,23 +180,6 @@ void ADevilCharacter::StartFire()
 void ADevilCharacter::Fire()
 {
 	ACharacter_Parent::Fire();
-
-	if (IsAtttacking)
-	{
-		ABCHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 1, MaxCombo));
-		if (CanNextCombo)
-		{
-			IsComboInputOn = true;
-		}
-	}
-	else
-	{
-		ABCHECK(CurrentCombo == 0);
-		DevilAttackStart();
-		AnimDevil->DevilAttackMontage();
-		AnimDevil->JumpToAttackMontage(CurrentCombo);
-		IsAtttacking = true;
-	}
 }
 
 void ADevilCharacter::StopFire()
@@ -273,17 +227,6 @@ void ADevilCharacter::Respawn()
 
 	HUDDevil->Death_bar = false;
 	RespawnTime = 0.0f;
-}
-
-// Muzzle
-FVector ADevilCharacter::SetMuzzlePos()
-{
-	return AnimDevil->Translation_Value;
-}
-
-FRotator ADevilCharacter::SetMuzzleRot()
-{
-	return AnimDevil->Rotate_Value * 2.0f;
 }
 
 // Combo

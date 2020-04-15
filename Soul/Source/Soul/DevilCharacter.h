@@ -13,20 +13,16 @@ public:
 	ADevilCharacter();
 
 protected:
-	void BeginPlay();
-	void Tick(float DeltaTime);
-	void PostInitializeComponents();
-	void PossessedBy(AController* NewController);
-	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+	virtual void PostInitializeComponents() override;
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
 	// HUD 클래스
 	UPROPERTY(VisibleAnywhere, Category = HUD)
 	class AHUD_Devil* HUDDevil;
-
-	// 애니메이션 클래스
-	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
-	class UDevilAnimInstance* AnimDevil;
 
 public:
 	// 공통 함수
@@ -57,40 +53,23 @@ public:
 	virtual void Respawn() override;
 
 	// hp,sp - 함수
-	UFUNCTION(BlueprintPure, Category = "HP")
-	virtual float GetInitialHP() override { return Initial_HP; }
-
-	UFUNCTION(BlueprintPure, Category = "HP")
-	virtual float GetCurrentInitialHP() override { return CurrentHp; }
-
-	UFUNCTION(BlueprintCallable, Category = "HP")
-	virtual void UpdateCurrentHP() override { CurrentHp = CurrentHp; }
-
-	UFUNCTION(BlueprintPure, Category = "SP")
-	virtual float GetInitialSP() override { return Initial_SP; }
-
-	UFUNCTION(BlueprintPure, Category = "SP")
-	virtual float GetCurrentInitialSP() override { return CurrentSP; }
-
-	UFUNCTION(BlueprintCallable, Category = "SP")
-	virtual void UpdateCurrentSP() override { CurrentSP = CurrentSP; }
-
-	UFUNCTION(BlueprintPure, Category = "Death")
-	virtual float Respawn_bar() override { return RespawnTime += 2.0f; }
+	virtual float GetInitialHP() override { return ACharacter_Parent::GetInitialHP(); }
+	virtual float GetCurrentInitialHP() override { return ACharacter_Parent::GetCurrentInitialHP(); }
+	virtual void UpdateCurrentHP() override { ACharacter_Parent::UpdateCurrentHP(); }
+	virtual float GetInitialSP() override { return ACharacter_Parent::GetInitialSP(); }
+	virtual float GetCurrentInitialSP() override { return ACharacter_Parent::GetCurrentInitialSP(); }
+	virtual void UpdateCurrentSP() override { ACharacter_Parent::UpdateCurrentSP(); }
+	virtual float Respawn_bar() override { return ACharacter_Parent::Respawn_bar(); }
 
 	// 총구 함수
-	UFUNCTION(BlueprintPure, Category = "Muzzle")
-	virtual FVector SetMuzzlePos() override;
-
-	UFUNCTION(BlueprintPure, Category = "Muzzle")
-	virtual FRotator SetMuzzleRot() override;
+	virtual FVector SetMuzzlePos() override { return FVector::ZeroVector; }
+	virtual FRotator SetMuzzleRot() override { return FRotator::ZeroRotator; }
 
 	// 콤보 공격 - 상속화 가능성 있음
-	UFUNCTION()
-	void OnAttackMontageEnd(UAnimMontage* Montage, bool bInterrupted);
+	virtual void OnAttackMontageEnd(UAnimMontage* Montage, bool bInterrupted);
 
-	void DevilAttackStart();
-	void DevilAttackEnd();
+	virtual void DevilAttackStart();
+	virtual void DevilAttackEnd();
 
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	bool IsAtttacking;

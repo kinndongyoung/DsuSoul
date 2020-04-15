@@ -37,12 +37,13 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	);
 
 	if (bResult)							
-	{															 
+	{
+		print("bResult");
 		for (auto OverlapResult : OverlapResults)
 		{
 			AHumanCharacter* ABCharacter = Cast<AHumanCharacter>(OverlapResult.GetActor());
 
-			if (ABCharacter)// && ABCharacter->GetController()->IsPlayerController())
+			if (ABCharacter && ABCharacter->GetController()->IsPlayerController())
 			{
 				OwnerComp.GetBlackboardComponent()->SetValueAsObject(AMyAIController::TargetKey, ABCharacter);
 				DrawDebugSphere(World, Center, DetectRadius, 16, FColor::Green, false, 0.2f);
@@ -54,6 +55,7 @@ void UBTService_Detect::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	}
 	else
 	{
+		print("else bResult");
 		OwnerComp.GetBlackboardComponent()->SetValueAsObject(AMyAIController::TargetKey, nullptr);
 	}
 

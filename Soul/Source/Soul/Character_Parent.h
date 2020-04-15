@@ -20,11 +20,21 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
+	// 직업군
+	enum class ECharacterJob
+	{
+		CLASS_INIT,
+		CLASS_TANKER,
+		CLASS_DEALER,
+		CLASS_HEALER
+	};
+	ECharacterJob CurrentCharJob = ECharacterJob::CLASS_INIT;
+
 	// 1인칭, 3인칭
 	enum class EControlMode
 	{
 		TPS, //ThirdPersonShooter
-		FPS,  //FirstPersonShooter
+		FPS, //FirstPersonShooter
 	};
 	EControlMode CurrentControlMode = EControlMode::TPS;
 
@@ -36,6 +46,23 @@ public:
 	};
 	ECameraMode CurrentCameraMode = ECameraMode::ZOOM_RIGHT;
 
+	// 점멸 방향 - X 축
+	enum class EBlinkDirect_PosX
+	{
+		BLINK_DIR_INIT,
+		BLINK_DIR_FORWARD,
+		BLINK_DIR_BACK
+	};
+	EBlinkDirect_PosX CurrentBlinkDir_PosX = EBlinkDirect_PosX::BLINK_DIR_FORWARD;
+
+	// 점멸 방향 - Z 축
+	enum class EBlinkDirect_PosZ
+	{
+		BLINK_DIR_INIT,
+		BLINK_DIR_RIGHT,
+		BLINK_DIR_LEFT
+	};
+	EBlinkDirect_PosZ CurrentBlinkDir_PosZ = EBlinkDirect_PosZ::BLINK_DIR_INIT;
 
 	float ArmLengthTo = 0.0f;      // 캐릭터와 카메라 거리
 	UPROPERTY(EditAnywhere, Category = ArmSpd)
@@ -44,13 +71,20 @@ public:
 	FRotator ArmRotationTo = FRotator::ZeroRotator;
 	FVector DirectionToMove = FVector::ZeroVector;
 
-	// 총구 변수
-	FVector MuzzlePos;
-	FRotator MuzzleRot;
-
 	// 공격 변수
 	FTimerHandle timer;
 	bool isFiring;
+	bool User_isHit;
+	bool Camera_isHit;
+	FHitResult User_OutHit;
+	FHitResult Camera_OutHit;
+	FVector User_StartVector;
+	FVector Camera_StartVector;
+	FVector Camera_ForwardVector;
+	FVector User_EndVector;
+	FVector Camera_EndVector;
+	FCollisionQueryParams User_CollisionParams;
+	FCollisionQueryParams Camera_CollisionParams;
 
 	// 총을 맞춘것을 알리는 bool 값// humanweaponbullet 클래스에서 변경해준다.
 	bool Hit;
@@ -62,6 +96,11 @@ public:
 
 	// 캐릭터 넘버
 	int Number;
+
+	// 피격 관련 변수
+	bool TakeHit_State;
+	float Regeneration_Interval;
+	float TakeHit_State_Interval;
 
 	// 리스폰
 	FVector vec;
@@ -77,6 +116,9 @@ public:
 	float CurrentHp;
 	float Initial_SP;
 	float CurrentSP;
+
+	// Skiil - 변수
+	bool Activate_Skill;
 
 	// 총알
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Ammo)
@@ -139,15 +181,19 @@ public:
 	virtual void Respawn();
 
 	//인간 hp,sp - 함수
-	virtual float GetInitialHP() { return 0; };
-	virtual float GetCurrentInitialHP() { return 0; };
-	virtual void UpdateCurrentHP() {};
-	virtual float GetInitialSP() { return 0; };
-	virtual float GetCurrentInitialSP() { return 0; };
-	virtual void UpdateCurrentSP() {};
-	virtual float Respawn_bar() { return 0; };
+	virtual float GetInitialHP() { return Initial_HP; }
+	virtual float GetCurrentInitialHP() { return CurrentHp; }
+	virtual void UpdateCurrentHP() { CurrentHp = CurrentHp; }
+	virtual float GetInitialSP() { return Initial_SP; }
+	virtual float GetCurrentInitialSP() { return CurrentSP; }
+	virtual void UpdateCurrentSP() { CurrentSP = CurrentSP; }
+	virtual float Respawn_bar() { return RespawnTime += 2.0f; }
 
 	// 총구 함수
-	virtual FVector SetMuzzlePos() { return FVector::ZeroVector; };
-	virtual FRotator SetMuzzleRot() { return FRotator::ZeroRotator; };
+	virtual FVector SetMuzzlePos() { return FVector::ZeroVector; }
+	virtual FRotator SetMuzzleRot() { return FRotator::ZeroRotator; }
+
+	// 개별 함수
+	void UserLineTrace();
+	void CameraLineTrace();
 };

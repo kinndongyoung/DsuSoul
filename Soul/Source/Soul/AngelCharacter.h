@@ -12,12 +12,12 @@ class SOUL_API AAngelCharacter : public ACharacter_Parent
 public:
 	AAngelCharacter();
 
-private:
-	void BeginPlay();
-	void Tick(float DeltaTime);
-	void PostInitializeComponents();
-	void PossessedBy(AController* NewController);
-	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
+protected:
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+	virtual void PostInitializeComponents() override;
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
 	// 스테이터스
@@ -37,10 +37,6 @@ public:
 	// HUD 클래스
 	UPROPERTY(VisibleAnywhere, Category = HUD)
 	class AHUD_Angel* HUDAngel;
-
-	// 애니메이션 클래스
-	UPROPERTY(VisibleAnywhere, Category = AnimInstance)
-	class UAngelAnimInstance* AnimAngel;
 
 public:
 	// 공통 함수
@@ -71,38 +67,22 @@ public:
 	virtual void Respawn() override;
 
 	// hp,sp - 함수
-	UFUNCTION(BlueprintPure, Category = "HP")
-	virtual float GetInitialHP() override { return Initial_HP; }
-
-	UFUNCTION(BlueprintPure, Category = "HP")
-	virtual float GetCurrentInitialHP() override { return CurrentHp; }
-
-	UFUNCTION(BlueprintCallable, Category = "HP")
-	virtual void UpdateCurrentHP() override { CurrentHp = CurrentHp; }
-
-	UFUNCTION(BlueprintPure, Category = "SP")
-	virtual float GetInitialSP() override { return Initial_SP; }
-
-	UFUNCTION(BlueprintPure, Category = "SP")
-	virtual float GetCurrentInitialSP() override { return CurrentSP; }
-
-	UFUNCTION(BlueprintCallable, Category = "SP")
-	virtual void UpdateCurrentSP() override { CurrentSP = CurrentSP; }
-
-	UFUNCTION(BlueprintPure, Category = "Death")
-	virtual float Respawn_bar() override { return RespawnTime += 2.0f; }
+	virtual float GetInitialHP() override { return ACharacter_Parent::GetInitialHP(); }
+	virtual float GetCurrentInitialHP() override { return ACharacter_Parent::GetCurrentInitialHP(); }
+	virtual void UpdateCurrentHP() override { ACharacter_Parent::UpdateCurrentHP(); }
+	virtual float GetInitialSP() override { return ACharacter_Parent::GetInitialSP(); }
+	virtual float GetCurrentInitialSP() override { return ACharacter_Parent::GetCurrentInitialSP(); }
+	virtual void UpdateCurrentSP() override { ACharacter_Parent::UpdateCurrentSP(); }
+	virtual float Respawn_bar() override { return ACharacter_Parent::Respawn_bar(); }
 
 	// 총구 함수
-	UFUNCTION(BlueprintPure, Category = "Muzzle")
-	virtual FVector SetMuzzlePos() override;
-
-	UFUNCTION(BlueprintPure, Category = "Muzzle")
-	virtual FRotator SetMuzzleRot() override;
+	virtual FVector SetMuzzlePos() override { return FVector::ZeroVector; }
+	virtual FRotator SetMuzzleRot() override { return FRotator::ZeroRotator; }
 
 
 	// 개별 함수
 	// 설치 함수
-	void StartInstall();
-	void Installing();
-	void EndInstall();
+	virtual void StartInstall();
+	virtual void Installing();
+	virtual void EndInstall();
 };

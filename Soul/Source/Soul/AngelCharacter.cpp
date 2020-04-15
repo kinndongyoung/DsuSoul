@@ -1,7 +1,5 @@
 #include "AngelCharacter.h"
 #include "HUD_Angel.h"
-#include "AngelAnimInstance.h"
-#include "DevilWeaponBullet.h"
 #include "Angel_InstallTrigger.h"
 #include "Components/WidgetComponent.h"
 
@@ -32,25 +30,13 @@ AAngelCharacter::AAngelCharacter()
 
 	// Control
 	SetControlMode(EControlMode::TPS);
-
-	// Skeletal Mesh Initialize
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_SOUL_USER(TEXT("/Game/ParagonSerath/Characters/Heroes/Serath/Meshes/Serath.Serath"));
-	if (SK_SOUL_USER.Succeeded()) GetMesh()->SetSkeletalMesh(SK_SOUL_USER.Object);
-
-	// Anim Instance Initialize
-	static ConstructorHelpers::FClassFinder<UAnimInstance> BP_ANIM_HUMANCHAR(TEXT("/Game/Project_Soul/BluePrint/BP_AngelChar.BP_AngelChar_C"));
-	if (BP_ANIM_HUMANCHAR.Succeeded()) GetMesh()->SetAnimInstanceClass(BP_ANIM_HUMANCHAR.Class);
-
-	// Bullet BP Initialize
-	static ConstructorHelpers::FObjectFinder<UBlueprint> BP_SOUL_WEAPON_BULLET(TEXT("/Game/Project_Soul/BluePrint/BP_DevilWeaponBullet.BP_DevilWeaponBullet"));
-	if (BP_SOUL_WEAPON_BULLET.Succeeded()) ACharacter_Parent::WeaponBulletClass = BP_SOUL_WEAPON_BULLET.Object->GeneratedClass;
 }
 
 void AAngelCharacter::BeginPlay()
 {
 	ACharacter_Parent::BeginPlay();
 	Super::BeginPlay();
-
+	
 	// Set Property
 	GetMesh()->CanCharacterStepUp(false);
 	GetCapsuleComponent()->CanCharacterStepUp(false);
@@ -60,10 +46,6 @@ void AAngelCharacter::BeginPlay()
 	// HUD Setting
 	HUDAngel = Cast<AHUD_Angel>(GetWorld()->GetFirstPlayerController()->GetHUD());
 	HUDParent = HUDAngel;
-
-	// Anim Setting
-	AnimAngel = Cast<UAngelAnimInstance>(GetMesh()->GetAnimInstance());
-	AnimParent = AnimAngel;
 
 	// Status
 	DieState = false;
@@ -117,15 +99,6 @@ void AAngelCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	ACharacter_Parent::SetupPlayerInputComponent(PlayerInputComponent);
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	// 카메라
-	PlayerInputComponent->BindAction(TEXT("Zoom"), IE_Pressed, this, &AAngelCharacter::Zoom);
-	PlayerInputComponent->BindAction(TEXT("CameraSwitch"), IE_Pressed, this, &AAngelCharacter::CameraSwitch);
-
-	// 상호작용
-	PlayerInputComponent->BindAction(TEXT("InterAction"), EInputEvent::IE_Pressed, this, &AAngelCharacter::StartInstall);
-	PlayerInputComponent->BindAction(TEXT("InterAction"), EInputEvent::IE_Repeat, this, &AAngelCharacter::Installing);
-	PlayerInputComponent->BindAction(TEXT("InterAction"), EInputEvent::IE_Released, this, &AAngelCharacter::EndInstall);
 }
 
 // Set Camera
@@ -209,10 +182,6 @@ void AAngelCharacter::StartFire()
 void AAngelCharacter::Fire()
 {
 	ACharacter_Parent::Fire();
-
-	auto AngelInstance = Cast<UAngelAnimInstance>(GetMesh()->GetAnimInstance());
-	if (nullptr == AngelInstance) return;
-	AngelInstance->AngelMotangeAttack();
 }
 
 void AAngelCharacter::StopFire()
@@ -260,17 +229,6 @@ void AAngelCharacter::Respawn()
 
 	HUDAngel->Death_bar = false;
 	RespawnTime = 0.0f;
-}
-
-// Muzzle
-FVector AAngelCharacter::SetMuzzlePos()
-{
-	return AnimAngel->Translation_Value;
-}
-
-FRotator AAngelCharacter::SetMuzzleRot()
-{
-	return AnimAngel->Rotate_Value * 2.0f;
 }
 
 // Install

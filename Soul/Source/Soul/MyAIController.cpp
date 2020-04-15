@@ -35,7 +35,9 @@ void AMyAIController::OnPossess(APawn* InPawn)
 		
 		if (!RunBehaviorTree(BTAsset))
 		{
+			print("RunBehaviorTree");
 		}
+		print("!RunBehaviorTree");
 	}
 
 }
