@@ -38,8 +38,11 @@ void AHUD_Parent::HUD_HPSP()
 //¸®½ºÆù
 void AHUD_Parent::HUD_Respawn()
 {
-	if (WigetClass_Respawn != nullptr && Death_bar == true)
-		CurrentWidget_Respawn->AddToViewport();
-	else if (WigetClass_Respawn != nullptr && Death_bar == false)
-		CurrentWidget_Respawn->RemoveFromViewport();
+	if (WigetClass_Respawn != nullptr)
+	{
+		if (Death_bar == true)
+			CurrentWidget_Respawn->AddToViewport();
+		else if (Death_bar == false)
+			CurrentWidget_Respawn->RemoveFromViewport();
+	}
 }

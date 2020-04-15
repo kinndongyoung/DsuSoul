@@ -4,14 +4,19 @@
 #include "AnimInstance_Parent.h"
 #include "Anim_Devil_Shielder.generated.h"
 
-//DECLARE_MULTICAST_DELEGATE(FOnAttackDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnAttackDelegate);
 
 UCLASS()
 class SOUL_API UAnim_Devil_Shielder : public UAnimInstance_Parent
 {
 	GENERATED_BODY()
-	
+
 public:
 	UAnim_Devil_Shielder();
 	void NativeUpdateAnimation(float DeltaSeconds);
+
+	void DevilShielderAttack();
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAcces = true))
+		UAnimMontage* D_Shielder_Attack;
 };

@@ -12,4 +12,8 @@ class SOUL_API UAnim_Angel_Dealer : public UAnimInstance_Parent
 public:
 	UAnim_Angel_Dealer();
 	void NativeUpdateAnimation(float DeltaSeconds);
+	void Angel_Dealer_Attack_Montage();
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAcces = true))
+		UAnimMontage* A_Dealer_Attack;
 };

@@ -2,12 +2,23 @@
 
 UAnim_Devil_Dealer::UAnim_Devil_Dealer()
 {
-//	static ConstructorHelpers::FObjectFinder<UAnimMontage> DEVIL_ATTACK(TEXT("/Game/ParagonCountess/Characters/Heroes/Countess/Animations/Primary_Attack_A_Normal_Montage.Primary_Attack_A_Normal_Montage"));
-//	if (DEVIL_ATTACK.Succeeded())
-//	{
-//		DevilAttack = DEVIL_ATTACK.Object;
-//	}
+	//	static ConstructorHelpers::FObjectFinder<UAnimMontage> DEVIL_ATTACK(TEXT("/Game/ParagonCountess/Characters/Heroes/Countess/Animations/Primary_Attack_A_Normal_Montage.Primary_Attack_A_Normal_Montage"));
+	//	if (DEVIL_ATTACK.Succeeded())
+	//	{
+	//		DevilAttack = DEVIL_ATTACK.Object;
+	//	}
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> D_DEALER_ATTACK(TEXT("/Game/ParagonRevenant/Characters/Heroes/Revenant/Animations/Primary_Fire_Med_Montage.Primary_Fire_Med_Montage"));
+	if (D_DEALER_ATTACK.Succeeded())
+	{
+		D_Dealer_Attack = D_DEALER_ATTACK.Object;
+	}
 }
+
+void UAnim_Devil_Dealer::DevilDealerAttack()
+{
+	Montage_Play(D_Dealer_Attack, 1.0f);
+}
+
 
 void UAnim_Devil_Dealer::NativeUpdateAnimation(float DeltaSeconds)
 {

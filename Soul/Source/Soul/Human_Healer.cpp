@@ -107,7 +107,7 @@ void AHuman_Healer::Fire()
 	AHumanCharacter::Fire();
 
 	if (nullptr == AnimHuman) return;
-	//AnimHuman->HumanMontageAttack();
+	AnimHuman->Human_Healer_AttackMontage();
 }
 
 void AHuman_Healer::StopFire()

@@ -213,9 +213,9 @@ void ADevilCharacter::Death()
 {
 	ACharacter_Parent::Death();
 
-	HUDDevil->Death_bar = true;
 	HUDDevil->HUD_Respawn();
 	Is_Zoom = true;
+	Zoom();
 
 	if (DeathTime <= RespawnTime)
 		ACharacter_Parent::Respawn();
@@ -223,10 +223,8 @@ void ADevilCharacter::Death()
 
 void ADevilCharacter::Respawn()
 {
+	HUDDevil->HUD_Respawn();
 	ACharacter_Parent::Respawn();
-
-	HUDDevil->Death_bar = false;
-	RespawnTime = 0.0f;
 }
 
 // Combo
@@ -235,6 +233,7 @@ void ADevilCharacter::DevilAttackStart()
 	ABLOG_S(Warning);
 	CanNextCombo = true;
 	IsComboInputOn = false;
+
 	ABCHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 0, MaxCombo - 1));
 	CurrentCombo = FMath::Clamp<int32>(CurrentCombo + 1, 1, MaxCombo);
 }

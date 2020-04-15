@@ -107,7 +107,7 @@ void AHuman_Dealer::Fire()
 	AHumanCharacter::Fire();
 
 	if (nullptr == AnimHuman) return;
-	//AnimHuman->HumanMontageAttack();
+	AnimHuman->Human_Dealer_AttackMontage();
 }
 
 void AHuman_Dealer::StopFire()

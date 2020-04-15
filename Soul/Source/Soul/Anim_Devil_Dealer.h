@@ -14,7 +14,10 @@ class SOUL_API UAnim_Devil_Dealer : public UAnimInstance_Parent
 public:
 	UAnim_Devil_Dealer();
 	void NativeUpdateAnimation(float DeltaSeconds);
+	void DevilDealerAttack();
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAcces = true))
+		UAnimMontage* D_Dealer_Attack;
 //	void DevilAttackMontage();
 //	void JumpToAttackMontage(int32 NewSection);
 //

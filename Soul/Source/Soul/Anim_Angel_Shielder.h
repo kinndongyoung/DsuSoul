@@ -12,4 +12,8 @@ class SOUL_API UAnim_Angel_Shielder : public UAnimInstance_Parent
 public:
 	UAnim_Angel_Shielder();
 	void NativeUpdateAnimation(float DeltaSeconds);
+	void Angel_Shielder_Attack_Montage();
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAcces = true))
+		UAnimMontage* A_Sheilder_Attack;
 };

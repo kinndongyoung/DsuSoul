@@ -12,4 +12,8 @@ class SOUL_API UAnim_Angel_Healer : public UAnimInstance_Parent
 public:
 	UAnim_Angel_Healer();
 	void NativeUpdateAnimation(float DeltaSeconds);
+	void Angel_Healer_Attack_montage();
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAcces = true))
+		UAnimMontage* A_Healer_Attack;
 };

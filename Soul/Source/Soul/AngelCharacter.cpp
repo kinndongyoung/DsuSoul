@@ -215,20 +215,17 @@ void AAngelCharacter::Death()
 {
 	ACharacter_Parent::Death();
 
-	HUDAngel->Death_bar = true;
 	HUDAngel->HUD_Respawn();
 	Is_Zoom = true;
-
+	Zoom();
 	if (DeathTime <= RespawnTime)
 		ACharacter_Parent::Respawn();
 }
 
 void AAngelCharacter::Respawn()
 {
+	HUDAngel->HUD_Respawn();
 	ACharacter_Parent::Respawn();
-
-	HUDAngel->Death_bar = false;
-	RespawnTime = 0.0f;
 }
 
 // Install

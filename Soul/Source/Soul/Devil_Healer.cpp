@@ -107,22 +107,8 @@ void ADevil_Healer::Fire()
 {
 	ADevilCharacter::Fire();
 
-	if (IsAtttacking)
-	{
-		ABCHECK(FMath::IsWithinInclusive<int32>(CurrentCombo, 1, MaxCombo));
-		if (CanNextCombo)
-		{
-			IsComboInputOn = true;
-		}
-	}
-	else
-	{
-		ABCHECK(CurrentCombo == 0);
-		DevilAttackStart();
-		//AnimDevil->DevilAttackMontage();
-		//AnimDevil->JumpToAttackMontage(CurrentCombo);
-		IsAtttacking = true;
-	}
+	if (nullptr == AnimDevil) return;
+	AnimDevil->DevilHealerAttack();
 }
 
 void ADevil_Healer::StopFire()

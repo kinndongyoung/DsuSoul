@@ -107,6 +107,7 @@ void AAngel_Healer::Fire()
 	AAngelCharacter::Fire();
 
 	if (nullptr == AnimAngel) return;
+	AnimAngel->Angel_Healer_Attack_montage();
 	//AnimAngel->AngelMotangeAttack();
 }
 

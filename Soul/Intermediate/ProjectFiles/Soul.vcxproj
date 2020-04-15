@@ -473,8 +473,8 @@
     <ClInclude Include="..\..\Source\Soul\KD_Board.h"/>
     <ClCompile Include="..\..\Source\Soul\MyAIController.cpp"/>
     <ClInclude Include="..\..\Source\Soul\MyAIController.h"/>
-    <ClCompile Include="..\..\Source\Soul\ObserverPawn.cpp"/>
-    <ClInclude Include="..\..\Source\Soul\ObserverPawn.h"/>
+    <ClCompile Include="..\..\Source\Soul\Observer.cpp"/>
+    <ClInclude Include="..\..\Source\Soul\Observer.h"/>
     <None Include="..\..\Source\Soul\Soul.Build.cs"/>
     <ClCompile Include="..\..\Source\Soul\Soul.cpp"/>
     <ClInclude Include="..\..\Source\Soul\Soul.h"/>

@@ -106,7 +106,9 @@ void AAngel_Shielder::Fire()
 {
 	AAngelCharacter::Fire();
 
+	
 	if (nullptr == AnimAngel) return;
+	AnimAngel->Angel_Shielder_Attack_Montage();
 	//AnimAngel->AngelMotangeAttack();
 }
 

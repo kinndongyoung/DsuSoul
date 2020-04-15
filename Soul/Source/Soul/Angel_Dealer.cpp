@@ -107,6 +107,7 @@ void AAngel_Dealer::Fire()
 	AAngelCharacter::Fire();
 
 	if (nullptr == AnimAngel) return;
+	AnimAngel->Angel_Dealer_Attack_Montage();
 	//AnimAngel->AngelMotangeAttack();
 }
 

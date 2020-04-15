@@ -112,9 +112,11 @@ void AHuman_Shielder::StartFire()
 void AHuman_Shielder::Fire()
 {
 	AHumanCharacter::Fire();
-
-	if (nullptr == AnimHuman) return;
-	//AnimHuman->HumanMontageAttack();
+	if (AnimParent->IsFire == true)
+	{
+		if (nullptr == AnimHuman) return;
+		AnimHuman->Human_Shielder_AttackMontage();
+	}
 }
 
 void AHuman_Shielder::StopFire()

@@ -206,9 +206,9 @@ void AHumanCharacter::Death()
 {
 	ACharacter_Parent::Death();
 
-	HUDHuman->Death_bar = true;
 	HUDHuman->HUD_Respawn();
 	Is_Zoom = true;
+	Zoom();
 
 	if (DeathTime <= RespawnTime)
 		ACharacter_Parent::Respawn();
@@ -216,10 +216,8 @@ void AHumanCharacter::Death()
 
 void AHumanCharacter::Respawn()
 {
+	HUDHuman->HUD_Respawn();
 	ACharacter_Parent::Respawn();
-
-	HUDHuman->Death_bar = false;
-	RespawnTime = 0.0f;
 }
 
 // Install

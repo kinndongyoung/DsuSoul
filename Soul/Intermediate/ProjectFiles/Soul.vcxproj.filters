@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\Soul.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{7B5BCF2E-838D-45E3-9F33-695050987315}</UniqueIdentifier>
+      <UniqueIdentifier>{3289858C-2A3D-4826-907B-847D88FACEE5}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\Soul.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{940AD136-3FDC-4734-BA40-A741EC312727}</UniqueIdentifier>
+      <UniqueIdentifier>{1E073F40-63AF-4271-946F-533E696A2F3F}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,55 +27,55 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Config\Android">
-      <UniqueIdentifier>{BAC63ED2-5469-4735-8FA9-6EC37EE1986A}</UniqueIdentifier>
+      <UniqueIdentifier>{CDEC0973-AC0D-4733-8D3F-FC4A9CD43AC8}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Android\AndroidEngine.ini">
       <Filter>Config\Android</Filter>
     </None>
     <Filter Include="Config\IOS">
-      <UniqueIdentifier>{9D7A1D29-1EB0-43D1-8122-0F0FAFC1311B}</UniqueIdentifier>
+      <UniqueIdentifier>{D152EE21-0F1D-44AF-B2B0-CA72895EA3AE}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\IOS\IOSEngine.ini">
       <Filter>Config\IOS</Filter>
     </None>
     <Filter Include="Config\Linux">
-      <UniqueIdentifier>{27DB6CAB-C9A1-44C3-BB48-4C91AFAAAD36}</UniqueIdentifier>
+      <UniqueIdentifier>{229C38E1-4DDE-4B6C-AABD-0FDD88086A1B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Linux\LinuxEngine.ini">
       <Filter>Config\Linux</Filter>
     </None>
     <Filter Include="Config\Mac">
-      <UniqueIdentifier>{4D2878AC-1035-40D2-AA55-41C081ECAFE6}</UniqueIdentifier>
+      <UniqueIdentifier>{D1FCEA38-8940-4950-907E-69DD15DE173B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Mac\MacEngine.ini">
       <Filter>Config\Mac</Filter>
     </None>
     <Filter Include="Config\PS4">
-      <UniqueIdentifier>{6A665011-E84B-4C73-AEF1-851E06029137}</UniqueIdentifier>
+      <UniqueIdentifier>{871C3F12-37CA-40DE-92B9-EAC08CEF21D3}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\PS4\PS4Engine.ini">
       <Filter>Config\PS4</Filter>
     </None>
     <Filter Include="Config\Switch">
-      <UniqueIdentifier>{E759EB0C-5B58-43C7-85C6-CDDCC55D1F8E}</UniqueIdentifier>
+      <UniqueIdentifier>{4C90CECA-E639-41F4-917A-149BFA92CD2A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Switch\SwitchEngine.ini">
       <Filter>Config\Switch</Filter>
     </None>
     <Filter Include="Config\Windows">
-      <UniqueIdentifier>{E96FD128-C68F-41D0-9713-B9B3E53F1728}</UniqueIdentifier>
+      <UniqueIdentifier>{EA37337D-AE0E-47DC-BABE-D0E7D11A8A09}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Windows\WindowsEngine.ini">
       <Filter>Config\Windows</Filter>
     </None>
     <Filter Include="Config\XboxOne">
-      <UniqueIdentifier>{1E0A06EB-E3D7-4D00-A5D2-C14C44F286D3}</UniqueIdentifier>
+      <UniqueIdentifier>{DB9D623C-9CDC-41C0-B682-311438CE340C}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\XboxOne\XboxOneEngine.ini">
       <Filter>Config\XboxOne</Filter>
     </None>
     <Filter Include="Source\Soul">
-      <UniqueIdentifier>{4E8D99F1-FD55-4ED8-A886-B97A83876A20}</UniqueIdentifier>
+      <UniqueIdentifier>{FAD2E5D6-662F-4397-9F96-89EB1999F7D8}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\Soul\AiNpcCharacter.cpp">
       <Filter>Source\Soul</Filter>
@@ -359,10 +359,10 @@
     <ClInclude Include="..\..\Source\Soul\MyAIController.h">
       <Filter>Source\Soul</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\Soul\ObserverPawn.cpp">
+    <ClCompile Include="..\..\Source\Soul\Observer.cpp">
       <Filter>Source\Soul</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Soul\ObserverPawn.h">
+    <ClInclude Include="..\..\Source\Soul\Observer.h">
       <Filter>Source\Soul</Filter>
     </ClInclude>
     <None Include="..\..\Source\Soul\Soul.Build.cs">

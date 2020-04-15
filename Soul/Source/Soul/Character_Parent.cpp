@@ -72,6 +72,7 @@ void ACharacter_Parent::BeginPlay()
 	RespawnTime = 0.0f;
 	// Hit State
 	Hit = false;
+	vec.Z = 350.0f;
 }
 
 void ACharacter_Parent::Tick(float DeltaTime)
@@ -356,7 +357,7 @@ void ACharacter_Parent::ReloadFunc()
 void ACharacter_Parent::Stop_ReloadFunc()
 {
 	AnimParent->Is_Reload = false;
-	GetCharacterMovement()->JumpZVelocity = 400.0;
+	GetCharacterMovement()->JumpZVelocity = 600.0;
 }
 
 // Death
@@ -366,14 +367,13 @@ void ACharacter_Parent::Death()
 	RespawnTime += 2.0f;
 	GetCharacterMovement()->JumpZVelocity = 0.0f;
 	HUDParent->Death_bar = true;
-	HUDParent->HUD_Respawn();
-	
 
 	if (DeathTime <= RespawnTime) Respawn();
 }
 
 void ACharacter_Parent::Respawn()
 {
+	AnimParent->Is_Death = false;
 	ammo = 30;
 	CurrentHp = 100.0f;
 	CurrentSP = 0.0f;
