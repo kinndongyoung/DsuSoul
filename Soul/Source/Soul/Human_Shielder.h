@@ -23,10 +23,9 @@ public:
 	// 스킬 라인 트레이스
 	bool Skill_isHit;
 	FHitResult Skill_OutHit;
-	FVector Skill_Vector = FVector::ZeroVector;
-	FVector Skill_StartVector;
-	FVector Skill_ForwardVector;
-	FVector Skill_EndVector;
+	FVector Skill_StartVector = FVector::ZeroVector;
+	FVector Skill_ForwardVector = FVector::ZeroVector;
+	FVector Skill_EndVector = FVector::ZeroVector;
 	FCollisionQueryParams Skill_CollisionParams;
 
 protected:

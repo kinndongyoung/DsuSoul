@@ -209,32 +209,26 @@ void AHuman_Shielder::UseSkillFunc()
 	//
 	//}
 
+
 	// 스킬 사용
-	Skill_Vector = FVector::ZeroVector;
-	Skill_StartVector = GetMesh()->GetComponentLocation() + FVector(0.0f, 0.0f, 30.0f);
+	Skill_ForwardVector = FVector::ZeroVector;
+	Skill_StartVector = GetMesh()->GetComponentLocation() + FVector(0.0f, 0.0f, 120.0f);
 
 	if (CurrentBlinkDir_PosX == EBlinkDirect_PosX::BLINK_DIR_FORWARD)
-		Skill_Vector += (GetMesh()->GetRightVector()*1000.0f);
+		Skill_ForwardVector += (GetMesh()->GetRightVector()*1000.0f);
 	else if (CurrentBlinkDir_PosX == EBlinkDirect_PosX::BLINK_DIR_BACK)
-		Skill_Vector -= (GetMesh()->GetRightVector()*1000.0f);
+		Skill_ForwardVector -= (GetMesh()->GetRightVector()*1000.0f);
 
 	if (CurrentBlinkDir_PosZ == EBlinkDirect_PosZ::BLINK_DIR_RIGHT)
-		Skill_Vector += (GetMesh()->GetForwardVector()*1000.0f);
+		Skill_ForwardVector += (GetMesh()->GetForwardVector()*1000.0f);
 	else if (CurrentBlinkDir_PosZ == EBlinkDirect_PosZ::BLINK_DIR_LEFT)
-		Skill_Vector -= (GetMesh()->GetForwardVector()*1000.0f);
+		Skill_ForwardVector -= (GetMesh()->GetForwardVector()*1000.0f);
 
-	Skill_EndVector = Skill_StartVector + Skill_Vector;
+	Skill_EndVector = Skill_StartVector + Skill_ForwardVector;
 
 	DrawDebugLine(GetWorld(), Skill_StartVector, Skill_EndVector, FColor::Green, true);
 	Skill_isHit = GetWorld()->LineTraceSingleByChannel(Skill_OutHit, Skill_StartVector, Skill_EndVector, ECC_Visibility, Skill_CollisionParams);
 
-	if (Skill_isHit)
-	{
-		SetActorLocation(Skill_OutHit.Location, true);
-
-		printf("X : %f", Skill_OutHit.Location.X);
-		printf("Y : %f", Skill_OutHit.Location.Y);
-		printf("Z : %f", Skill_OutHit.Location.Z);
-	}
-	else SetActorLocation(Skill_EndVector, true);
+	if (Skill_isHit) SetActorLocation(Skill_OutHit.Location, false, nullptr, ETeleportType::TeleportPhysics);
+	else SetActorLocation(Skill_EndVector, false, nullptr, ETeleportType::TeleportPhysics);
 }
